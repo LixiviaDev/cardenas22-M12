@@ -8,6 +8,7 @@ const server = http.createServer((req, res) => {
   res.end('Hello World');
 });
 
-server.listen(config.PORT, config.HOST, () => {
-  console.log(`Server running at https://${config.HOST}:${config.PORT}/`);
+
+server.listen(config.PORT, () => {
+  console.log(`Server running at http://${config.HOST}:${config.PORT}/`);
 });
