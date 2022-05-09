@@ -18,14 +18,15 @@ app.get('/', (req, res) => {
                 res.send("Error encountered while displaying");
                 return console.error(err.message);
             }
-            let response = "";
+            // let response = "";
 
-            for(let row of rows){
-                console.log(` ID: ${row.id},    Name: ${row.nombre}`);
-                response += ` ID: ${row.id},    Name: ${row.nombre}<br>`;
-            }
+            // for(let row of rows){
+            //     console.log(` ID: ${row.id},    Name: ${row.nombre}`);
+            //     response += ` ID: ${row.id},    Name: ${row.nombre}<br>`;
+            // }
 
-            res.send(response);
+            // res.send(response);
+            res.json(rows);
         });
     });
 })
