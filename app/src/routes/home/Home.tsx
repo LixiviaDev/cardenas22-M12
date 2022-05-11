@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from "react-router-dom";
-import SharedInterface from '../../WebComponents/sharedInterface/SharedInterface.tsx';
+import SharedInterface from '../../WebComponents/sharedInterface/SharedInterface';
 
 export default function Home(props: any) {
     return(

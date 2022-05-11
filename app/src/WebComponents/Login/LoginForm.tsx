@@ -6,10 +6,10 @@ import configData from '../../config.json'
 
 export default function LoginForm(props: any) {
 
-    const [user, setUser] = useState<string>(null);
-    const [password, setPassword] = useState<string>(null);
+    const [user, setUser] = useState<string>();
+    const [password, setPassword] = useState<string>();
 
-    async function submitLogIn(e) {
+    async function submitLogIn(e : any) {
         e?.preventDefault();
 
         let response = await fetch(`${configData["API_URL"]}/login`, {
@@ -54,11 +54,12 @@ export default function LoginForm(props: any) {
         </>
     );
 
-    function setState(varname, value){
-        eval(`set${capitalizeFirstLetter(varname)}(${value})`);
+    function setState(varname : any, value : any){
+        if(value != null)
+            eval(`set${capitalizeFirstLetter(varname)}(${value})`);
     }
 
-    function capitalizeFirstLetter(string) {
+    function capitalizeFirstLetter(string : any) {
         return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
       }
       

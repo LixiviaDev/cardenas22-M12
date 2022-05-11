@@ -4,10 +4,8 @@ import {
   Route,
 } from "react-router-dom";  //Para el react router
 import './App.css';
-import Home from './routes/home/Home.tsx';
-import Login from './routes/login/Login.tsx';
-// import './src/js/bootstrap.min.js';
-
+import Home from './routes/home/Home';
+import Login from './routes/login/Login';
 
 function App() {
   return (
@@ -17,7 +15,6 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="login" element={<Login />} />
       </Routes>
-      
     </BrowserRouter>
     </>
   );

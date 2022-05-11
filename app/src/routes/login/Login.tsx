@@ -1,6 +1,6 @@
 import React from 'react'
-import SharedInterface from '../../WebComponents/sharedInterface/SharedInterface.tsx';
-import LoginForm from '../../WebComponents/Login/LoginForm.tsx';
+import SharedInterface from '../../WebComponents/sharedInterface/SharedInterface';
+import LoginForm from '../../WebComponents/Login/LoginForm';
 
 export default function Login(props: any) {
     return(
