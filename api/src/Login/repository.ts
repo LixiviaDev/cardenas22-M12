@@ -1,22 +1,14 @@
-const sqlite3 = require('sqlite3').verbose();
-const db = new sqlite3.Database('./db.db');
+const Database = require('better-sqlite3');
+const db = new Database('./db.db', { verbose: console.log });
 
 export default class LoginRepository {
     static async login(user : string, password : string): Promise<boolean> {
-        let sql : string = `SELECT COUNT(*) as count FROM users
-                                WHERE username LIKE ${user}
-                                    AND password LIKE ${password}`;
 
-        db.serialize(()=>{
-            db.get(sql, (err,row) => {     
-                if(err){
-                    return false;
-                }
-                
-                return row.count > 0;
-            });
-        });
-    
-        return false;
+        const sql : any = db.prepare(`SELECT COUNT(*) as count FROM users
+                                        WHERE username = ?
+                                            AND password = ?`);
+        const res : any = sql.get(user, password);
+
+        return (res.count > 0);
     }
   }
