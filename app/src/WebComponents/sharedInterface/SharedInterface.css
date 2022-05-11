@@ -1,0 +1,22 @@
+header {
+    position: absolute;
+    top:0;
+    height: 56px;
+    width: 100vw;
+}
+
+#mainContent {
+    padding-top: 56px;
+    min-height: 100vh;
+    display: flex;
+    /* flex-direction: column; */
+}
+
+footer {
+    height: 200px;
+}
+
+img.profilePicture {
+    width: 40px;
+    aspect-ratio: 1/1;
+}

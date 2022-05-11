@@ -1,16 +1,23 @@
 import React from 'react'
-// import './SharedInterface.css'
+import './SharedInterface.css'
 
 export default function SharedInterface(props: any) {
     return(
         <>
         <header>
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
-            <div className="container-fluid">
-                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span className="navbar-toggler-icon"></span>
-                </button>
-                <a className="navbar-brand" href="#">Navbar</a>
+            <div className="w-100">
+                <div className='row container-fluid justify-space-beetwen m-0'>
+                    <button className="navbar-toggler col-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span className="navbar-toggler-icon"></span>
+                    </button>
+                    <form className="d-flex col-8">
+                        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+                    </form>
+                    <div className='p-0 col-2 text-center'>
+                        <img src="https://i.pinimg.com/originals/d7/38/9b/d7389ba6dadf70ff848a9804be09ac30.jpg" className="rounded-circle profilePicture" alt="foto de perfil"/>
+                    </div>
+                </div>
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                     <li className="nav-item">
@@ -34,19 +41,17 @@ export default function SharedInterface(props: any) {
                     <a className="nav-link disabled" href="#" tabIndex={-1} aria-disabled="true">Disabled</a>
                     </li>
                 </ul>
-                <form className="d-flex">
-                    <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-                    <button className="btn btn-outline-success" type="submit">Search</button>
-                </form>
                 </div>
             </div>
         </nav>
         </header>
 
-        {props.children}
+        <div id="mainContent">
+            {props.children}
+        </div>
 
-        <footer className="py-5">
-            <div className="row">
+        <footer>
+            <div className="row mx-0">
             <div className="col-2">
                 <h5>Section</h5>
                 <ul className="nav flex-column">

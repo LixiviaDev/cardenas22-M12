@@ -1,14 +1,24 @@
-import SharedInterface from './WebComponents/sharedInterface/SharedInterface.tsx';
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom";  //Para el react router
 import './App.css';
+import Home from './routes/home/Home.tsx';
+import Login from './routes/login/Login.tsx';
 // import './src/js/bootstrap.min.js';
 
 
 function App() {
   return (
     <>
-    <SharedInterface>
-      <p>a</p>
-    </SharedInterface>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="login" element={<Login />} />
+      </Routes>
+      
+    </BrowserRouter>
     </>
   );
 }
