@@ -2,7 +2,9 @@
 
 import React, { useState } from 'react'
 import './Login.css'
-import configData from '../../config.json'
+import configData from '../../config.json';
+
+var AES = require("crypto-js/aes");
 
 export default function LoginForm(props: any) {
 
@@ -12,15 +14,21 @@ export default function LoginForm(props: any) {
     async function submitLogIn(e : any) {
         e?.preventDefault();
 
-        let response = await fetch(`${configData["API_URL"]}/login`, {
-            method: 'POST',
-            headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({a: 1, b: 'Textual content'})
-          });
-        response = await response.json();
+        console.log(`User: ${user} || Password: ${password}`);
+
+        try{
+            let response = await fetch(`${configData["API_URL"]}/login`, {
+                method: 'POST',
+                headers: {
+                  'Accept': 'application/json',
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({user: user, password: password})
+              });
+            let data = await response.json();
+        } catch (ex) {
+            console.error(ex);
+        }
     }
 
     return(
@@ -29,7 +37,6 @@ export default function LoginForm(props: any) {
         <div className="login-form">
             <div className="form-header">
                 <div className="user-logo">
-                    <img src="https://drupway.com/wp-content/uploads/2018/10/person-male.png" alt="User"/>
                 </div>
                 <div className="title">Login</div>
             </div> 
@@ -40,7 +47,7 @@ export default function LoginForm(props: any) {
                 </div>
                 <div className="form-element">
                     <label className="fa fa-key" htmlFor="login-password"></label>
-                    <input type="text" id="login-password" onChange={(e) => setState(`password`, e.target.value)} placeholder="Password"/>
+                    <input type="password" id="login-password" onChange={(e) => setState(`password`, e.target.value)} placeholder="Password"/>
                 </div>
                 <div className="form-element">
                     <input type="submit" value="Login" />
@@ -56,7 +63,7 @@ export default function LoginForm(props: any) {
 
     function setState(varname : any, value : any){
         if(value != null)
-            eval(`set${capitalizeFirstLetter(varname)}(${value})`);
+            eval(`set${capitalizeFirstLetter(varname)}("${value}")`);
     }
 
     function capitalizeFirstLetter(string : any) {
