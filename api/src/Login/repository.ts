@@ -1,14 +1,26 @@
+import { newUser, User } from "./User";
+
 const Database = require('better-sqlite3');
 const db = new Database('./db.db', { verbose: console.log });
 
 export default class LoginRepository {
-    static async login(user : string, password : string): Promise<boolean> {
+    static async login(user : string, password : string): Promise<User> {
 
-        const sql : any = db.prepare(`SELECT COUNT(*) as count FROM users
+        let sql : any = db.prepare(`SELECT * FROM users
                                         WHERE username = ?
                                             AND password = ?`);
-        const res : any = sql.get(user, password);
+        let res : any = sql.get(user, password);
 
-        return (res.count > 0);
+        let userData = newUser();
+        userData.username = res?.username;
+
+        sql = db.prepare(`SELECT  GROUP_CONCAT(roleId) as roles
+                                        FROM userRoles
+                                        WHERE userId = ?`);
+        res = sql.all(res?.userId);
+
+        userData.roles = res[0].roles?.split(',');
+
+        return userData;
     }
   }

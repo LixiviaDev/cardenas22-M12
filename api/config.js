@@ -1,4 +1,5 @@
 module.exports = {
   HOST: process.env.HOST || '127.0.0.1',
-  PORT: process.env.PORT || 3000
+  PORT: process.env.PORT || 3000,
+  JWT_SECRET: process.env.JWT_SECRET || ""
 }
