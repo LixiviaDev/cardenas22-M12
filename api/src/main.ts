@@ -14,7 +14,7 @@ const corsOptions = {
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.use(cors(corsOptions));
+  //app.use(cors(corsOptions));
   await app.listen(configData.PORT);
 
   console.log(`Server running at http://${configData.HOST}:${configData.PORT}/`);
