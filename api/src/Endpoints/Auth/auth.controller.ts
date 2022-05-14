@@ -2,18 +2,18 @@ import { Body, Query, Controller, Post, Get, HttpException, HttpStatus, Req, Par
 import { UserJWT } from 'src/Common/CustomTypes/User';
 import { AuthService } from './auth.service';
 
-@Controller()
+@Controller("auth")
 export class AuthController {
   constructor(private readonly authService: AuthService) {}@Post('auth')
 
-  @Post('auth')
+  @Post()
   async auth(@Body() body: any): Promise<boolean> {
     let res : boolean = await AuthService.auth(body.token);
 
     return true;
   }
 
-  @Post('auth/:actionId')
+  @Post(':actionId')
   async authEditManga(@Body() body: any, @Param() params: any): Promise<boolean> {
     let tokenData : UserJWT = await AuthService.verifyJWT(body.token);
 

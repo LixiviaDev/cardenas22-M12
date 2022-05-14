@@ -48,7 +48,7 @@ export default function SharedInterface(props: any) {
         </nav>
         </header>
 
-        <div id="mainContent" className={"flex-" + flexflow}>
+        <div id="mainContent" className={`flex-${flexflow}`}>
             {props.children}
         </div>
 
