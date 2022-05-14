@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './SharedInterface.css'
 
 export default function SharedInterface(props: any) {
+    const [flexflow] = useState(props.flexflow ?? "column");
+
     return(
         <>
         <header>
@@ -46,7 +48,7 @@ export default function SharedInterface(props: any) {
         </nav>
         </header>
 
-        <div id="mainContent">
+        <div id="mainContent" className={"flex-" + flexflow}>
             {props.children}
         </div>
 

@@ -4,8 +4,8 @@ import {
   Route,
 } from "react-router-dom";  //Para el react router
 import './App.css';
-import Home from './routes/home/Home';
-import Login from './routes/login/Login';
+import Home from './Routes/Home/Home';
+import Login from './Routes/Login/Login';
 
 function App() {
   return (
