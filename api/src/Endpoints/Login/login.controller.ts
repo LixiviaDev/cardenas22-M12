@@ -7,7 +7,7 @@ export class LoginController {
 
   @Post('login')
   async login(@Body() body: any): Promise<string> {
-    let res : string = await LoginService.login(body.user, body.password);
+    let res : string = await this.loginService.login(body.user, body.password);
     
     if(res == "")
         throw(new HttpException('Invalid user', HttpStatus.FORBIDDEN))
@@ -17,6 +17,6 @@ export class LoginController {
 
   @Post('signup')
   async signup(@Body() body: any): Promise<void> {
-    await LoginService.signup(body.email, body.user, body.password);
+    await this.loginService.signup(body.email, body.user, body.password);
   }
 }

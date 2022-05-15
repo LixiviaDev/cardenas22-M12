@@ -9,7 +9,7 @@ const jwt = require('jsonwebtoken');
 
 @Injectable()
 export class AuthService {
-  static async auth(token : string): Promise<boolean> {
+  async auth(token : string): Promise<boolean> {
     // password = crypto.createHmac('sha256', password).update(password).digest("base64");
 
     // let userData : User = await Repository.login(user, password)
@@ -23,7 +23,7 @@ export class AuthService {
     return true;
   }
 
-  static async authAction(tokenData : UserJWT, action : string): Promise<boolean> {
+  async authAction(tokenData : UserJWT, action : string): Promise<boolean> {
     let res = authRepository.authAction(tokenData.userData, action);
     // password = crypto.createHmac('sha256', password).update(password).digest("base64");
 
@@ -38,7 +38,7 @@ export class AuthService {
     return res;
   }
 
-  static async verifyJWT(token : string): Promise<UserJWT> {
+  async verifyJWT(token : string): Promise<UserJWT> {
     
     let tokenData : UserJWT = new UserJWT();
 
