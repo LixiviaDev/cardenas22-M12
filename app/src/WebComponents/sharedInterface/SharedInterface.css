@@ -1,3 +1,7 @@
+* {
+    box-sizing: content-box;
+}
+
 header {
     position: absolute;
     top:0;
