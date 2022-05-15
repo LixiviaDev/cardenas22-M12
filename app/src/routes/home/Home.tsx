@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { Link } from "react-router-dom";
 import { Languages } from '../../TypeScript/Enums/Language.enum';
 import { LanguageManager } from '../../TypeScript/Managers/LanguageManager';
 import SectionTitle from '../../WebComponents/Common/SectionTitle';
@@ -8,7 +7,6 @@ import SharedInterface from '../../WebComponents/SharedInterface/SharedInterface
 import { MangaSection } from '../../WebComponents/Manga/MangaSection/MangaSection';
 import { CardType } from '../../TypeScript/Enums/CardType.enum';
 import { MangaCardData, IMangaCardData } from '../../TypeScript/Classes/MangaCardData';
-import { SimpleMangaCard } from '../../WebComponents/Manga/MangaCard/MangaCard';
 
 export default function Home(props: any) {
     const [languageManager] = useState<LanguageManager>(LanguageManager.getInstance());
