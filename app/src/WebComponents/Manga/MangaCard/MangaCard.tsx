@@ -14,10 +14,10 @@ export function HoverMangaCard(props: any) {
                 <img src={img} 
                     className="w-100 p-2"
                     alt={`portada de ${title}`} />
-                <div className="mangaName position-absolute bottom-0 bg-primary w-100"  style={{height: "75px"}}>
+                <div className="mangaName position-absolute bottom-0 bg-primary w-100">
                     <div className="w-100 h-100 p-2">
-                        <div className="w-100 h-100 border-secondary d-flex justify-content-center align-items-cente" style={{border: "5px solid"}}>
-                            <div className="text-dark m-auto">{title}</div>
+                        <div className="w-100 h-100 border-secondary d-flex justify-content-center align-items-cente" style={{border: "5px solid", minHeight: "60px"}}>
+                            <div className="text-dark m-auto p-2">{title}</div>
                         </div>
                     </div>
                 </div>
@@ -38,10 +38,10 @@ export function SimpleMangaCard(props: any) {
                 <img src={img} 
                     className="w-100 p-2"
                     alt={`portada de ${title}`} />
-                <div className="mangaName bottom-0 bg-primary w-100" style={{height: "75px"}}>
+                <div className="mangaName bottom-0 bg-primary w-100">
                     <div className="w-100 h-100 p-2">
-                        <div className="w-100 h-100 border-secondary d-flex justify-content-center align-items-cente" style={{border: "5px solid"}}>
-                            <div className="text-dark m-auto">{title}</div>
+                        <div className="w-100 h-100 border-secondary d-flex justify-content-center align-items-cente" style={{border: "5px solid", minHeight: "60px"}}>
+                            <div className="text-dark m-auto p-2">{title}</div>
                         </div>
                     </div>
                 </div>

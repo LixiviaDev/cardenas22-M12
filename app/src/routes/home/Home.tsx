@@ -18,7 +18,7 @@ export default function Home(props: any) {
       href: "/a",
     } as IMangaCardData),
     new MangaCardData({
-      title: "B",
+      title: "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
       img: "https://dosbg3xlm0x1t.cloudfront.net/images/items/9784088736013/1200/9784088736013.jpg",
       href: "/b",
       hoverDisabled: true,

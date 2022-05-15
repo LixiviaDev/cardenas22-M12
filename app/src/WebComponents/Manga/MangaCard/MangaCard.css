@@ -9,3 +9,7 @@
 .mangaCard.hover:hover .mangaName {
     display: block;
 }
+
+.mangaName {
+    overflow-wrap: anywhere;
+}
