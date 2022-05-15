@@ -23,17 +23,10 @@ export class AuthService {
     return true;
   }
 
-  async authAction(tokenData : UserJWT, action : string): Promise<boolean> {
+  async authAction(token : string, action : string): Promise<boolean> {
+    let tokenData : UserJWT = await this.verifyJWT(token);
+
     let res = authRepository.authAction(tokenData.userData, action);
-    // password = crypto.createHmac('sha256', password).update(password).digest("base64");
-
-    // let userData : User = await Repository.login(user, password)
-
-    // let token : string = "";
-
-    // if(userData?.username != null){
-    //     token = jwt.sign(userData, configData["JWT_SECRET"]);
-    // }
 
     return res;
   }

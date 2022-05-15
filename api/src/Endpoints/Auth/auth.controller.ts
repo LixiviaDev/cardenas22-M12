@@ -15,9 +15,9 @@ export class AuthController {
 
   @Post(':actionId')
   async authEditManga(@Body() body: any, @Param() params: any): Promise<boolean> {
-    let tokenData : UserJWT = await this.authService.verifyJWT(body.token);
+    // let tokenData : UserJWT = await this.authService.verifyJWT(body.token);
 
-    let res : boolean = await this.authService.authAction(tokenData, params.actionId);
+    let res : boolean = await this.authService.authAction(body.token, params.actionId);
 
     return res;
   }
