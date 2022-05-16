@@ -1,5 +1,4 @@
 import React from "react";
-import { Singleton } from "../DesingPatterns/Singleton";
 import { Languages } from "../Enums/Language.enum";
 
 import es from '../Languages/es.json';

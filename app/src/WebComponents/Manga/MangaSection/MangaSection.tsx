@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
-import { IMangaPreviewCardData, MangaCardData } from "../../../TypeScript/Classes/MangaCardData";
+import { IMangaPreviewCardData, MangaCardData } from "../../../TypeScript/Classes/Manga/MangaCardData";
 import { CardType } from "../../../TypeScript/Enums/CardType.enum";
 import { LanguageManager } from "../../../TypeScript/Managers/LanguageManager";
 import SectionTitle from "../../Common/SectionTitle";
 import { HoverMangaCard, SimpleMangaCard } from "../MangaCard/MangaCard";
 import configData from '../../../config.json';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 export function MangaSection(props: any) {
     const [languageManager] = useState<LanguageManager>(LanguageManager.getInstance());
@@ -81,7 +83,7 @@ export function MangaSection(props: any) {
                 case CardType.Hover:
                     cards.push(
                         <>
-                        <div className="col-6 col-md-1 mb-3">
+                        <div className="col-6 col-md-3 col-lg-2 mb-3">
                             <HoverMangaCard title={mangaCardData.title} 
                                             href={mangaCardData.href} 
                                             img={mangaCardData.img}
@@ -93,7 +95,7 @@ export function MangaSection(props: any) {
                 case CardType.Simple:
                     cards.push(
                         <>
-                        <div className="col-6 mb-3">
+                        <div className="col-6 col-md-3 col-lg-2 mb-3">
                             <SimpleMangaCard title={mangaCardData.title} 
                                             href={mangaCardData.href} 
                                             img={mangaCardData.img}/>
@@ -112,7 +114,9 @@ export function MangaSection(props: any) {
         <div className="row m-0">
             {cards}
         </div>
-        <button onClick={generateMangaCards}></button>
+        <button onClick={generateMangaCards} style={{fontSize: "20px"}}>
+            <FontAwesomeIcon icon={faPlus} />
+        </button>
         </>
     );
 }

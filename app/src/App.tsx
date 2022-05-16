@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";  //Para el react router
 import './App.css';
 import Home from './Routes/Home/Home';
+import Info from "./Routes/Info/Info";
 import Login from './Routes/Login/Login';
 import { Languages } from "./TypeScript/Enums/Language.enum";
 import { LanguageManager } from "./TypeScript/Managers/LanguageManager";
@@ -26,6 +27,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="login" element={<Login />} />
+        <Route path="info/:mangaId" element={<Info />} />
       </Routes>
     </BrowserRouter>
     </>
