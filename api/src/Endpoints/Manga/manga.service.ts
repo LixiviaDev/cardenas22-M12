@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { MangaPreviewCardData } from 'src/Common/CustomTypes/Manga';
 import { ChapterData } from 'src/Common/Tables/ChapterData';
 import { MangaInfoData } from 'src/Common/Tables/MangaInfoData';
 import { User, UserJWT } from '../../Common/CustomTypes/User';
@@ -18,5 +19,11 @@ export default class MangaService {
 
     async addChapter(chapterData: ChapterData, chapterImages: string[]): Promise<void> {
         await MangaRepository.addChapter(chapterData, chapterImages);
+    }
+
+    async testMangaPreviewCard(page: number): Promise<MangaPreviewCardData[]> {
+        let res = await MangaRepository.testMangaPreviewCard(page);
+
+        return res;
     }
 }

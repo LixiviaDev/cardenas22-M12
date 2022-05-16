@@ -1,4 +1,5 @@
 import { HttpException, HttpStatus } from "@nestjs/common";
+import { MangaPreviewCardData } from "src/Common/CustomTypes/Manga";
 import { ChapterData } from "src/Common/Tables/ChapterData";
 import { MangaInfoData } from "src/Common/Tables/MangaInfoData";
 import { User } from "../../Common/CustomTypes/User";
@@ -59,6 +60,7 @@ export default class MangaRepository {
             throw new HttpException(e, HttpStatus.BAD_REQUEST)
         }
     }
+    
     static async addChapter(chapterData: ChapterData, chapterImages: string[]): Promise<void> {
         // let args = {...chapterData, chapterImages: chapterImages, dateAdded: new Date(Date.now()).toISOString()};
         
@@ -110,6 +112,36 @@ export default class MangaRepository {
             for(let img in chapterImages){
                 sql.run({...chapterData, page: img, image: chapterImages[img], dateAdded: new Date(Date.now()).toISOString()});
             }
+        }
+        catch(e) {
+            console.log(e);
+            throw new HttpException(e, HttpStatus.BAD_REQUEST)
+        }
+    }
+    
+    static async testMangaPreviewCard(page: number): Promise<MangaPreviewCardData[]> {
+        // let args = {...chapterData, chapterImages: chapterImages, dateAdded: new Date(Date.now()).toISOString()};
+        
+        page = page ?? 0;
+
+        console.log("Page: " + page);
+
+        let sql = db.prepare(`
+            SELECT distinct
+                    m.mangaId,
+                    m.name,
+                    mI.image
+            FROM manga m
+            INNER JOIN mangaInfo mI 
+                ON mI.mangaId = m.mangaId
+            LIMIT 4
+                OFFSET @page * 4;
+            `);
+
+        try{
+            let res: MangaPreviewCardData[] = sql.all({page: page});
+
+            return res;
         }
         catch(e) {
             console.log(e);

@@ -8,10 +8,3 @@ export class UserJWT {
     iat: number;
     exp: number;
 }
-
-// export function newUser() {
-//     return {
-//         username: "",
-//         roles: []
-//     }
-// }

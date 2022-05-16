@@ -29,6 +29,8 @@ export default class authRepository {
 
     static async authAction(userData : User, action : string): Promise<boolean> {
 
+        console.log("USerData: " + userData);
+
         if(userData.roles.includes(Role.Admin)) // If is admin has access 
             return true;
 

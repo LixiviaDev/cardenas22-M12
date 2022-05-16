@@ -24,6 +24,8 @@ export class AuthService {
   }
 
   async authAction(token : string, action : string): Promise<boolean> {
+    console.log("Token: " + token);
+
     let tokenData : UserJWT = await this.verifyJWT(token);
 
     let res = authRepository.authAction(tokenData.userData, action);

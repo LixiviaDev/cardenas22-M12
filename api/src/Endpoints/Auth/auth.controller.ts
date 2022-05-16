@@ -8,6 +8,8 @@ export class AuthController {
 
   @Post()
   async auth(@Body() body: any): Promise<boolean> {
+    console.log("Token: " + body.token);
+    
     let res : boolean = await this.authService.auth(body.token);
 
     return true;
@@ -16,6 +18,7 @@ export class AuthController {
   @Post(':actionId')
   async authEditManga(@Body() body: any, @Param() params: any): Promise<boolean> {
     // let tokenData : UserJWT = await this.authService.verifyJWT(body.token);
+    console.log("Token: " + body.token);
 
     let res : boolean = await this.authService.authAction(body.token, params.actionId);
 
