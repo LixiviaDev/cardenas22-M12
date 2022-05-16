@@ -1,0 +1,46 @@
+import { Injectable } from '@nestjs/common';
+import { UserJWT } from 'src/Common/CustomTypes/User';
+import authRepository from './auth.repository';
+
+require('dotenv').config();
+const configData = require('../../../config.js');
+
+const jwt = require('jsonwebtoken');
+
+@Injectable()
+export class AuthService {
+  async auth(token : string): Promise<boolean> {
+    // password = crypto.createHmac('sha256', password).update(password).digest("base64");
+
+    // let userData : User = await Repository.login(user, password)
+
+    // let token : string = "";
+
+    // if(userData?.username != null){
+    //     token = jwt.sign(userData, configData["JWT_SECRET"]);
+    // }
+
+    return true;
+  }
+
+  async authAction(token : string, action : string): Promise<boolean> {
+    let tokenData : UserJWT = await this.verifyJWT(token);
+
+    let res = authRepository.authAction(tokenData.userData, action);
+
+    return res;
+  }
+
+  async verifyJWT(token : string): Promise<UserJWT> {
+    
+    let tokenData : UserJWT = new UserJWT();
+
+    try {
+      tokenData = await jwt.verify(token, configData["JWT_SECRET"]);
+    } catch(err) {
+      console.log(err);
+    }
+
+    return tokenData;
+  }
+}

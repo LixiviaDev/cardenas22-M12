@@ -1,0 +1,15 @@
+.mangaCard img {
+    aspect-ratio: 1/1.5;
+}
+
+.mangaCard.hover .mangaName {
+    display: none;
+}
+
+.mangaCard.hover:hover .mangaName {
+    display: block;
+}
+
+.mangaName {
+    overflow-wrap: anywhere;
+}

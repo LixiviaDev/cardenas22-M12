@@ -1,11 +1,11 @@
 import React from 'react'
-import SharedInterface from '../../WebComponents/sharedInterface/SharedInterface';
+import SharedInterface from '../../WebComponents/SharedInterface/SharedInterface';
 import LoginForm from '../../WebComponents/Login/LoginForm';
 
 export default function Login(props: any) {
     return(
         <>
-        <SharedInterface>
+        <SharedInterface flexflow="row">
             <LoginForm />
         </SharedInterface>
         </>
