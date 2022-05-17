@@ -1,6 +1,7 @@
 import { HttpException, HttpStatus } from "@nestjs/common";
+import { ChapterData } from "src/Common/CustomTypes/Chapter";
 import { MangaInfoData, MangaPreviewCardData } from "src/Common/CustomTypes/Manga";
-import { ChapterData } from "src/Common/Tables/ChapterData";
+import { ChapterData as ChapterDataTable } from "src/Common/Tables/ChapterData";
 import MangaInfoDataTable from "src/Common/Tables/MangaInfoData";
 import { User } from "../../Common/CustomTypes/User";
 
@@ -61,7 +62,7 @@ export default class MangaRepository {
         }
     }
     
-    static async addChapter(chapterData: ChapterData, chapterImages: string[]): Promise<void> {
+    static async addChapter(chapterData: ChapterDataTable, chapterImages: string[]): Promise<void> {
         // let args = {...chapterData, chapterImages: chapterImages, dateAdded: new Date(Date.now()).toISOString()};
         
         console.log(chapterData);
@@ -187,6 +188,26 @@ export default class MangaRepository {
 
         try{
             let res: MangaInfoData = sql.get({mangaId: mangaId});
+
+            return res;
+        }
+        catch(e) {
+            console.log(e);
+            throw new HttpException(e, HttpStatus.BAD_REQUEST)
+        }
+    }
+    
+    static async chapterList(mangaId: string, mangaServerId: number): Promise<ChapterData[]> {
+
+        let sql = db.prepare(`
+        SELECT chapterId, dateAdded FROM chapters
+            WHERE mangaId = @mangaId
+                AND mangaServerId = @mangaServerId
+        ORDER BY chapterId;
+            `);
+
+        try{
+            let res: ChapterData[] = sql.all({mangaId: mangaId, mangaServerId: mangaServerId});
 
             return res;
         }

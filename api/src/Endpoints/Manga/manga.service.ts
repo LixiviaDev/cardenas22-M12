@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
+import { ChapterData } from 'src/Common/CustomTypes/Chapter';
 import { MangaInfoData, MangaPreviewCardData } from 'src/Common/CustomTypes/Manga';
-import { ChapterData } from 'src/Common/Tables/ChapterData';
+import { ChapterData as ChapterDataTable } from 'src/Common/Tables/ChapterData';
 import MangaInfoDataTable from 'src/Common/Tables/MangaInfoData';
 import { User, UserJWT } from '../../Common/CustomTypes/User';
 import MangaRepository from './manga.repository';
@@ -17,7 +18,7 @@ export default class MangaService {
         await MangaRepository.addManga(mangaInfoData, mangaName);
     }
 
-    async addChapter(chapterData: ChapterData, chapterImages: string[]): Promise<void> {
+    async addChapter(chapterData: ChapterDataTable, chapterImages: string[]): Promise<void> {
         await MangaRepository.addChapter(chapterData, chapterImages);
     }
 
@@ -33,6 +34,12 @@ export default class MangaService {
         res.artists = res.artists?.toString().split("=");
         res.authors = res.authors?.toString().split("=");
         res.tags = res.tags?.toString().split("=");
+
+        return res;
+    }
+
+    async chapterList(mangaId: string, mangaServerId: number): Promise<ChapterData[]> {
+        let res = await MangaRepository.chapterList(mangaId, mangaServerId);
 
         return res;
     }

@@ -4,6 +4,8 @@ import { IMangaInfoData, MangaInfoData } from "../../TypeScript/Classes/Manga/Ma
 import SharedInterface from "../../WebComponents/SharedInterface/SharedInterface";
 import configData from '../../config.json';
 import { LanguageManager } from "../../TypeScript/Managers/LanguageManager";
+import ChapterList from "../../WebComponents/Chapters/ChapterList";
+import { JsxElement } from "typescript";
 
 export default function Info(props: any) {
 
@@ -12,29 +14,23 @@ export default function Info(props: any) {
     const {mangaId} = useParams();
     const [mangaInfoData, setMangaInfoData] = useState<MangaInfoData>();
 
+    const [chapterList, setchapterList] = useState<any>();
+
     useEffect(() => componentDidMount, []);
+    
+    useEffect(() => {
+
+        console.log(mangaInfoData?.mangaServerId);
+        setchapterList(<ChapterList mangaId={mangaId} mangaServerId={mangaInfoData?.mangaServerId} />);
+
+        }, [mangaInfoData]);
 
     // useEffect(() => processMangaCards(), [mangaInfoData]);
 
     function componentDidMount() {
-        // let newMangaInfoData: MangaInfoData = new MangaInfoData({
-        //     mangaId: mangaId,
-        //     title: "Ameiro Koucha kan Kandan",
-        //     mangaServerId: 1,
-        //     image: "https://ww1.mangakakalot.tv/mangaimage/manga-xo956349.jpg",
-        //     authors: ["paco1"] as string[],
-        //     artists: ["paco2", "paco3"] as string[],
-        //     tags: ["tag1", "tag2", "tag3", "tag4", "tag5", "tag6"] as string[],
-        //     sinopsis: "            Set at a shop called The Amber Teahouse, this is a very heartwarming story that focuses on Seriho, the proprietor of the teahouse, and Sarasa, the high school student who works there part-time. It&apos;ll set your heart aflutter!           ",
-        //     statusId: 0,
-        //     views:62556682,
-        //     score:5,
-        //     lastUpdateChapterDateAdded: "2022-05-15T16:11:37.559Z"
-        // } as IMangaInfoData);
-
-        // pushMangaInfoData(newMangaInfoData);
-
         generateMangaInfoData();
+
+        
     }
 
     async function generateMangaInfoData()
@@ -89,7 +85,7 @@ export default function Info(props: any) {
                     </p>
                 </div>
                 <div className="w-100 px-2 border border-secondary d-flex flex-column align-items-center">
-
+                    {chapterList}
                 </div>
             </div>
         </SharedInterface>

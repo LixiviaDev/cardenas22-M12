@@ -40,6 +40,7 @@ export class AuthService {
     try {
       tokenData = await jwt.verify(token, configData["JWT_SECRET"]);
     } catch(err) {
+      tokenData.userData.roles = ["-1"]
       console.log(err);
     }
 
