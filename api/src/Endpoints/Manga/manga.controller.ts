@@ -1,5 +1,5 @@
 import { Body, Query, Controller, Post, Get, HttpException, HttpStatus, Req, Param } from '@nestjs/common';
-import { MangaPreviewCardData } from 'src/Common/CustomTypes/Manga';
+import { MangaInfoData, MangaPreviewCardData } from 'src/Common/CustomTypes/Manga';
 import { UserJWT } from 'src/Common/CustomTypes/User';
 import { Action } from 'src/Common/Enums/Actions.enum';
 import { AuthService } from '../Auth/auth.service';
@@ -40,6 +40,20 @@ export class MangaController {
       throw new HttpException('Invalid user', HttpStatus.FORBIDDEN)
 
     let res = await this.mangaService.testMangaPreviewCard(params.page);
+
+    return res;
+  }
+
+  @Post("/info")
+  async info(@Body() body: any): Promise<MangaInfoData> {
+    console.log("Body: " + JSON.stringify(body));
+
+    let isAuth : boolean = await this.authService.authAction(body.token, Action.getManga);
+
+    if(!isAuth)
+      throw new HttpException('Invalid user', HttpStatus.FORBIDDEN)
+
+    let res = await this.mangaService.info(body.mangaId);
 
     return res;
   }

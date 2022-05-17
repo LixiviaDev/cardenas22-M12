@@ -13,6 +13,8 @@ export class LanguageManager {
 
     private currentLanguage : string = localStorage.getItem("lang") ?? Languages.ES;
 
+    private dateTimeFormatOptions : Intl.DateTimeFormatOptions = {weekday: "long", year: "numeric", month: "long", day: "numeric"};
+
     private constructor() { }
 
     public static getInstance(): LanguageManager {
@@ -36,5 +38,15 @@ export class LanguageManager {
         let pathEval = `this.${this.currentLanguage}.${path}`;
 
         return eval(pathEval);
+    }
+
+    public dateToLangString(dateString: string | undefined) : string{
+        let date = new Date(dateString ?? "");
+        return date.toLocaleDateString(this.currentLanguage, this.dateTimeFormatOptions);
+    }
+
+    public dateToShortLangString(dateString: string | undefined) : string{
+        let date = new Date(dateString ?? "");
+        return date.toLocaleString(this.currentLanguage);
     }
 }

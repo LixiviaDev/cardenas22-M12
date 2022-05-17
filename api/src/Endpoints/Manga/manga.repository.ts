@@ -148,4 +148,45 @@ export default class MangaRepository {
             throw new HttpException(e, HttpStatus.BAD_REQUEST)
         }
     }
+    
+    static async info(mangaId: string): Promise<MangaInfoData> {
+
+        let sql = db.prepare(`
+        SELECT  mI.mangaId,
+                m.name,
+                mI.mangaServerId,
+                mI.image,
+                (
+                SELECT GROUP_CONCAT(name, '=') FROM mangaAuthors
+                    WHERE mangaId = mI.mangaId
+                ) authors,
+                (
+                SELECT GROUP_CONCAT(name, '=') FROM mangaArtists
+                    WHERE mangaId = mI.mangaId
+                ) artists,
+                (
+                SELECT GROUP_CONCAT(tagId, '=') FROM mangaTags
+                    WHERE mangaId = mI.mangaId
+                ) tags,
+                mI.sinopsis,
+                mI.statusId,
+                m.views,
+                (SELECT AVG(score) FROM scores) score
+        FROM mangaInfo mI
+        INNER JOIN manga m
+            ON m.mangaId = mI.mangaId
+        WHERE mI.mangaID = @5mangaId
+            ;
+            `);
+
+        try{
+            let res: MangaInfoData = sql.get({mangaId: mangaId});
+
+            return res;
+        }
+        catch(e) {
+            console.log(e);
+            throw new HttpException(e, HttpStatus.BAD_REQUEST)
+        }
+    }
   }

@@ -3,10 +3,13 @@ export type IMangaInfoData = {
     title: string;
     mangaServerId: number;
     image: string;
-    lastChapter: number;
+    authors: string[];
+    artists: string[];
+    tags: string[];
     sinopsis: string;
-    lastUpdateChapterId: number;
-    statusId: number;
+    statusId: string;
+    views: number;
+    score: number;
     lastUpdateChapterDateAdded: string;
 
 }
@@ -16,10 +19,13 @@ export class MangaInfoData {
     public title: string;
     public mangaServerId: number;
     public image: string;
-    public lastChapter: number;
+    public authors: string[];
+    public artists: string[];
+    public tags: string[];
     public sinopsis: string;
-    public lastUpdateChapterId: number;
-    public statusId: number;
+    public statusId: string;
+    public views: number;
+    public score: number;
     public lastUpdateChapterDateAdded: string;
 
     public constructor(args: IMangaInfoData){
@@ -27,10 +33,13 @@ export class MangaInfoData {
         this.title = args.title;
         this.mangaServerId = args.mangaServerId;
         this.image = args.image;
-        this.lastChapter = args.lastChapter;
+        this.authors = args.authors;
+        this.artists = args.artists;
+        this.tags = args.tags;
         this.sinopsis = args.sinopsis;
-        this.lastUpdateChapterId = args.lastUpdateChapterId;
         this.statusId = args.statusId;
+        this.views = args.views;
+        this.score = args.score;
         this.lastUpdateChapterDateAdded = args.lastUpdateChapterDateAdded;
     }
 }

@@ -26,4 +26,10 @@ export default class MangaService {
 
         return res;
     }
+
+    async info(mangaId: string): Promise<MangaInfoData> {
+        let res = await MangaRepository.info(mangaId);
+
+        return res;
+    }
 }
