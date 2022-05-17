@@ -10,7 +10,7 @@ export type IMangaInfoData = {
 
 }
 
-export class MangaInfoData {
+export default class MangaInfoData {
     public mangaId: string;
     public mangaServerId: number;
     public image: string;

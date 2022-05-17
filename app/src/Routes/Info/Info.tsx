@@ -48,7 +48,8 @@ export default function Info(props: any) {
 
     async function getMangaInfoData() : Promise<MangaInfoData>
     {
-        let bodyData = {token: localStorage.getItem("token")}
+        let bodyData = {token: localStorage.getItem("token"),
+        mangaId: mangaId}
 
         let body = {
             method: 'POST',
@@ -56,7 +57,7 @@ export default function Info(props: any) {
             body: JSON.stringify(bodyData)
         }
 
-        let res = await fetch(`${configData.API_URL}/${configData.ENDPOINTS.INFO}/${mangaId}`, body);
+        let res = await fetch(`${configData.API_URL}/${configData.ENDPOINTS.INFO}`, body);
         let data: MangaInfoData = await res.json();
 
         return data;

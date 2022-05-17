@@ -38,7 +38,7 @@ export class MangaInfoData {
     public title: string;
     public mangaServerId: number;
     public image: string;
-    public authors: string[];
+    public authors: Array<string>;
     public artists: string[];
     public tags: string[];
     public sinopsis: string;

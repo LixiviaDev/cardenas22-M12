@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { MangaPreviewCardData } from 'src/Common/CustomTypes/Manga';
+import { MangaInfoData, MangaPreviewCardData } from 'src/Common/CustomTypes/Manga';
 import { ChapterData } from 'src/Common/Tables/ChapterData';
-import { MangaInfoData } from 'src/Common/Tables/MangaInfoData';
+import MangaInfoDataTable from 'src/Common/Tables/MangaInfoData';
 import { User, UserJWT } from '../../Common/CustomTypes/User';
 import MangaRepository from './manga.repository';
 
@@ -13,7 +13,7 @@ const jwt = require('jsonwebtoken');
 
 @Injectable()
 export default class MangaService {
-    async addManga(mangaInfoData: MangaInfoData, mangaName: string): Promise<void> {
+    async addManga(mangaInfoData: MangaInfoDataTable, mangaName: string): Promise<void> {
         await MangaRepository.addManga(mangaInfoData, mangaName);
     }
 
@@ -29,6 +29,10 @@ export default class MangaService {
 
     async info(mangaId: string): Promise<MangaInfoData> {
         let res = await MangaRepository.info(mangaId);
+
+        res.artists = res.artists?.toString().split("=");
+        res.authors = res.authors?.toString().split("=");
+        res.tags = res.tags?.toString().split("=");
 
         return res;
     }

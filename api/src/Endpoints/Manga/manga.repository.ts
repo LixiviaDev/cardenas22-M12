@@ -1,14 +1,14 @@
 import { HttpException, HttpStatus } from "@nestjs/common";
-import { MangaPreviewCardData } from "src/Common/CustomTypes/Manga";
+import { MangaInfoData, MangaPreviewCardData } from "src/Common/CustomTypes/Manga";
 import { ChapterData } from "src/Common/Tables/ChapterData";
-import { MangaInfoData } from "src/Common/Tables/MangaInfoData";
+import MangaInfoDataTable from "src/Common/Tables/MangaInfoData";
 import { User } from "../../Common/CustomTypes/User";
 
 const Database = require('better-sqlite3');
 const db = new Database('./db.db', { verbose: console.log });
 
 export default class MangaRepository {
-    static async addManga(mangaInfoData: MangaInfoData, mangaName: string): Promise<void> {
+    static async addManga(mangaInfoData: MangaInfoDataTable, mangaName: string): Promise<void> {
         let args = {...mangaInfoData, mangaName: mangaName, dateAdded: new Date(Date.now()).toISOString()};
         
         let sql = db.prepare(`
@@ -153,7 +153,7 @@ export default class MangaRepository {
 
         let sql = db.prepare(`
         SELECT  mI.mangaId,
-                m.name,
+                m.name as title,
                 mI.mangaServerId,
                 mI.image,
                 (
@@ -168,15 +168,21 @@ export default class MangaRepository {
                 SELECT GROUP_CONCAT(tagId, '=') FROM mangaTags
                     WHERE mangaId = mI.mangaId
                 ) tags,
+                (
+                SELECT dateAdded FROM chapters
+                    WHERE mangaID = mI.mangaId
+                    ORDER BY dateAdded DESC
+                    LIMIT 1
+                ) lastUpdateChapterDateAdded,
                 mI.sinopsis,
                 mI.statusId,
                 m.views,
-                (SELECT AVG(score) FROM scores) score
+                (SELECT AVG(score) FROM scores
+                WHERE mangaID = mI.mangaId) score
         FROM mangaInfo mI
         INNER JOIN manga m
             ON m.mangaId = mI.mangaId
-        WHERE mI.mangaID = @5mangaId
-            ;
+        WHERE mI.mangaID = @mangaId;
             `);
 
         try{
