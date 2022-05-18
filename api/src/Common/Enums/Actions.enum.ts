@@ -3,5 +3,6 @@ export enum Action {
     EditManga = "editManga",
     AddChapter = "addChapter",
     GetManga = "getManga",
-    GetChatperList = "getChatperList"
+    GetChatperList = "getChatperList",
+    GetChatperImages = "getChatperImages"
   }

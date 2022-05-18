@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { IMangaInfoData, MangaInfoData } from "../../TypeScript/Classes/Manga/MangaInfoData";
+import { MangaInfoData } from "../../TypeScript/Classes/Manga/MangaInfoData";
 import SharedInterface from "../../WebComponents/SharedInterface/SharedInterface";
 import configData from '../../config.json';
 import { LanguageManager } from "../../TypeScript/Managers/LanguageManager";
 import ChapterList from "../../WebComponents/Chapters/ChapterList";
-import { JsxElement } from "typescript";
 
 export default function Info(props: any) {
 
@@ -20,8 +19,8 @@ export default function Info(props: any) {
     
     useEffect(() => {
 
-        console.log(mangaInfoData?.mangaServerId);
-        setchapterList(<ChapterList mangaId={mangaId} mangaServerId={mangaInfoData?.mangaServerId} />);
+        if(mangaInfoData?.mangaServerId != undefined)
+            setchapterList(<ChapterList mangaId={mangaId} mangaServerId={mangaInfoData?.mangaServerId} />);
 
         }, [mangaInfoData]);
 
@@ -84,8 +83,10 @@ export default function Info(props: any) {
                         {mangaInfoData?.sinopsis}
                     </p>
                 </div>
-                <div className="w-100 px-2 border border-secondary d-flex flex-column align-items-center">
-                    {chapterList}
+                <div className="w-100 row px-2 m-0 border border-secondary d-flex flex-column align-items-center">
+                    <div className="col-12 col-md-8 d-flex flex-column">
+                        {chapterList}
+                    </div>
                 </div>
             </div>
         </SharedInterface>
@@ -109,9 +110,7 @@ function TitleDataRow(props: any){
     let data: string = props.data;
 
     if(Array.isArray(props.data)){
-        console.log(props.data.join(", "));
         data = props.data.join(", ");
-        console.log(props.data);
     }
 
     return(

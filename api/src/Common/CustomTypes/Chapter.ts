@@ -1,14 +1,15 @@
-export type IChapterData  = {
-    chapterId: string;
-    dateAdded: string;
+export type IChapterImage = {
+    page: string;
+    image: string;
+
 }
 
-export class ChapterData {
-    public chapterId: string;
-    public dateAdded: string;
+export class ChapterImage {
+    public page: string;
+    public image: string;
 
-    public constructor(args: IChapterData ){
-        this.chapterId = args.chapterId;
-        this.dateAdded = args.dateAdded;
+    public constructor(args: IChapterImage){
+        this.page = args.page;
+        this.image = args.image;
     }
 }

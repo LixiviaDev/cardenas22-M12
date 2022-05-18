@@ -8,6 +8,7 @@ import './App.css';
 import Home from './Routes/Home/Home';
 import Info from "./Routes/Info/Info";
 import Login from './Routes/Login/Login';
+import Reader from "./Routes/Reader/Reader";
 import { Languages } from "./TypeScript/Enums/Language.enum";
 import { LanguageManager } from "./TypeScript/Managers/LanguageManager";
 
@@ -28,6 +29,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="login" element={<Login />} />
         <Route path="info/:mangaId" element={<Info />} />
+        <Route path="read/:mangaServerId/:mangaId/:chapterId" element={<Reader />} />
       </Routes>
     </BrowserRouter>
     </>

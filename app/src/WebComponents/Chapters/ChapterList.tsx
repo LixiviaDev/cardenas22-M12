@@ -6,9 +6,15 @@ import configData from '../../config.json';
 export default function ChapterList(props: any) {
     const [mangaId] = useState(props.mangaId);
     const [mangaServerId] = useState(props.mangaServerId);
-    const [chaptersData, setChaptersData] = useState<ChapterData[]>();
+    const [chaptersData, setChaptersData] = useState<ChapterData[]>([]);
+    const [chapterButtonList, setChapterButtonList] = useState<JSX.Element[]>();
 
     useEffect(() => componentDidMount, []);
+
+    useEffect(() => {
+        if(chaptersData.length > 0)
+            processChaptersData();
+    }, [chaptersData]);
 
     function componentDidMount() {
         generateChaptersData();
@@ -40,10 +46,37 @@ export default function ChapterList(props: any) {
 
         return data;
     }
+
+    function processChaptersData() {
+        let newChapterButtonList: JSX.Element[] = [];
+
+        for(let item of chaptersData){
+            newChapterButtonList.push(
+            <>
+            <ChapterListButton chapterData={item}/>
+            </>
+            );
+        }
+
+        setChapterButtonList(newChapterButtonList);
+    }
     
     return(
         <>
-        
+        {chapterButtonList}
+        </>
+    )
+}
+
+function ChapterListButton(props: any) {
+    const [chapterData] = useState(props.chapterData);
+
+    return(
+        <>
+        <a href={`/read/${chapterData.mangaServerId}/${chapterData.mangaId}/${chapterData.chapterId}`} className="w-100 d-flex justify-content-between">
+            <p>{chapterData.chapterId}</p>
+            <p>{chapterData.dateAdded}</p>
+        </a>
         </>
     )
 }
