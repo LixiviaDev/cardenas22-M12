@@ -15,7 +15,7 @@ export default function Info(props: any) {
 
     const [chapterList, setchapterList] = useState<any>();
 
-    useEffect(() => componentDidMount, []);
+    useEffect(() => componentDidMount(), []);
     
     useEffect(() => {
 
@@ -48,6 +48,7 @@ export default function Info(props: any) {
 
         let body = {
             method: 'POST',
+            mode: "cors" as RequestMode,
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(bodyData)
         }

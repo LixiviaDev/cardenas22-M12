@@ -11,7 +11,7 @@ export default function Reader(props: any) {
     const [chapterImagesData, setChapterImagesData] = useState<ChapterImageData[]>([]);
     const [chapterImages, setChapterImages] = useState<JSX.Element[]>([]);
 
-    useEffect(() => generateChapterImagesData, []);
+    useEffect(() => generateChapterImagesData(), []);
     useEffect(() => {
         if(chapterImagesData.length > 0)
             generateChapterImages()
@@ -35,6 +35,7 @@ export default function Reader(props: any) {
 
         let body = {
             method: 'POST',
+            mode: "cors" as RequestMode,
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(bodyData)
         }

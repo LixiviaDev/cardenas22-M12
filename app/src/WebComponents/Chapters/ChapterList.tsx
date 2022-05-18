@@ -9,7 +9,7 @@ export default function ChapterList(props: any) {
     const [chaptersData, setChaptersData] = useState<ChapterData[]>([]);
     const [chapterButtonList, setChapterButtonList] = useState<JSX.Element[]>();
 
-    useEffect(() => componentDidMount, []);
+    useEffect(() => componentDidMount(), []);
 
     useEffect(() => {
         if(chaptersData.length > 0)
@@ -37,6 +37,7 @@ export default function ChapterList(props: any) {
 
         let body = {
             method: 'POST',
+            mode: "cors" as RequestMode,
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(bodyData)
         }

@@ -7,8 +7,7 @@ require('dotenv').config();
 const configData = require('../config.js');
 
 const corsOptions = {
-  origin: ['*',
-          'http://lixiviareader.es',
+  origin: ['https://lixiviareader.es',
           'http://localhost:3000'],
 }
 

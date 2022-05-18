@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { MangaController } from './MANGA.controller';
+import { MangaController } from './manga.controller';
 import MangaService from './manga.service';
 
 @Module({

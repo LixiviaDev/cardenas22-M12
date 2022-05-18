@@ -22,7 +22,7 @@ export function MangaSection(props: any) {
 
     const [page, setPage] = useState<number>(0); // Pagination
 
-    useEffect( () => componentDidMount, [] );
+    useEffect( () => componentDidMount(), [] );
 
     useEffect(() => {
         processMangaCards();
@@ -48,6 +48,7 @@ export function MangaSection(props: any) {
         let body = {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
+            mode: "cors" as RequestMode,
             body: JSON.stringify(bodyData)
         }
 

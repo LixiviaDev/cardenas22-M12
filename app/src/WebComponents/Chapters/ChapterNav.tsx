@@ -13,7 +13,7 @@ export default function ChapterNav(props: any) {
     const [lastChapter, setLastChapter] = useState<number>();
     const [nextChapter, setNextChapter] = useState<number>();
 
-    useEffect(() => componentDidMount, []);
+    useEffect(() => componentDidMount(), []);
 
     useEffect(() => {
         if(currentChapterId != undefined){
@@ -51,6 +51,7 @@ export default function ChapterNav(props: any) {
 
         let body = {
             method: 'POST',
+            mode: "cors" as RequestMode,
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(bodyData)
         }
