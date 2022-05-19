@@ -20,7 +20,7 @@ footer.sharedInterface {
     height: 200px;
 }
 
-img.profilePicture.sharedInterface {
+img.profilePicture {
     width: 40px;
     aspect-ratio: 1/1;
 }
