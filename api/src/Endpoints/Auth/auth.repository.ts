@@ -54,9 +54,9 @@ export default class authRepository {
 
 
         let query : any = db.prepare(sql);
-        let res : any = eval(getEval);
+        let res : any = await eval(getEval);
 
-
+        console.log("Role ID: " + JSON.stringify(res));
 
         if(res?.roleId == null)
             return false;

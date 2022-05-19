@@ -9,7 +9,6 @@ import Home from './Routes/Home/Home';
 import Info from "./Routes/Info/Info";
 import Login from './Routes/Login/Login';
 import Reader from "./Routes/Reader/Reader";
-import { Languages } from "./TypeScript/Enums/Language.enum";
 import { LanguageManager } from "./TypeScript/Managers/LanguageManager";
 
 function App() {

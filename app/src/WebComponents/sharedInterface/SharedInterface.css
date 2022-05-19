@@ -2,25 +2,25 @@
     box-sizing: content-box;
 }
 
-header {
+header.sharedInterface {
     position: absolute;
     top:0;
     height: 56px;
     width: 100vw;
 }
 
-#mainContent {
+main.sharedInterface {
     padding-top: 56px;
     min-height: 100vh;
     display: flex;
     /* flex-direction: column; */
 }
 
-footer {
+footer.sharedInterface {
     height: 200px;
 }
 
-img.profilePicture {
+img.profilePicture.sharedInterface {
     width: 40px;
     aspect-ratio: 1/1;
 }

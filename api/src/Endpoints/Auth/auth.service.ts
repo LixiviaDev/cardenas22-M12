@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { UserJWT } from 'src/Common/CustomTypes/User';
+import { User, UserJWT } from 'src/Common/CustomTypes/User';
 import authRepository from './auth.repository';
 
 require('dotenv').config();
@@ -28,7 +28,9 @@ export class AuthService {
 
     let tokenData : UserJWT = await this.verifyJWT(token);
 
-    let res = authRepository.authAction(tokenData.userData, action);
+    let res = await authRepository.authAction(tokenData.userData, action);
+
+    console.log("isAuth: " + res);
 
     return res;
   }
@@ -40,6 +42,7 @@ export class AuthService {
     try {
       tokenData = await jwt.verify(token, configData["JWT_SECRET"]);
     } catch(err) {
+      tokenData.userData = new User();
       tokenData.userData.roles = ["-1"]
       console.log(err);
     }

@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { ChapterImageData } from "../../TypeScript/Classes/Chapters/Chapter";
 import configData from '../../config.json';
-import SharedInterface from "../../WebComponents/SharedInterface/SharedInterface";
-import ChapterNav from "../../WebComponents/Chapters/ChapterNav";
+import ReaderInterface from "../../WebComponents/ReaderInterface/ReaderInterface";
 
 export default function Reader(props: any) {
     const {mangaId, mangaServerId, chapterId} = useParams();
@@ -62,11 +61,9 @@ export default function Reader(props: any) {
 
     return(
         <>
-        <SharedInterface>
-            <ChapterNav mangaId={mangaId} mangaServerId={mangaServerId} currentChapterId={chapterId}/>
+        <ReaderInterface>
             {chapterImages}
-            <ChapterNav mangaId={mangaId} mangaServerId={mangaServerId} currentChapterId={chapterId}/>
-        </SharedInterface>
+        </ReaderInterface>
         </>
     );
 }

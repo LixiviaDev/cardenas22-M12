@@ -17,7 +17,7 @@ export default function ChapterNav(props: any) {
 
     useEffect(() => {
         if(currentChapterId != undefined){
-            processChaptersData();
+            generateChaptersData();
         }
     }, [currentChapterId]);
 
@@ -26,6 +26,7 @@ export default function ChapterNav(props: any) {
             if(currentChapterId == undefined)
                 setCurrentChapterId(chaptersData[0].chapterId);
     
+            processChaptersData();
             setLastAndNextChapter();
         }
     }, [chaptersData]);
@@ -66,11 +67,20 @@ export default function ChapterNav(props: any) {
         let newChapterButtonList: JSX.Element[] = [];
 
         for(let item of chaptersData){
-            newChapterButtonList.push(
-            <>
-            <li><a className="dropdown-item" href={`/read/${mangaServerId}/${mangaId}/${item.chapterId}`}>{item.chapterId}</a></li>
-            </>
-            );
+            if(item.chapterId == currentChapterId){
+                newChapterButtonList.push(
+                <>
+                <option value={`/read/${mangaServerId}/${mangaId}/${item.chapterId}`} selected>{item.chapterId}</option>
+                </>
+                );
+            }
+            else {
+                newChapterButtonList.push(
+                <>
+                <option value={`/read/${mangaServerId}/${mangaId}/${item.chapterId}`}>{item.chapterId}</option>
+                </>
+                );
+            }
         }
 
         setChapterListItem(newChapterButtonList);
@@ -81,43 +91,45 @@ export default function ChapterNav(props: any) {
 
         if(currentChapterIndex != -1){
             if(currentChapterIndex > 0)
-                setLastChapter(chaptersData[+currentChapterId - 1].chapterId);
+                setLastChapter(chaptersData[currentChapterIndex - 1].chapterId);
 
             if(currentChapterIndex < chaptersData.length - 1)
-                setNextChapter(chaptersData[+currentChapterId + 1].chapterId);
+                setNextChapter(chaptersData[currentChapterIndex + 1].chapterId);
         }
     }
 
     return(
         <>
-            <div className="row">
-                <div className="col-2 pe-0 ps-12 d-grid">
-                    {(lastChapter != undefined) && 
-                    <a  href={`/read/${mangaServerId}/${mangaId}/${lastChapter}`} 
-                        className="btn btn-primary"
-                        style={{borderRadius: 0}}>
-                            {'<'}
-                    </a>}
-                </div>
+            <div className="row m-0">
+                <LinkButton mangaServerId={mangaServerId} mangaId={mangaId} chapterId={lastChapter} innerText="<"/>
                 <div className="col-8 p-0">
-                    <div className="dropdown w-100 d-grid">
-                        <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style={{borderRadius: 0}}>
-                            {currentChapterId}
-                        </button>
-                        <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            {chapterListItem}
-                        </ul>
-                    </div>
+                    <select className="form-select form-select-lg text-center" name="a" id="a" onChange={(event) => window.location.assign(event.target.value)} style={{borderRadius: 0}}>
+                        {chapterListItem}
+                    </select>
                 </div>
-                <div className="col-2 pe-24 ps-0 d-grid">
-                {(nextChapter != undefined) && 
-                <a href={`/read/${mangaServerId}/${mangaId}/${nextChapter}`}
-                        className="btn btn-primary"
-                        style={{borderRadius: 0}}>
-                            {'>'}
-                </a>}
-                </div>
+                <LinkButton mangaServerId={mangaServerId} mangaId={mangaId} chapterId={nextChapter} innerText=">"/>
             </div>
         </>
     );
+}
+
+function LinkButton(props: any){
+    return(
+        <>
+        <div className="col-2 p-0 d-grid">
+        {(props.chapterId != undefined) ? 
+        <a href={`/read/${props.mangaServerId}/${props.mangaId}/${props.chapterId}`}
+                className="btn btn-primary d-flex justify-content-center align-items-center"
+                style={{borderRadius: 0}}>
+                    {props.innerText}
+        </a>
+        :
+        <div
+                className="btn btn-dark d-flex justify-content-center align-items-center"
+                style={{borderRadius: 0}}>
+                    {props.innerText}
+        </div>}
+        </div>
+        </>
+    )
 }

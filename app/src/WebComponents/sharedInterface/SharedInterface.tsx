@@ -6,7 +6,7 @@ export default function SharedInterface(props: any) {
 
     return(
         <>
-        <header>
+        <header className="sharedInterface">
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <div className="w-100">
                 <div className='row container-fluid justify-space-beetwen m-0'>
@@ -48,11 +48,11 @@ export default function SharedInterface(props: any) {
         </nav>
         </header>
 
-        <div id="mainContent" className={`flex-${flexflow}`}>
+        <main className={`sharedInterface flex-${flexflow}`}>
             {props.children}
-        </div>
+        </main>
 
-        <footer>
+        <footer className="sharedInterface">
             <div className="row mx-0">
             <div className="col-2">
                 <h5>Section</h5>
