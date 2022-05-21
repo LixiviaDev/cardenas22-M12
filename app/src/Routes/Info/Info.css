@@ -1,0 +1,51 @@
+/* width */
+div.chapterList > ::-webkit-scrollbar {
+    width: 10px;
+}
+
+div.chapterList > ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+}
+
+div.chapterList > ::-webkit-scrollbar-thumb {
+    background: #888; 
+}
+
+div.chapterList > ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+}
+
+div.infoPage img {
+    height: 60%;
+}
+
+div.chapterList {
+    background: #f1f1f1;
+}
+
+div.chapterList > div {
+    background: #fff;
+    border: 1px solid #88888896;
+}
+
+@media (min-width: 992.02px) {
+    div.infoPage {
+        height: 91vh;
+    }
+    
+    div.mangaInfo {
+        height: 40%;
+        position: absolute;
+        bottom: 0;
+    }
+    
+    div.chapterList {
+        position: relative;
+    }
+    
+    div.chapterList > div {
+        height: 100%;
+        position: absolute;
+        overflow: auto;
+    }
+}

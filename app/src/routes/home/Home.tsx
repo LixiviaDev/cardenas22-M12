@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Languages } from '../../TypeScript/Enums/Language.enum';
 import { LanguageManager } from '../../TypeScript/Managers/LanguageManager';
-import SectionTitle from '../../WebComponents/Common/SectionTitle';
+import SectionTitle from '../../WebComponents/Common/SectionTitle/SectionTitle';
 import SharedInterface from '../../WebComponents/SharedInterface/SharedInterface';
 
 import { MangaSection } from '../../WebComponents/Manga/MangaSection/MangaSection';
@@ -13,8 +13,8 @@ export default function Home(props: any) {
     return(
         <>
         <SharedInterface>
+        <div className="px-3">
             <h1 hidden>Home</h1>
-            {/* <Link to="/login">Login</Link> */}
             <MangaSection   sectionTitlePath="Home.READING_TITLE"
                             sectionHref="/reading"
                             cardType={CardType.Hover}
@@ -29,6 +29,7 @@ export default function Home(props: any) {
             <button onClick={() => languageManager.changeAppLanguage(Languages.ES)}>Español</button>
             <button onClick={() => languageManager.changeAppLanguage(Languages.EN)}>English</button>
             <button onClick={() => languageManager.changeAppLanguage(Languages.CA)}>Catala</button>
+        </div>
         </SharedInterface>
         </>
     );

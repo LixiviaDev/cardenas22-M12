@@ -5,6 +5,7 @@ import SharedInterface from "../../WebComponents/SharedInterface/SharedInterface
 import configData from '../../config.json';
 import { LanguageManager } from "../../TypeScript/Managers/LanguageManager";
 import ChapterList from "../../WebComponents/Chapters/ChapterList";
+import "./Info.css"
 
 export default function Info(props: any) {
 
@@ -63,12 +64,11 @@ export default function Info(props: any) {
         <>
         <h1 hidden>Informacion del manga {mangaInfoData?.title}</h1>
         <SharedInterface>
-            <div className="px-4">
-                <div className="w-100 px-2 border border-secondary d-flex flex-column align-items-center">
-                    <img src={mangaInfoData?.image} alt={`Portada de ${mangaInfoData?.title}`} style={{aspectRatio: "1/1.5", maxWidth: "70%"}}/>
-                    <h2 className="h1 my-3 text-center">{mangaInfoData?.title}</h2>
-                    <div className="row">
-                        {/* <TitleDataRow title="Nombres alternativos" data={mangaInfoData?.lastUpdateChapterDateAdded}></TitleDataRow> */}
+            <div className="row mx-3 mt-2 border border-secondary infoPage">
+                <div className="col-12 col-lg-5 px-2 border border-secondary d-flex flex-column align-items-center position-relative">
+                    <img src={mangaInfoData?.image} alt={`Portada de ${mangaInfoData?.title}`} style={{aspectRatio: "1/1.5"}}/>
+                    <div className="row mangaInfo">
+                        <h2 className="h1 my-3 text-center">{mangaInfoData?.title}</h2>
                         <TitleDataRow title="Guionistas" data={mangaInfoData?.authors}></TitleDataRow>
                         <TitleDataRow title="Artistas" data={mangaInfoData?.artists}></TitleDataRow>
                         <TitleDataRow title="Estado" data={mangaInfoData?.statusId}></TitleDataRow>
@@ -78,15 +78,17 @@ export default function Info(props: any) {
                         <TitleDataRow title="Puntuacion" data={mangaInfoData?.score}></TitleDataRow>
                     </div>
                 </div>
-                <div className="w-100 px-2 border border-secondary d-flex flex-column align-items-center">
-                    <h3 className="my-2">Sinopsis</h3>
-                    <p className="w-100">
-                        {mangaInfoData?.sinopsis}
-                    </p>
-                </div>
-                <div className="w-100 row px-2 m-0 border border-secondary d-flex flex-column align-items-center">
-                    <div className="col-12 col-md-8 d-flex flex-column">
-                        {chapterList}
+                <div className="col-12 col-lg-7 p-0 d-flex flex-column">
+                    <div className="w-100 px-2 d-flex border border-secondary flex-column align-items-center">
+                        <h3 className="my-2">Sinopsis</h3>
+                        <p className="w-100" style={{maxWidth: "50em"}}>
+                            {mangaInfoData?.sinopsis}
+                        </p>
+                    </div>
+                    <div className="w-100 h-100 row px-2 m-0 border border-secondary d-flex flex-column align-items-center chapterList">
+                        <div className="col-12 col-md-8 d-flex flex-column">
+                            {chapterList}
+                        </div>
                     </div>
                 </div>
             </div>

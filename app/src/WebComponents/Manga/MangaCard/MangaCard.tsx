@@ -12,12 +12,13 @@ export function HoverMangaCard(props: any) {
             <div hidden>Click aqui para ver la informacion de {title}</div>
             <div className="bg-primary position-relative">
                 <img src={img} 
-                    className="w-100 p-2"
+                    className="w-100"
+                    style={{boxShadow: "3px 3px 9px #0000005e"}}
                     alt={`portada de ${title}`} />
-                <div className="mangaName position-absolute bottom-0 bg-primary w-100">
+                <div className="mangaName position-absolute bottom-0 w-100 bg-white">
                     <div className="w-100 h-100 p-2">
-                        <div className="w-100 h-100 border-secondary d-flex justify-content-center align-items-cente" style={{border: "5px solid", minHeight: "60px"}}>
-                            <div className="text-dark m-auto p-2">{title}</div>
+                        <div className="w-100 h-100 d-flex justify-content-center align-items-cente border-dark" style={{border: "2px solid", minHeight: "60px"}}>
+                            <div className="text-dark text-center m-auto p-2">{title}</div>
                         </div>
                     </div>
                 </div>
@@ -36,12 +37,12 @@ export function SimpleMangaCard(props: any) {
             <div hidden>Click aqui para ver la informacion de {title}</div>
             <div className="bg-primary">
                 <img src={img} 
-                    className="w-100 p-2"
+                    className="w-100"
                     alt={`portada de ${title}`} />
-                <div className="mangaName bottom-0 bg-primary w-100">
+                <div className="mangaName bottom-0 w-100 bg-white">
                     <div className="w-100 h-100 p-2">
-                        <div className="w-100 h-100 border-secondary d-flex justify-content-center align-items-cente" style={{border: "5px solid", minHeight: "60px"}}>
-                            <div className="text-dark m-auto p-2">{title}</div>
+                        <div className="w-100 h-100 d-flex justify-content-center align-items-cente border-dark" style={{border: "2px solid", minHeight: "60px"}}>
+                            <div className="text-dark text-center m-auto p-2">{title}</div>
                         </div>
                     </div>
                 </div>

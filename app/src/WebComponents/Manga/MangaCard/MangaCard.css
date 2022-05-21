@@ -3,11 +3,12 @@
 }
 
 .mangaCard.hover .mangaName {
-    display: none;
+    opacity: 0;
+    transition: opacity .2s ease;
 }
 
 .mangaCard.hover:hover .mangaName {
-    display: block;
+    opacity: 1;
 }
 
 .mangaName {

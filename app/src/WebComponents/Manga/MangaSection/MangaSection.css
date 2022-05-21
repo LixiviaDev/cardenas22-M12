@@ -1,0 +1,21 @@
+div.desktopMedia {
+    display: none;
+}
+
+div.mobileMedia {
+    display: block;
+}
+
+button:hover {
+    color: #28bff6;
+}
+
+@media (min-width: 768.02px) {
+    div.desktopMedia {
+        display: block;
+    }
+    
+    div.mobileMedia {
+        display: none;
+    }
+}

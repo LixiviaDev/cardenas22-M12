@@ -1,5 +1,5 @@
 {
-    "API_URL": "http://localhost:3000",
+    "API_URL": "https://lixiviareaderapi.herokuapp.com",
     "ENDPOINTS": {
         "INFO": "manga/info",
         "CHAPTER_LIST": "manga/chapterList",

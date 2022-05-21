@@ -1,0 +1,17 @@
+a.sectionTitle {
+    border: 1px solid black;
+    text-transform: uppercase;
+    font-size: 35px;
+    padding: 5px;
+    background: white;
+    margin: 10px 0;
+    font-family:  'Bangers', cursive;
+}
+
+a.sectionTitle > h2 {
+    font-size: xx-large;
+}
+
+a.sectionTitle:hover > h2{
+    color: rgb(40, 191, 246);
+}

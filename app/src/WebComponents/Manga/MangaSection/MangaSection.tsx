@@ -2,11 +2,12 @@ import { useEffect, useState } from "react";
 import { IMangaPreviewCardData, MangaCardData } from "../../../TypeScript/Classes/Manga/MangaCardData";
 import { CardType } from "../../../TypeScript/Enums/CardType.enum";
 import { LanguageManager } from "../../../TypeScript/Managers/LanguageManager";
-import SectionTitle from "../../Common/SectionTitle";
+import SectionTitle from "../../Common/SectionTitle/SectionTitle";
 import { HoverMangaCard, SimpleMangaCard } from "../MangaCard/MangaCard";
 import configData from '../../../config.json';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import './MangaSection.css';
 
 export function MangaSection(props: any) {
     const [languageManager] = useState<LanguageManager>(LanguageManager.getInstance());
@@ -84,7 +85,7 @@ export function MangaSection(props: any) {
                 case CardType.Hover:
                     cards.push(
                         <>
-                        <div className="col-6 col-md-3 col-lg-2 mb-3">
+                        <div className="col-6 col-md-2 mb-3">
                             <HoverMangaCard title={mangaCardData.title} 
                                             href={mangaCardData.href} 
                                             img={mangaCardData.img}
@@ -96,7 +97,7 @@ export function MangaSection(props: any) {
                 case CardType.Simple:
                     cards.push(
                         <>
-                        <div className="col-6 col-md-3 col-lg-2 mb-3">
+                        <div className="col-6 col-md-2 mb-3">
                             <SimpleMangaCard title={mangaCardData.title} 
                                             href={mangaCardData.href} 
                                             img={mangaCardData.img}/>
@@ -111,13 +112,22 @@ export function MangaSection(props: any) {
 
     return(
         <>
+        <div className="desktopMedia">
         <SectionTitle title={languageManager.get(sectionTitlePath)} href={sectionHref} />
-        <div className="row m-0">
+        <div className="row">
             {cards}
         </div>
-        <button onClick={generateMangaCards} style={{fontSize: "20px"}}>
+        </div>
+
+        <div className="mobileMedia">
+        <SectionTitle title={languageManager.get(sectionTitlePath)} href={sectionHref} />
+        <div className="row">
+            {cards}
+        </div>
+        <button className="w-100 bg-white" onClick={generateMangaCards} style={{fontSize: "20px"}}>
             <FontAwesomeIcon icon={faPlus} />
         </button>
+        </div>
         </>
     );
 }
