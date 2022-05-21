@@ -7,7 +7,6 @@ export default function SharedInterface(props: any) {
     return(
         <>
         <header className="sharedInterface">
-        {/* <nav className="navbar navbar-expand-lg navbar-light bg-light"> */}
         <nav className="navbar navbar-light bg-light">
             <div className="w-100">
                 <div className='row container-fluid justify-space-beetwen m-0'>
@@ -17,9 +16,15 @@ export default function SharedInterface(props: any) {
                     <form className="d-flex col-8">
                         <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
                     </form>
-                    <div className='p-0 col-2 text-center'>
+                    {localStorage.getItem("token") == null ? 
+                    <a className='p-0 col-2 text-center btn btn-light border border-dark d-flex justify-content-center align-items-center' href="/login">
+                        <p className='m-0 fw-bold'>Log in</p>
+                    </a>
+                    :
+                    <a className='p-0 col-2 text-center' href="/login">
                         <img src="https://i.pinimg.com/originals/d7/38/9b/d7389ba6dadf70ff848a9804be09ac30.jpg" className="rounded-circle profilePicture" alt="foto de perfil"/>
-                    </div>
+                    </a>
+                    }
                 </div>
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul className="navbar-nav me-auto mb-2 mb-lg-0">

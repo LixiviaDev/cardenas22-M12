@@ -34,7 +34,7 @@ code {
   font-size: x-large;
 }
 
-a:hover > *{
+a:hover > *, input[type="submit"]:hover {
   color: rgb(40, 191, 246);
 }
 
