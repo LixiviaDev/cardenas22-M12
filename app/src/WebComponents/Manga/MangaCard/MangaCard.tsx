@@ -10,7 +10,7 @@ export function HoverMangaCard(props: any) {
     return(<>
         <a href={link} className={`mangaCard ${hoverDisabled ? "" : "hover"} w-100`}>
             <div hidden>Click aqui para ver la informacion de {title}</div>
-            <div className="bg-primary position-relative">
+            <div className="bg-white position-relative">
                 <img src={img} 
                     className="w-100"
                     style={{boxShadow: "3px 3px 9px #0000005e"}}
@@ -35,7 +35,7 @@ export function SimpleMangaCard(props: any) {
     return(<>
         <a href={link} className={`mangaCard w-100`}>
             <div hidden>Click aqui para ver la informacion de {title}</div>
-            <div className="bg-primary">
+            <div className="bg-white">
                 <img src={img} 
                     className="w-100"
                     alt={`portada de ${title}`} />

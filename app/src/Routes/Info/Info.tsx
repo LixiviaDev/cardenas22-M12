@@ -64,11 +64,19 @@ export default function Info(props: any) {
         <>
         <h1 hidden>Informacion del manga {mangaInfoData?.title}</h1>
         <SharedInterface>
-            <div className="row mx-3 mt-2 border border-secondary infoPage">
-                <div className="col-12 col-lg-5 px-2 border border-secondary d-flex flex-column align-items-center position-relative">
-                    <img src={mangaInfoData?.image} alt={`Portada de ${mangaInfoData?.title}`} style={{aspectRatio: "1/1.5"}}/>
-                    <div className="row mangaInfo">
-                        <h2 className="h1 my-3 text-center">{mangaInfoData?.title}</h2>
+            <div className="row mx-3 mt-2 infoPage p-3">
+                <div className="col-12 col-lg-5 col-xl-4 p-3 border border-secondary d-flex flex-column align-items-center position-relative bg-white">
+                    <div className="w-100 p-0" style={{height: "60%"}}>
+                        <div className="border border-dark h-100 text-center">
+                            <img className="h-100" src={mangaInfoData?.image} alt={`Portada de ${mangaInfoData?.title}`} style={{aspectRatio: "1/1.5", maxWidth: "100%"}}/>
+                        </div>
+                    </div>
+                    <div className="row mangaInfo w-100">
+                        <div className="w-100 py-3 px-0">
+                            <div className="py-2 px-3 border bg-black text-white sectionTitle">
+                                <h2 className="h1 my-3 text-center">{mangaInfoData?.title}</h2>
+                            </div>
+                        </div>
                         <TitleDataRow title="Guionistas" data={mangaInfoData?.authors}></TitleDataRow>
                         <TitleDataRow title="Artistas" data={mangaInfoData?.artists}></TitleDataRow>
                         <TitleDataRow title="Estado" data={mangaInfoData?.statusId}></TitleDataRow>
@@ -78,16 +86,20 @@ export default function Info(props: any) {
                         <TitleDataRow title="Puntuacion" data={mangaInfoData?.score}></TitleDataRow>
                     </div>
                 </div>
-                <div className="col-12 col-lg-7 p-0 d-flex flex-column">
-                    <div className="w-100 px-2 d-flex border border-secondary flex-column align-items-center">
-                        <h3 className="my-2">Sinopsis</h3>
-                        <p className="w-100" style={{maxWidth: "50em"}}>
-                            {mangaInfoData?.sinopsis}
-                        </p>
-                    </div>
-                    <div className="w-100 h-100 row px-2 m-0 border border-secondary d-flex flex-column align-items-center chapterList">
-                        <div className="col-12 col-md-8 d-flex flex-column">
-                            {chapterList}
+                <div className="col-12 col-lg-7 col-xl-8 p-0 pt-3 pt-lg-0 ps-lg-3">
+                    <div className="d-flex flex-column h-100">
+                        <div className="w-100 p-3 mb-3 bg-white d-flex border border-secondary flex-column align-items-center">
+                            <div className="sectionTitle bg-black text-white" style={{width: "16em"}}>
+                                <h3 className="my-2">Sinopsis</h3>
+                            </div>
+                            <p className="w-100 m-0 mt-3 pe-1" style={{maxWidth: "50em", maxHeight: "13em", overflow: "auto"}}>
+                                {mangaInfoData?.sinopsis}
+                            </p>
+                        </div>
+                        <div className="w-100 h-100 row px-2 m-0 border border-secondary d-flex flex-column align-items-center chapterList">
+                            <div className="col-12 col-md-8 d-flex flex-column">
+                                {chapterList}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -118,7 +130,7 @@ function TitleDataRow(props: any){
 
     return(
         <>
-        <div className="col-12 d-flex flex-row">
+        <div className="col-12 p-0 d-flex flex-row">
             <h3 className="h6 mb-2 me-1 fw-bold">{props.title}:</h3>
             <p className="m-0">{data}</p>
         </div>

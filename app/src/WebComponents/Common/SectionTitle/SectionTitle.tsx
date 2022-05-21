@@ -6,7 +6,7 @@ export default function SectionTitle(props: any) {
     const [link] = useState(props.href);
 
     return(<>
-        <a href={link} className="sectionTitle d-block w-100 text-black text-center">
+        <a href={link} className="sectionTitle d-block mx-auto text-black text-center bg-black text-white" style={{width: "70%"}}>
             <h2 className="m-0">{title}</h2>
         </a>
     </>);

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { ChapterData } from "../../TypeScript/Classes/Chapters/Chapter";
 import configData from '../../config.json';
+import { LanguageManager } from "../../TypeScript/Managers/LanguageManager";
 
 export default function ChapterList(props: any) {
     const [mangaId] = useState(props.mangaId);
@@ -71,12 +72,13 @@ export default function ChapterList(props: any) {
 
 function ChapterListButton(props: any) {
     const [chapterData] = useState(props.chapterData);
+    const [languageManager] = useState<LanguageManager>(LanguageManager.getInstance());
 
     return(
         <>
-        <a href={`/read/${chapterData.mangaServerId}/${chapterData.mangaId}/${chapterData.chapterId}`} className="w-100 d-flex justify-content-between">
-            <p>{chapterData.chapterId}</p>
-            <p>{chapterData.dateAdded}</p>
+        <a href={`/read/${chapterData.mangaServerId}/${chapterData.mangaId}/${chapterData.chapterId}`} className="w-100 p-2 text-black d-flex justify-content-between align-items-middle">
+            <p className="m-0">{!isNaN(Number(chapterData.chapterId)) && "Ch."} {chapterData.chapterId}</p>
+            <p className="m-0">{languageManager.dateToShortLangString(chapterData.dateAdded)}</p>
         </a>
         </>
     )

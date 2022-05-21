@@ -117,6 +117,9 @@ export function MangaSection(props: any) {
         <div className="row">
             {cards}
         </div>
+        <button className="w-100 bg-white" onClick={generateMangaCards} style={{fontSize: "20px"}}>
+            <FontAwesomeIcon icon={faPlus} />
+        </button>
         </div>
 
         <div className="mobileMedia">
