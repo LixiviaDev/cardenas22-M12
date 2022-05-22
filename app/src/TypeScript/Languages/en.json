@@ -1,7 +1,17 @@
 {
+    "Shared": {
+        "LOG_IN": "Log in",
+        "LOGIN": "Login",
+        "SIGN_UP": "Sign up",
+        "SIGNUP": "Signup"
+    },
     "Home": {
         "READING_TITLE": "Continue reading",
         "HOT_TITLE": "The most readed",
         "NEW_TITLE": "Latest updates"
+    },
+    "Login": {
+        "USERNAME": "Username",
+        "PASSWORD": "Password"
     }
 }

@@ -6,7 +6,7 @@ header.sharedInterface {
     position: absolute;
     top:0;
     height: 56px;
-    width: 100vw;
+    width: 100%;
 }
 
 main.sharedInterface {

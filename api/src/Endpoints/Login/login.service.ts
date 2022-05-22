@@ -10,7 +10,7 @@ const jwt = require('jsonwebtoken');
 
 @Injectable()
 export default class LoginService {
-    async login(user : string, password : string): Promise<string> {
+    async login(user : string = "", password : string = ""): Promise<any> {
         password = crypto.createHmac('sha256', password).update(password).digest("base64");
 
         let userData : User = await Repository.login(user, password)
@@ -25,7 +25,7 @@ export default class LoginService {
             token = jwt.sign(JSON.stringify(tokenData), configData["JWT_SECRET"]);
         }
 
-        return token;
+        return {token: token};
     }
 
     async signup(email : string, user : string, password : string): Promise<void> {

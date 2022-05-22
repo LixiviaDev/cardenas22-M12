@@ -18,7 +18,7 @@ function App() {
   useEffect( () => componentDidMount(), [] );
 
 	function componentDidMount() {
-    languageManager.setAppLanguage();
+    languageManager.initAppLanguage();
   }
 
   return (

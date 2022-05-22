@@ -1,3 +1,8 @@
+:root {
+  --bs-primary: rgb(40, 191, 246);
+  --bs-white: #f1f1f1;
+}
+
 * {
   text-decoration: none!important;
 }
@@ -36,6 +41,10 @@ code {
 
 a:hover > *, input[type="submit"]:hover {
   color: rgb(40, 191, 246);
+}
+
+a.filledButton:hover, input[type="submit"].filledButton:hover {
+  background-color: #f1f1f1!important;
 }
 
 /* width */

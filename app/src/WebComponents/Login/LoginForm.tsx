@@ -5,11 +5,15 @@ import './Login.css'
 import configData from '../../config.json';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faKey, faUser } from '@fortawesome/free-solid-svg-icons';
+import { LanguageManager } from '../../TypeScript/Managers/LanguageManager';
+import { Languages } from '../../TypeScript/Enums/Language.enum';
 
 export default function LoginForm(props: any) {
 
-    const [user, setUser] = useState<string>();
-    const [password, setPassword] = useState<string>();
+    const [user, setUser] = useState<string>("");
+    const [password, setPassword] = useState<string>("");
+
+    const [languageManager] = useState<LanguageManager>(LanguageManager.getInstance());
 
     async function submitLogIn(e : any) {
         e?.preventDefault();
@@ -25,7 +29,14 @@ export default function LoginForm(props: any) {
                 },
                 body: JSON.stringify({user: user, password: password})
               });
-            let data = await response.json();
+            
+            if(response.status == 200 || response.status == 201){
+                let data = await response.json();
+    
+                localStorage.setItem("token", data?.token);
+    
+                window.location.assign("/");
+            }
         } catch (ex) {
             console.error(ex);
         }
@@ -34,29 +45,50 @@ export default function LoginForm(props: any) {
     return(
         <>
         <div className='login-form-container'>
-        <div className="login-form">
+        <div className="login-form my-5">
             <div className="form-header">
-                <div className="title">Login</div>
+                <div className="title">{languageManager.get("Shared.LOGIN")}</div>
             </div> 
+            <div className="w-100 px-5 mt-4 d-flex justify-content-around align-items-center">
+                <button className='bg-light rounded-circle text-center fw-bold border-0 text-capitalize' 
+                        style={{width: "39px", height: "39px"}}
+                        onClick={() => languageManager.changeAppLanguage(Languages.ES)}>
+                            {Languages.ES}
+                </button>
+                <button className='bg-light rounded-circle text-center fw-bold border-0 text-capitalize' 
+                        style={{width: "39px", height: "39px"}}
+                        onClick={() => languageManager.changeAppLanguage(Languages.EN)}>
+                        {Languages.EN}
+                </button>
+                <button className='bg-light rounded-circle text-center fw-bold border-0 text-capitalize' 
+                        style={{width: "39px", height: "39px"}}
+                        onClick={() => languageManager.changeAppLanguage(Languages.CA)}>
+                        {Languages.CA}
+                </button>
+            </div>
+            <div className='w-100 px-5 mt-3 d-flex justify-content-end'>
+                <a className='p-2 text-dark filledButton' style={{backgroundColor: "#28bff6"}} href="/signup">
+                    <p className='m-0 fw-bold' style={{fontSize:" smaller"}}>{languageManager.get("Shared.SIGN_UP")}</p>
+                </a>
+            </div>
             <form onSubmit={submitLogIn} className="form-container px-5">
-                <div className="form-element mt-5">
+                <div className="form-element mt-3">
                     <label htmlFor="login-username">
                         <FontAwesomeIcon icon={faUser} />
                     </label>
-                    <input type="text" id="login-username" onChange={(e) => setState(`user`, e.target.value)} placeholder="Username"/>
+                    <input type="text" id="login-username" onChange={(e) => setState(`user`, e.target.value)} placeholder={languageManager.get("Login.USERNAME")}/>
                 </div>
                 <div className="form-element mt-4">
                     <label htmlFor="login-password">
                         <FontAwesomeIcon icon={faKey} />
                     </label>
-                    <input type="password" id="login-password" onChange={(e) => setState(`password`, e.target.value)} placeholder="Password"/>
+                    <input type="password" id="login-password" onChange={(e) => setState(`password`, e.target.value)} placeholder={languageManager.get("Login.PASSWORD")}/>
                 </div>
                 <div className="form-element mt-5">
-                    <input className="px-3 bg-light" type="submit" value="Login" />
+                    <input  className="px-3 bg-light" 
+                            type="submit" 
+                            value={languageManager.get("Shared.LOG_IN")} />
                 </div>
-                {/* <div className="form-element forgot-link">
-                    <a href="#">Forgot password?</a>
-                </div> */}
             </form>
         </div>
         </div>

@@ -7,12 +7,12 @@ export class LoginController {
 
   @Post('login')
   async login(@Body() body: any): Promise<string> {
-    let res : string = await this.loginService.login(body.user, body.password);
+    let res : any = await this.loginService.login(body.user, body.password);
     
-    if(res == "")
+    if(res?.token == undefined || res?.token == "")
         throw(new HttpException('Invalid user', HttpStatus.FORBIDDEN))
 
-    return res;
+    return JSON.stringify(res);
   }
 
   @Post('signup')

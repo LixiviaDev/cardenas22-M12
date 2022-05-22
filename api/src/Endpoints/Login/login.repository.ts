@@ -12,7 +12,7 @@ export default class LoginRepository {
         let res : any = sql.get(user, password);
 
         let userData = new User();
-        if(res.username != null){
+        if(res?.username != null){
             userData.username = res.username;
     
             sql = db.prepare(`SELECT GROUP_CONCAT(roleId) as roles

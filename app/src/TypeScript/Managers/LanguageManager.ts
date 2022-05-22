@@ -30,7 +30,7 @@ export class LanguageManager {
         window.location.reload();
     }
 
-    public setAppLanguage() : void {
+    public initAppLanguage() : void {
         document.documentElement.lang = this.currentLanguage;
     }
 

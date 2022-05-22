@@ -1,7 +1,18 @@
 {
+    "Shared": {
+        "LOG_IN": "Iniciar sessio",
+        "LOGIN": "Iniciar sessio",
+        "SIGN_UP": "Registrar-se",
+        "SIGNUP": "Registrar-se"
+    },
     "Home": {
         "READING_TITLE": "Seguir llegint",
         "HOT_TITLE": "El mes llegit",
         "NEW_TITLE": "Ultimes actualizacions"
+    },
+    "Login": {
+        "USERNAME": "Usuari",
+        "PASSWORD": "Contrasenya"
     }
 }
+
