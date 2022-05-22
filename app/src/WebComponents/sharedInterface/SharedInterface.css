@@ -11,9 +11,7 @@ header.sharedInterface {
 
 main.sharedInterface {
     padding-top: 56px;
-    min-height: 100vh;
     display: flex;
-    /* flex-direction: column; */
 }
 
 footer.sharedInterface {

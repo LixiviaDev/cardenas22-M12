@@ -28,9 +28,23 @@ export default class LoginService {
         return {token: token};
     }
 
-    async signup(email : string, user : string, password : string): Promise<void> {
+    async signup(email : string, user : string, password : string): Promise<any> {
         password = crypto.createHmac('sha256', password).update(password).digest("base64");
 
-        await Repository.signup(email, user, password)
+        await Repository.signup(email, user, password);
+
+        let userData : User = await Repository.login(user, password)
+
+        let tokenData : UserJWT = { userData: userData,
+                                    iat: Date.now(),
+                                    exp: Date.now() + parseInt(configData["JWT_DURATION"])}
+
+        let token : string = "";
+        
+        if(userData?.username != null){
+            token = jwt.sign(JSON.stringify(tokenData), configData["JWT_SECRET"]);
+        }
+
+        return {token: token};
     }
 }

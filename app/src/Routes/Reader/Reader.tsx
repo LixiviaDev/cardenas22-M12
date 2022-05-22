@@ -51,7 +51,10 @@ export default function Reader(props: any) {
         for(let item of chapterImagesData){
             newChapterImages.push(
                 <>
-                <img className="d-block m-auto w-auto" src={item.image} alt={`Pagina nº${item.page}`} />
+                <img    className="d-block m-auto w-auto" 
+                        style={{maxWidth: "100%"}}
+                        src={item.image}
+                        alt={`Pagina nº${item.page}`} />
                 </>
             );
         }

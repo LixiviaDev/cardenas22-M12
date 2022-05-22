@@ -11,7 +11,10 @@
         "NEW_TITLE": "Latest updates"
     },
     "Login": {
+        "EMAIL": "email",
         "USERNAME": "Username",
-        "PASSWORD": "Password"
+        "PASSWORD": "Password",
+        "INVALID_USER": "Invalid user or password",
+        "INVALID_PASSWORD": "Invalid password"
     }
 }

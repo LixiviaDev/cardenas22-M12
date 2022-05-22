@@ -1,0 +1,7 @@
+.validPassword {
+    background-color: var(--bs-success)!important;
+}
+
+.invalidPassword {
+    background-color: var(--bs-error)!important;
+}

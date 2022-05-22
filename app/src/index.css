@@ -1,8 +1,11 @@
 :root {
-  --bs-primary: rgb(40, 191, 246);
-  --bs-white: #f1f1f1;
-}
+  --bs-primary: rgb(40, 191, 246)!important;
+  --bs-white: #fbfbfb!important;
+  --bs-black: #000!important;
+  --bs-error: #ff2c2c!important;
+  --bs-success: #25c57b!important;
 
+}
 * {
   text-decoration: none!important;
 }
@@ -47,6 +50,23 @@ a.filledButton:hover, input[type="submit"].filledButton:hover {
   background-color: #f1f1f1!important;
 }
 
+a.invalidAction, input[type="submit"].invalidAction {
+  animation: buttonShake 0.4s;
+  animation-iteration-count: 1;
+
+  background-color: var(--bs-error)!important;
+  color: var(--bs-white)!important;
+}
+
+@keyframes buttonShake {
+  0% { transform: translate(0, 0); }
+  20% { transform: translate(-8px, 0); }
+  40% { transform: translate(8px, 0); }
+  60% { transform: translate(-8px, 0); }
+  80% { transform: translate(8px, 0); }
+  100% { transform: translate(0, 0); }
+}
+
 /* width */
 body ::-webkit-scrollbar {
   width: 10px;
@@ -62,4 +82,10 @@ body ::-webkit-scrollbar-thumb {
 
 body ::-webkit-scrollbar-thumb:hover {
   background: #555; 
+}
+
+@media (prefers-reduced-motion) {
+  a.invalidAction, input[type="submit"].invalidAction {
+    animation:none;
+  }
 }

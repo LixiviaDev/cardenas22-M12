@@ -16,7 +16,9 @@ export class LoginController {
   }
 
   @Post('signup')
-  async signup(@Body() body: any): Promise<void> {
-    await this.loginService.signup(body.email, body.user, body.password);
+  async signup(@Body() body: any): Promise<string> {
+    let res = await this.loginService.signup(body.email, body.user, body.password);
+
+    return JSON.stringify(res);
   }
 }

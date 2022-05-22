@@ -1,6 +1,6 @@
 //https://bootsnipp.com/snippets/vl4R7
 
-import React, { useState } from 'react'
+import React, { DOMElement, useState } from 'react'
 import './Login.css'
 import configData from '../../config.json';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -10,10 +10,12 @@ import { Languages } from '../../TypeScript/Enums/Language.enum';
 
 export default function LoginForm(props: any) {
 
-    const [user, setUser] = useState<string>("");
-    const [password, setPassword] = useState<string>("");
+    const [user, _setUser] = useState<string>("");
+    const [password, _setPassword] = useState<string>("");
 
     const [languageManager] = useState<LanguageManager>(LanguageManager.getInstance());
+
+    const [submitButtonReference] = useState<React.RefObject<any>>(React.createRef());
 
     async function submitLogIn(e : any) {
         e?.preventDefault();
@@ -30,12 +32,14 @@ export default function LoginForm(props: any) {
                 body: JSON.stringify({user: user, password: password})
               });
             
-            if(response.status == 200 || response.status == 201){
+            if(response.status === 200 || response.status === 201){
                 let data = await response.json();
     
                 localStorage.setItem("token", data?.token);
     
                 window.location.assign("/");
+            } else if (response.status === 403) {
+                setSubmitAsInvalid();
             }
         } catch (ex) {
             console.error(ex);
@@ -76,16 +80,17 @@ export default function LoginForm(props: any) {
                     <label htmlFor="login-username">
                         <FontAwesomeIcon icon={faUser} />
                     </label>
-                    <input type="text" id="login-username" onChange={(e) => setState(`user`, e.target.value)} placeholder={languageManager.get("Login.USERNAME")}/>
+                    <input type="text" id="login-username" onChange={(e) => setUser(e.target.value)} placeholder={languageManager.get("Login.USERNAME")}/>
                 </div>
                 <div className="form-element mt-4">
                     <label htmlFor="login-password">
                         <FontAwesomeIcon icon={faKey} />
                     </label>
-                    <input type="password" id="login-password" onChange={(e) => setState(`password`, e.target.value)} placeholder={languageManager.get("Login.PASSWORD")}/>
+                    <input type="password" id="login-password" onChange={(e) => setPassword(e.target.value)} placeholder={languageManager.get("Login.PASSWORD")}/>
                 </div>
                 <div className="form-element mt-5">
-                    <input  className="px-3 bg-light" 
+                    <input  ref={submitButtonReference}
+                            className="px-3 bg-light" 
                             type="submit" 
                             value={languageManager.get("Shared.LOG_IN")} />
                 </div>
@@ -95,13 +100,43 @@ export default function LoginForm(props: any) {
         </>
     );
 
-    function setState(varname : any, value : any){
-        if(value != null)
-            eval(`set${capitalizeFirstLetter(varname)}("${value}")`);
+    function onInputChanged(){
+        resetSubmitStyle();
     }
 
-    function capitalizeFirstLetter(string : any) {
-        return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
-      }
+    function setUser(value: string) {
+        onInputChanged();
+
+        _setUser(value);
+    }
+
+    function setPassword(value: string) {
+        onInputChanged();
+
+        _setPassword(value);
+    }
+
+    function resetSubmitStyle(){
+        const submitButton : HTMLInputElement = submitButtonReference.current;
+
+        submitButton.classList.remove("invalidAction");
+        submitButton.value = languageManager.get("Shared.LOG_IN");
+    }
+
+    function setSubmitAsInvalid(){
+        const submitButton : HTMLInputElement = submitButtonReference.current;
+
+        submitButton.classList.add("invalidAction");
+        submitButton.value = languageManager.get("Login.INVALID_USER");
+    }
+
+    // function setState(varname : any, value : any){
+    //     if(value != null)
+    //         eval(`set${capitalizeFirstLetter(varname)}("${value}")`);
+    // }
+
+    // function capitalizeFirstLetter(string : any) {
+    //     return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+    //   }
       
 }

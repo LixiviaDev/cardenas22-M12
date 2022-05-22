@@ -33,21 +33,24 @@ export default class LoginRepository {
     static async signup(email : string, user : string, password : string): Promise<void> {
 
         let sql : any = db.prepare(`INSERT INTO users   (
-                                                            userId,
                                                             username,
                                                             password,
+                                                            email,
                                                             dateAdded
                                                         )
                                                         VALUES (
-                                                            ?,
-                                                            ?,
-                                                            ?,
-                                                            ?
+                                                            @user,
+                                                            @password,
+                                                            @email,
+                                                            @dateaAdded
                                                         );
                                                 `);
 
         let dateAdded = new Date(Date.now());
 
-        let res : any = sql.run(email, user, password, dateAdded.toISOString().split('T')[0]);
+        let res : any = sql.run({   email: email,
+                                    user: user, 
+                                    password: password, 
+                                    dateaAdded: dateAdded.toISOString()});
     }
   }

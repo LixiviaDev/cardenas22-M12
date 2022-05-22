@@ -54,7 +54,7 @@ export default function SharedInterface(props: any) {
         </nav>
         </header>
 
-        <main className={`sharedInterface flex-${flexflow}`}>
+        <main className={`sharedInterface flex-${flexflow}`} style={{minHeight: window.innerHeight}}>
             {props.children}
         </main>
 

@@ -65,9 +65,9 @@ export default function Info(props: any) {
         <h1 hidden>Informacion del manga {mangaInfoData?.title}</h1>
         <SharedInterface>
             <div className="row mx-3 mt-2 infoPage p-3">
-                <div className="col-12 col-lg-5 col-xl-4 p-3 border border-secondary d-flex flex-column align-items-center position-relative bg-white">
+                <div className="col-12 col-lg-5 col-xl-4 p-3 mangaCover border border-secondary d-flex flex-column align-items-center position-relative">
                     <div className="w-100 p-0" style={{height: "60%"}}>
-                        <div className="border border-dark h-100 text-center">
+                        <div className="border border-dark h-100 text-center" style={{backgroundColor: "var(--bs-white)"}}>
                             <img className="h-100" src={mangaInfoData?.image} alt={`Portada de ${mangaInfoData?.title}`} style={{aspectRatio: "1/1.5", maxWidth: "100%"}}/>
                         </div>
                     </div>

@@ -11,8 +11,11 @@
         "NEW_TITLE": "Ultimes actualizacions"
     },
     "Login": {
+        "EMAIL": "Correo electronic",
         "USERNAME": "Usuari",
-        "PASSWORD": "Contrasenya"
+        "PASSWORD": "Contrasenya",
+        "INVALID_USER": "Usuari o contranya incorrectes",
+        "INVALID_PASSWORD": "Contranya incorrecta"
     }
 }
 

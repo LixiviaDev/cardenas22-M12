@@ -9,6 +9,7 @@ import Home from './Routes/Home/Home';
 import Info from "./Routes/Info/Info";
 import Login from './Routes/Login/Login';
 import Reader from "./Routes/Reader/Reader";
+import Signup from "./Routes/Signup/Signup";
 import { LanguageManager } from "./TypeScript/Managers/LanguageManager";
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="login" element={<Login />} />
+        <Route path="signup" element={<Signup />} />
         <Route path="info/:mangaId" element={<Info />} />
         <Route path="read/:mangaServerId/:mangaId/:chapterId" element={<Reader />} />
       </Routes>

@@ -11,7 +11,10 @@
         "NEW_TITLE": "Ultimas actualizaciones"
     },
     "Login": {
+        "EMAIL": "Correo electronico",
         "USERNAME": "Usuario",
-        "PASSWORD": "Contraseña"
+        "PASSWORD": "Contraseña",
+        "INVALID_USER": "Usuario o contraña incorrectos",
+        "INVALID_PASSWORD": "Contraña incorrecta"
     }
 }
