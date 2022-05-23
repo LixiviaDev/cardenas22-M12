@@ -3,7 +3,8 @@
         "LOG_IN": "Log in",
         "LOGIN": "Login",
         "SIGN_UP": "Sign up",
-        "SIGNUP": "Signup"
+        "SIGNUP": "Signup",
+        "SEARCH": "Search"
     },
     "Home": {
         "READING_TITLE": "Continue reading",

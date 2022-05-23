@@ -50,3 +50,21 @@ export function SimpleMangaCard(props: any) {
         </a>
     </>);
 }
+
+export function BriefInfoMangaCard(props: any){
+    const [title] = useState(props.title);
+    const [img] = useState(props.img);
+    const [link] = useState(props.href);
+
+    return(<>
+        <a href={link} className={`w-100 h-100 p-2`} style={{height: "230px"}}>
+            <div className="bg-white">
+                <div hidden>Click aqui para ver la informacion de {title}</div>
+                <div className="row">
+                    <div className="col-4 bg-red">a</div>
+                    <div className="col-8">a</div>
+                </div>
+            </div>
+        </a>
+    </>);
+}

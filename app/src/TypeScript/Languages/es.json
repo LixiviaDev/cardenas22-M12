@@ -3,7 +3,8 @@
         "LOG_IN": "Iniciar sesion",
         "LOGIN": "Iniciar sesion",
         "SIGN_UP": "Registrarse",
-        "SIGNUP": "Registrarse"
+        "SIGNUP": "Registrarse",
+        "SEARCH": "Buscar"
     },
     "Home": {
         "READING_TITLE": "Seguir leyendo",

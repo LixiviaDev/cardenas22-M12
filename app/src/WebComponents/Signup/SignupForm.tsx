@@ -60,7 +60,7 @@ export default function SignupForm(props: any) {
     return(
         <>
         <div className='login-form-container'>
-        <div className="login-form my-5">
+        <div className="signup-form login-form my-5">
             <div className="form-header">
                 <div className="title">{languageManager.get("Shared.SIGNUP")}</div>
             </div> 
