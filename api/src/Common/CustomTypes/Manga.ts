@@ -62,3 +62,33 @@ export class MangaInfoData {
         this.lastUpdateChapterDateAdded = args.lastUpdateChapterDateAdded;
     }
 }
+
+export type IMangaBriefInfoData = {
+    mangaId: string;
+    title: string;
+    image: string;
+    sinopsis: string;
+    statusId: string;
+    lastChapter: string;
+    lastChapterDateAdded: string;
+}
+
+export class MangaBriefInfoData {
+    public mangaId: string;
+    public title: string;
+    public image: string;
+    public sinopsis: string;
+    public statusId: string;
+    public lastChapter: string;
+    public lastChapterDateAdded: string;
+
+    public constructor(args: IMangaBriefInfoData){
+        this.mangaId = args.mangaId;
+        this.title = args.title;
+        this.image = args.image;
+        this.sinopsis = args.sinopsis;
+        this.statusId = args.statusId;
+        this.lastChapter = args.lastChapter;
+        this.lastChapterDateAdded = args.lastChapterDateAdded;
+    }
+}

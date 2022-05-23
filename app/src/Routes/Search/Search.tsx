@@ -11,21 +11,21 @@ export default function Search(props: any) {
     return(
         <>
         <SharedInterface>
-            <div className="row">
-                <div className="col-12 col-sm-6">
+            <div className="row m-0 p-2">
+                <div className="col-12 col-lg-6 p-2 d-flex" style={{height: "275px"}}>
                 <BriefInfoMangaCard title="a"
                                     img="a"
-                                    link="/a"/>
+                                    href="/a"/>
                 </div>
-                <div className="col-12 col-sm-6">
+                <div className="col-12 col-lg-6 p-2 d-flex" style={{height: "275px"}}>
                 <BriefInfoMangaCard title="a"
                                     img="a"
-                                    link="/a"/>
+                                    href="/a"/>
                 </div>
-                <div className="col-12 col-sm-6">
+                <div className="col-12 col-lg-6 p-2 d-flex" style={{height: "275px"}}>
                 <BriefInfoMangaCard title="a"
                                     img="a"
-                                    link="/a"/>
+                                    href="/a"/>
                 </div>
             </div>
         </SharedInterface>

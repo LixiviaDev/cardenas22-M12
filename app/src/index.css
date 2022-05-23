@@ -67,6 +67,10 @@ a.invalidAction, input[type="submit"].invalidAction {
   100% { transform: translate(0, 0); }
 }
 
+.grayBorderBottom {
+  border-bottom: 1px solid #9a9a9a;
+}
+
 /* width */
 body ::-webkit-scrollbar {
   width: 10px;

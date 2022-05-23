@@ -7,16 +7,20 @@ import { LoginController } from './Endpoints/Login/login.controller';
 import LoginService from './Endpoints/Login/login.service';
 import { MangaController } from './Endpoints/Manga/manga.controller';
 import MangaService from './Endpoints/Manga/manga.service';
+import { SearchController } from './Endpoints/Search/search.controller';
+import SearchService from './Endpoints/Search/search.service';
 
 @Module({
   imports: [],
   controllers: [AppController,
                 LoginController,
                 AuthController,
-                MangaController],
+                MangaController,
+                SearchController],
   providers: [AppService,
               LoginService,
               AuthService,
-              MangaService],
+              MangaService,
+              SearchService],
 })
 export class AppModule {}

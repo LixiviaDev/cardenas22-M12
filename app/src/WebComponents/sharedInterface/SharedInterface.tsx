@@ -24,7 +24,7 @@ export default function SharedInterface(props: any) {
                             <input className="form-control me-2" type="search" placeholder={languageManager.get("Shared.SEARCH")} name='search' aria-label="Search"/>
                         </form>
                         {localStorage.getItem("token") == null ? 
-                        <a className='p-0 text-center btn btn-light border border-dark d-flex justify-content-center align-items-center' href="/login">
+                        <a className='p-0 px-2 text-center btn btn-light border border-dark d-flex justify-content-center align-items-center' style={{borderRadius: "0"}} href="/login">
                             <p className='m-0 fw-bold'>Log in</p>
                         </a>
                         :
