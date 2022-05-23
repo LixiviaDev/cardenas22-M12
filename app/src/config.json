@@ -3,6 +3,7 @@
     "ENDPOINTS": {
         "INFO": "manga/info",
         "CHAPTER_LIST": "manga/chapterList",
-        "CHAPTER_IMAGES": "manga/chapterImages"
+        "CHAPTER_IMAGES": "manga/chapterImages",
+        "SEARCH_MANGA": "search/manga"
     }
 }
