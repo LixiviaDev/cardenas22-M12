@@ -53,9 +53,10 @@ export function SimpleMangaCard(props: any) {
 }
 
 export function BriefInfoMangaCard(props: any){
+    const [mangaId] = useState(props.mangaId);
+    const [mangaServerId] = useState(props.mangaServerId);
     const [title] = useState(props.title);
     const [img] = useState(props.img);
-    const [link] = useState(props.href);
     const [sinopsis] = useState<string>(props.sinopsis);
     const [statusId] = useState<string>(props.statusId);
     const [lastChapter] = useState<string>(props.lastChapter);
@@ -64,7 +65,7 @@ export function BriefInfoMangaCard(props: any){
     const [languageManager] = useState<LanguageManager>(LanguageManager.getInstance());
 
     return(<>
-        <a href={link} className="w-100 h-100 bg-white border border-dark briefInfoMangaCard">
+        <a href={`/info/${mangaId}`} className="w-100 h-100 bg-white border border-dark briefInfoMangaCard">
             <div className="bg-white h-100">
                 <div hidden>Click aqui para ver la informacion de {title}</div>
                 <div className="d-flex h-100">
@@ -74,7 +75,7 @@ export function BriefInfoMangaCard(props: any){
                         <div className="sectionTitle bg-black text-white p-2">
                             <h2 className="m-0" style={{fontSize: "1.20rem"}}>{title}</h2>
                         </div>
-                        <a className="w-100 py-2 ps-1 pe-2 text-dark d-flex justify-content-between grayBorderBottom" href={`${link}/a`} style={{fontSize: "small"}}>
+                        <a className="w-100 py-2 ps-1 pe-2 text-dark d-flex justify-content-between grayBorderBottom" href={`/read/${mangaServerId}/${mangaId}/${lastChapter}`} style={{fontSize: "small"}}>
                             <p className="m-0">Ch. {lastChapter}</p>
                             <p className="m-0">{languageManager.dateToShortLangString(lastChapterDateAdded)}</p>
                             <p className="m-0 d-none d-sm-block">{statusId}</p>

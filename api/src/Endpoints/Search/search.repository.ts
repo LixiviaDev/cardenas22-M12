@@ -6,27 +6,29 @@ const db = new Database('./db.db', { verbose: console.log });
 
 export default class SearchRepository {
     static async manga(search: string): Promise<MangaBriefInfoData[]> {
-        let sql = db.prepare(`SELECT mangaId,
-                                (SELECT name from manga
-                                    WHERE manga.mangaId = mangaInfo.mangaId
-                                    LIMIT 1
-                                ) as title,
-                                image,
-                                sinopsis,
-                                statusId,
-                                (SELECT chapterId from chapters
-                                    WHERE chapters.mangaId = mangaInfo.mangaId
-                                    ORDER BY chapterId DESC
-                                    LIMIT 1
-                                ) as lastChapter,
-                                (SELECT dateAdded from chapters
-                                    WHERE chapters.mangaId = mangaInfo.mangaId
-                                    ORDER BY chapterId DESC
-                                    LIMIT 1
-                                ) as lastChapterDateAdded
-                        FROM mangaInfo
-                        WHERE mangaId LIKE $search
-                        GROUP BY mangaId`);
+        let sql = db.prepare(`SELECT mangaInfo.mangaId,
+                                    mangaInfo.mangaServerId,
+                                    (SELECT name from manga
+                                        WHERE manga.mangaId = mangaInfo.mangaId
+                                        LIMIT 1
+                                    ) as title,
+                                    mangaInfo.image,
+                                    mangaInfo.sinopsis,
+                                    mangaInfo.statusId,
+                                    (SELECT chapterId from chapters
+                                        WHERE chapters.mangaId = mangaInfo.mangaId
+                                        ORDER BY chapterId DESC
+                                        LIMIT 1
+                                    ) as lastChapter,
+                                    (SELECT dateAdded from chapters
+                                        WHERE chapters.mangaId = mangaInfo.mangaId
+                                        ORDER BY chapterId DESC
+                                        LIMIT 1
+                                    ) as lastChapterDateAdded
+                            FROM mangaInfo
+                            INNER JOIN (SELECT mangaId FROM manga WHERE name LIKE $search) as Search
+                                ON mangaInfo.mangaId = Search.mangaId
+                            GROUP BY mangaInfo.mangaId;`);
 
         try{
             // console.log({...mangaInfoData, mangaName: mangaName});

@@ -47,6 +47,7 @@ export class MangaInfoData {
 
 export type IMangaBriefInfoData = {
     mangaId: string;
+    mangaServerId: string;
     title: string;
     image: string;
     sinopsis: string;
@@ -57,6 +58,7 @@ export type IMangaBriefInfoData = {
 
 export class MangaBriefInfoData {
     public mangaId: string;
+    public mangaServerId: string;
     public title: string;
     public image: string;
     public sinopsis: string;
@@ -66,6 +68,7 @@ export class MangaBriefInfoData {
 
     public constructor(args: IMangaBriefInfoData){
         this.mangaId = args.mangaId;
+        this.mangaServerId = args.mangaServerId;
         this.title = args.title;
         this.image = args.image;
         this.sinopsis = args.sinopsis;
