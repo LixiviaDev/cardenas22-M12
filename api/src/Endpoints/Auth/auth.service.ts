@@ -49,4 +49,12 @@ export class AuthService {
 
     return tokenData;
   }
+
+  async isAdmin(token : string): Promise<any> {
+    let tokenData : UserJWT = await this.verifyJWT(token);
+
+    let isAdmin = await authRepository.isAdmin(tokenData.userData);
+
+    return {isAdmin: isAdmin};
+  }
 }

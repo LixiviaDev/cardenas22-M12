@@ -15,12 +15,21 @@ export class AuthController {
     return true;
   }
 
-  @Post(':actionId')
+  @Post('action/:actionId')
   async actionId(@Body() body: any, @Param() params: any): Promise<boolean> {
     // let tokenData : UserJWT = await this.authService.verifyJWT(body.token);
     console.log("Token: " + body.token);
 
     let res : boolean = await this.authService.authAction(body.token, params.actionId);
+
+    return res;
+  }
+
+  @Post('isAdmin')
+  async isAdmin(@Body() body: any): Promise<any> {
+    let res = await this.authService.isAdmin(body.token);
+
+    console.log("IsAuth: " + res);
 
     return res;
   }

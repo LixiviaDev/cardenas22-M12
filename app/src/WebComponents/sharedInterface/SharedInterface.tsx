@@ -1,12 +1,56 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './SharedInterface.css'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome } from '@fortawesome/free-solid-svg-icons';
 import { LanguageManager } from '../../TypeScript/Managers/LanguageManager';
+import configData from '../../config.json';
 
 export default function SharedInterface(props: any) {
     const [flexflow] = useState(props.flexflow ?? "column");
     const [languageManager] = useState<LanguageManager>(LanguageManager.getInstance());
+
+    const [isAdmin, setIsAdmin] = useState<boolean>(false);
+
+    useEffect(() => componentDidMount(), [])
+
+    function componentDidMount() {
+        isUserAdmin()
+    }
+
+    function logOut() {
+        localStorage.removeItem("token");
+
+        window.location.reload();
+    }
+
+    async function isUserAdmin() {
+        let isAdmin = false;
+
+        try
+        {
+            let bodyData = {
+                token: localStorage.getItem("token")
+            }
+
+            let body = {
+            method: 'POST',
+            mode: "cors" as RequestMode,
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(bodyData)
+            }
+
+            let res = await fetch(`${configData.API_URL}/${configData.ENDPOINTS.IS_ADMIN}`, body);
+            let data: any = await res.json();
+
+            isAdmin = data?.isAdmin;
+        }
+        catch(ex)
+        {
+            console.error(ex);
+        }
+
+        setIsAdmin(isAdmin);
+    }
 
     return(
         <>
@@ -28,9 +72,20 @@ export default function SharedInterface(props: any) {
                             <p className='m-0 fw-bold'>Log in</p>
                         </a>
                         :
-                        <a className='p-0 text-center' href="/login">
-                            <img src="https://i.pinimg.com/originals/d7/38/9b/d7389ba6dadf70ff848a9804be09ac30.jpg" className="rounded-circle profilePicture" alt="foto de perfil"/>
-                        </a>
+                        // <a className='p-0 text-center' href="/login">
+                        //     <img src="https://i.pinimg.com/originals/d7/38/9b/d7389ba6dadf70ff848a9804be09ac30.jpg" className="rounded-circle profilePicture" alt="foto de perfil"/>
+                        // </a>
+                        <>
+                        <div className="flex-shrink-0 dropdown">
+                            <a href="#" className="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" className="rounded-circle" />
+                            </a>
+                            <ul className="dropdown-menu dropdown-menu-end text-small shadow" aria-labelledby="dropdownUser2">
+                                {isAdmin && <li><a className="dropdown-item" href="#">New project...</a></li>}
+                                <li><button className="dropdown-item" onClick={logOut}>Sign out</button></li>
+                            </ul>
+                        </div>
+                        </>
                         }
                     </div>
                 </div>

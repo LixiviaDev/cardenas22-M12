@@ -63,4 +63,20 @@ export default class authRepository {
         
         return true;
     }
+
+    static async isAdmin(userData : User): Promise<boolean> {
+        console.log("UserData: " + userData);
+
+        let sql : string = `SELECT userId FROM userRoles
+                            WHERE userId = $userId
+                                AND roleId = $roleId;`;
+
+        let query : any = db.prepare(sql);
+        let res : any = query.get({userId: userData.userId, roleId: Role.Admin});
+
+        if(res?.userId != undefined)
+            return true;
+        
+        return false;
+    }
   }
