@@ -2,9 +2,11 @@
     "Shared": {
         "LOG_IN": "Log in",
         "LOGIN": "Login",
+        "LOG_OUT": "Log out",
         "SIGN_UP": "Sign up",
         "SIGNUP": "Signup",
-        "SEARCH": "Search"
+        "SEARCH": "Search",
+        "ADMIN_PANEL": "Admin panel"
     },
     "Home": {
         "READING_TITLE": "Continue reading",
@@ -17,5 +19,14 @@
         "PASSWORD": "Password",
         "INVALID_USER": "Invalid user or password",
         "INVALID_PASSWORD": "Invalid password"
+    },
+    "AdminPanel": {
+        "TITLE": "Admin panel",
+        "NAV": {
+            "MANAGE_USERS": "Manage users"
+        }
+    },
+    "UserCard": {
+        "IMG_ALT": "Profile image of the user "
     }
 }

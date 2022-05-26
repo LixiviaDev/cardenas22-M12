@@ -2,9 +2,11 @@
     "Shared": {
         "LOG_IN": "Iniciar sesion",
         "LOGIN": "Iniciar sesion",
+        "LOG_OUT": "Cerrar sesion",
         "SIGN_UP": "Registrarse",
         "SIGNUP": "Registrarse",
-        "SEARCH": "Buscar"
+        "SEARCH": "Buscar",
+        "ADMIN_PANEL": "Panel de administrador"
     },
     "Home": {
         "READING_TITLE": "Seguir leyendo",
@@ -17,5 +19,11 @@
         "PASSWORD": "Contraseña",
         "INVALID_USER": "Usuario o contraña incorrectos",
         "INVALID_PASSWORD": "Contraña incorrecta"
+    },
+    "AdminPanel": {
+        "TITLE": "Panel de administrador",
+        "NAV": {
+            "MANAGE_USERS": "Administrar usuarios"
+        }
     }
 }

@@ -5,6 +5,7 @@ import {
   Route,
 } from "react-router-dom";  //Para el react router
 import './App.css';
+import AdminPanel from "./Routes/AdminPanel/AdminPanel";
 import Home from './Routes/Home/Home';
 import Info from "./Routes/Info/Info";
 import Login from './Routes/Login/Login';
@@ -12,6 +13,7 @@ import Reader from "./Routes/Reader/Reader";
 import Search from "./Routes/Search/Search";
 import Signup from "./Routes/Signup/Signup";
 import { LanguageManager } from "./TypeScript/Managers/LanguageManager";
+import UserList from "./WebComponents/AdminPanel/UserList/UserList";
 
 function App() {
 
@@ -33,6 +35,9 @@ function App() {
         <Route path="search" element={<Search />} />
         <Route path="info/:mangaId" element={<Info />} />
         <Route path="read/:mangaServerId/:mangaId/:chapterId" element={<Reader />} />
+        <Route path="adminPanel" element={<AdminPanel />} >
+          <Route path="manageUsers" element={<UserList />} />
+        </Route>
       </Routes>
     </BrowserRouter>
     </>

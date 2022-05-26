@@ -72,17 +72,14 @@ export default function SharedInterface(props: any) {
                             <p className='m-0 fw-bold'>{languageManager.get("Shared.LOG_IN")}</p>
                         </a>
                         :
-                        // <a className='p-0 text-center' href="/login">
-                        //     <img src="https://i.pinimg.com/originals/d7/38/9b/d7389ba6dadf70ff848a9804be09ac30.jpg" className="rounded-circle profilePicture" alt="foto de perfil"/>
-                        // </a>
                         <>
                         <div className="flex-shrink-0 dropdown">
-                            <a href="#" className="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a href="/adminPanel" className="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
                                 <img src="https://i.pinimg.com/originals/d7/38/9b/d7389ba6dadf70ff848a9804be09ac30.jpg" alt="mdo" width="32" height="32" className="rounded-circle" style={{width:"40px", height:"40px"}}/>
                             </a>
                             <ul className="dropdown-menu dropdown-menu-end text-small shadow" aria-labelledby="dropdownUser2">
-                                {isAdmin && <li><a className="dropdown-item" href="#">New project...</a></li>}
-                                <li><button className="dropdown-item" onClick={logOut}>Sign out</button></li>
+                                {isAdmin && <li><a className="dropdown-item" href="/adminPanel">{languageManager.get("Shared.ADMIN_PANEL")}</a></li>}
+                                <li><button className="dropdown-item" onClick={logOut}>{languageManager.get("Shared.LOG_OUT")}</button></li>
                             </ul>
                         </div>
                         </>

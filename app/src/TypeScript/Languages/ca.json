@@ -2,9 +2,11 @@
     "Shared": {
         "LOG_IN": "Iniciar sessio",
         "LOGIN": "Iniciar sessio",
+        "LOG_OUT": "Tencar sessio",
         "SIGN_UP": "Registrar-se",
         "SIGNUP": "Registrar-se",
-        "SEARCH": "Buscar"
+        "SEARCH": "Buscar",
+        "ADMIN_PANEL": "Panel d'administrador"
     },
     "Home": {
         "READING_TITLE": "Seguir llegint",
@@ -17,6 +19,12 @@
         "PASSWORD": "Contrasenya",
         "INVALID_USER": "Usuari o contranya incorrectes",
         "INVALID_PASSWORD": "Contranya incorrecta"
+    },
+    "AdminPanel": {
+        "TITLE": "Panel d'administrador",
+        "NAV": {
+            "MANAGE_USERS": "Administrar usuaris"
+        }
     }
 }
 

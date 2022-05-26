@@ -9,6 +9,8 @@ import { MangaController } from './Endpoints/Manga/manga.controller';
 import MangaService from './Endpoints/Manga/manga.service';
 import { SearchController } from './Endpoints/Search/search.controller';
 import SearchService from './Endpoints/Search/search.service';
+import { UsersController } from './Endpoints/Users/users.controller';
+import UsersService from './Endpoints/Users/users.service';
 
 @Module({
   imports: [],
@@ -16,11 +18,13 @@ import SearchService from './Endpoints/Search/search.service';
                 LoginController,
                 AuthController,
                 MangaController,
-                SearchController],
+                SearchController,
+                UsersController],
   providers: [AppService,
               LoginService,
               AuthService,
               MangaService,
-              SearchService],
+              SearchService,
+              UsersService],
 })
 export class AppModule {}
