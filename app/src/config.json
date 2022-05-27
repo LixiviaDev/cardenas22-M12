@@ -7,6 +7,6 @@
         "CHAPTER_IMAGES": "manga/chapterImages",
         "SEARCH_MANGA": "search/manga",
         "GET_ALL_USERS": "users/getAll",
-        "SEARCH_USERS": "users/search"
+        "SEARCH_USERS": "search/userBrief"
     }
 }

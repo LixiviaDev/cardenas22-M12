@@ -8,32 +8,14 @@ const db = new Database('./db.db', { verbose: console.log });
 export default class UsersRepository {
     static async getAll(): Promise<UserBriefData[]> {
         let sql = db.prepare(`SELECT userId,
-                                username,
-                                image,
-                                dateAdded
-                        FROM users;
+                                    username,
+                                    image,
+                                    dateAdded
+                                FROM users;
         `);
 
         try{
             let res : UserBriefData[] = sql.all();
-
-            return res;
-        }
-        catch(e) {
-            console.log(e);
-            throw new HttpException(e, HttpStatus.BAD_REQUEST)
-        }
-    }
-    static async search(search: string): Promise<UserBriefData[]> {
-        let sql = db.prepare(`SELECT userId,
-                                username,
-                                image,
-                                dateAdded
-                        FROM users;
-        `);
-
-        try{
-            let res : UserBriefData[] = sql.all({search: `%${search}%`});
 
             return res;
         }

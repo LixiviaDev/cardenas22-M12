@@ -47,6 +47,6 @@ export class LanguageManager {
 
     public dateToShortLangString(dateString: string | undefined) : string{
         let date = new Date(dateString ?? "");
-        return date.toLocaleString(this.currentLanguage);
+        return date.toLocaleString(this.currentLanguage, {year: 'numeric', month: 'numeric', day: 'numeric'});
     }
 }

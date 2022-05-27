@@ -14,6 +14,7 @@ import Search from "./Routes/Search/Search";
 import Signup from "./Routes/Signup/Signup";
 import { LanguageManager } from "./TypeScript/Managers/LanguageManager";
 import UserList from "./WebComponents/AdminPanel/UserList/UserList";
+import UserRoleManagement from "./WebComponents/AdminPanel/UserRoleManagement/UserRoleManagement";
 
 function App() {
 
@@ -37,6 +38,7 @@ function App() {
         <Route path="read/:mangaServerId/:mangaId/:chapterId" element={<Reader />} />
         <Route path="adminPanel" element={<AdminPanel />} >
           <Route path="manageUsers" element={<UserList />} />
+          <Route path="manageUsers/:userId" element={<UserRoleManagement />} />
         </Route>
       </Routes>
     </BrowserRouter>
