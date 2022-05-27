@@ -70,4 +70,12 @@ export class AuthService {
 
     return roles;
   }
+
+  async addUserRole(roleId: string, userId : string): Promise<void> {
+    await authRepository.addUserRole(roleId, userId);
+  }
+
+  async removeUserRole(roleId: string, userId : string): Promise<void> {
+    await authRepository.removeUserRole(roleId, userId);
+  }
 }

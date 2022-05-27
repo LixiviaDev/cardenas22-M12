@@ -93,7 +93,7 @@ export default class authRepository {
     }
 
     static async getUserRoles(userId : string): Promise<Role[]> {
-        let sql : string = `SELECT userId, roleId 
+        let sql : string = `SELECT roleId 
                             FROM userRoles
                                 WHERE userId = $userId;
                             `;
@@ -102,5 +102,30 @@ export default class authRepository {
         let res : Role[] = query.all({userId: userId});
         
         return res;
+    }
+
+    static async addUserRole(roleId: string, userId : string): Promise<void> {
+        let sql : string = `INSERT INTO userRoles (
+                                                    userId,
+                                                    roleId
+                                                )
+                                                VALUES (
+                                                    $userId,
+                                                    $roleId
+                                                );
+                            `;
+
+        let query = db.prepare(sql);
+        query.run({userId: userId, roleId: roleId});
+    }
+
+    static async removeUserRole(roleId: string, userId : string): Promise<void> {
+        let sql : string = `DELETE FROM userRoles
+                            WHERE userId = $userId AND 
+                                roleId = $roleId;
+                            `;
+
+        let query = db.prepare(sql);
+        query.run({userId: userId, roleId: roleId});
     }
   }
