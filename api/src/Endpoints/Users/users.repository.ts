@@ -24,4 +24,24 @@ export default class UsersRepository {
             throw new HttpException(e, HttpStatus.BAD_REQUEST)
         }
     }
+
+    static async getOne(userId: string): Promise<UserBriefData> {
+        let sql = db.prepare(`SELECT userId,
+                                        username,
+                                        image,
+                                        dateAdded
+                                FROM users
+                                WHERE userId = $userId
+        `);
+
+        try{
+            let res : UserBriefData = sql.get({userId: userId});
+
+            return res;
+        }
+        catch(e) {
+            console.log(e);
+            throw new HttpException(e, HttpStatus.BAD_REQUEST)
+        }
+    }
 }

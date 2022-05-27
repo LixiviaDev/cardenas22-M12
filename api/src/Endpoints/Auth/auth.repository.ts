@@ -1,4 +1,5 @@
-import { Role } from "src/Common/Enums/Roles.enum";
+import { Role } from "src/Common/CustomTypes/Role";
+import { Role as Roles } from "src/Common/Enums/Roles.enum";
 import { User } from "../../Common/CustomTypes/User";
 
 const Database = require('better-sqlite3');
@@ -31,7 +32,7 @@ export default class authRepository {
 
         console.log("USerData: " + userData);
 
-        if(userData.roles.includes(Role.Admin)) // If is admin has access 
+        if(userData.roles.includes(Roles.Admin)) // If is admin has access 
             return true;
 
 
@@ -72,11 +73,34 @@ export default class authRepository {
                                 AND roleId = $roleId;`;
 
         let query : any = db.prepare(sql);
-        let res : any = query.get({userId: userData.userId, roleId: Role.Admin});
+        let res : any = query.get({userId: userData.userId, roleId: Roles.Admin});
 
         if(res?.userId != undefined)
             return true;
         
         return false;
+    }
+
+    static async getAllRoles(): Promise<Role[]> {
+        let sql : string = `SELECT roleId, name
+                            FROM roles;
+                            `;
+
+        let query = db.prepare(sql);
+        let res : Role[] = query.all();
+        
+        return res;
+    }
+
+    static async getUserRoles(userId : string): Promise<Role[]> {
+        let sql : string = `SELECT userId, roleId 
+                            FROM userRoles
+                                WHERE userId = $userId;
+                            `;
+
+        let query = db.prepare(sql);
+        let res : Role[] = query.all({userId: userId});
+        
+        return res;
     }
   }

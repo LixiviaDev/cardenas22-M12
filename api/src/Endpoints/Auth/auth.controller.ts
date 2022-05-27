@@ -1,5 +1,7 @@
 import { Body, Query, Controller, Post, Get, HttpException, HttpStatus, Req, Param } from '@nestjs/common';
+import { Role } from 'src/Common/CustomTypes/Role';
 import { UserJWT } from 'src/Common/CustomTypes/User';
+import { Action } from 'src/Common/Enums/Actions.enum';
 import { AuthService } from './auth.service';
 
 @Controller("auth")
@@ -30,6 +32,30 @@ export class AuthController {
     let res = await this.authService.isAdmin(body.token);
 
     console.log("IsAuth: " + res);
+
+    return res;
+  }
+
+  @Post('getAllRoles')
+  async getAllRoles(@Body() body: any): Promise<Role[]> {
+    let isAuth : boolean = await this.authService.authAction(body.token, Action.SearchManga);
+
+    if(!isAuth)
+      throw new HttpException('Invalid user', HttpStatus.FORBIDDEN);
+
+    let res = await this.authService.getAllRoles();
+
+    return res;
+  }
+
+  @Post('getUserRoles')
+  async getUserRoles(@Body() body: any): Promise<Role[]> {
+    let isAuth : boolean = await this.authService.authAction(body.token, Action.SearchManga);
+
+    if(!isAuth)
+      throw new HttpException('Invalid user', HttpStatus.FORBIDDEN);
+    
+    let res = await this.authService.getUserRoles(body.userId);
 
     return res;
   }

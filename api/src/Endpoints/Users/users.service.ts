@@ -14,4 +14,7 @@ export default class UsersService {
     async getAll(): Promise<UserBriefData[]> {
         return await UsersRepository.getAll();
     }
+    async getOne(userId: string): Promise<UserBriefData> {
+        return await UsersRepository.getOne(userId);
+    }
 }

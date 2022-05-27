@@ -19,4 +19,14 @@ export class UsersController {
 
     return await this.usersService.getAll();
   }
+
+  @Post("/getOne")
+  async getOne(@Body() body: any): Promise<UserBriefData> {
+    let isAuth : boolean = await this.authService.authAction(body.token, Action.SearchManga);
+
+    if(!isAuth)
+      throw new HttpException('Invalid user', HttpStatus.FORBIDDEN)
+
+    return await this.usersService.getOne(body.userId);
+  }
 }

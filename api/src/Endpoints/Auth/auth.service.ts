@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { Role } from 'src/Common/CustomTypes/Role';
 import { User, UserJWT } from 'src/Common/CustomTypes/User';
 import authRepository from './auth.repository';
 
@@ -56,5 +57,17 @@ export class AuthService {
     let isAdmin = await authRepository.isAdmin(tokenData.userData);
 
     return {isAdmin: isAdmin};
+  }
+
+  async getAllRoles(): Promise<Role[]> {
+    let roles = await authRepository.getAllRoles();
+
+    return roles;
+  }
+
+  async getUserRoles(userId : string): Promise<Role[]> {
+    let roles = await authRepository.getUserRoles(userId);
+
+    return roles;
   }
 }
