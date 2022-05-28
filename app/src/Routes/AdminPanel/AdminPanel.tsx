@@ -14,14 +14,18 @@ export default function AdminPanel(props: any) {
                 <nav className="d-none d-lg-block col-lg-3 col-xl-2 p-3 bg-white border border-secondary d-flex flex-column align-items-center position-relative">
                     <ul className="list-group">
                         <li className="list-group-item" style={{borderRadius: 0}}>
-                            <a href="/adminPanel" className="text-black">{languageManager.get("AdminPanel.NAV.MANAGE_USERS")}</a>
+                            <a href="/adminPanel/ManageUsers" className="text-black">{languageManager.get("AdminPanel.NAV.MANAGE_USERS")}</a>
+                        </li>
+                        <li className="list-group-item" style={{borderRadius: 0}}>
+                            <a href="/adminPanel/ManageMangas" className="text-black">{languageManager.get("AdminPanel.NAV.MANAGE_MANGAS")}</a>
                         </li>
                     </ul>
                 </nav>
                 <div className="col-12 col-lg-9 col-xl-10 p-0 pt-3 pt-lg-0 ps-lg-3">
                     <div className="w-100 h-100 row px-2 m-0 border border-secondary d-flex flex-column align-items-center chapterList">
                         <div className="row bg-transparent">
-                            <div className="col-12 col-md-10 col-sm-8 m-auto h-100 bg-white">
+                            <div className="col-12 col-md-10 col-sm-8 m-auto bg-white"
+                            style={{minHeight: "100%"}}>
                                 <Outlet />
                             </div>
                         </div>

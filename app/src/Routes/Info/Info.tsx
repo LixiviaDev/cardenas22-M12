@@ -15,7 +15,8 @@ export default function Info(props: any) {
     const [mangaInfoData, setMangaInfoData] = useState<MangaInfoData>();
 
     const [chapterList, setchapterList] = useState<any>();
-
+    const [isAdmin, setIsAdmin] = useState<boolean>(false);
+    
     useEffect(() => componentDidMount(), []);
     
     useEffect(() => {
@@ -25,12 +26,10 @@ export default function Info(props: any) {
 
         }, [mangaInfoData]);
 
-    // useEffect(() => processMangaCards(), [mangaInfoData]);
-
     function componentDidMount() {
-        generateMangaInfoData();
+        isUserAdmin()
 
-        
+        generateMangaInfoData();
     }
 
     async function generateMangaInfoData()
@@ -40,6 +39,33 @@ export default function Info(props: any) {
         setMangaInfoData(newMangaInfoData);
 
         // The hook of mangaCardsData
+    }async function isUserAdmin() {
+        let isAdmin = false;
+
+        try
+        {
+            let bodyData = {
+                token: localStorage.getItem("token")
+            }
+
+            let body = {
+            method: 'POST',
+            mode: "cors" as RequestMode,
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(bodyData)
+            }
+
+            let res = await fetch(`${configData.API_URL}/${configData.ENDPOINTS.IS_ADMIN}`, body);
+            let data: any = await res.json();
+
+            isAdmin = data?.isAdmin;
+        }
+        catch(ex)
+        {
+            console.error(ex);
+        }
+
+        setIsAdmin(isAdmin);
     }
 
     async function getMangaInfoData() : Promise<MangaInfoData>
@@ -72,11 +98,24 @@ export default function Info(props: any) {
                         </div>
                     </div>
                     <div className="row mangaInfo w-100">
-                        <div className="w-100 py-3 px-0">
-                            <div className="py-2 px-3 border bg-black text-white sectionTitle">
-                                <h2 className="h1 my-3 text-center">{mangaInfoData?.title}</h2>
-                            </div>
-                        </div>
+                        {/* <div className="w-100 py-3 px-0"> */}
+                            {
+                                isAdmin
+                                ?
+                                <div className="w-100 py-3 px-0">
+                                    <a  className="d-block py-2 px-3 border bg-black text-white sectionTitle"
+                                        href={`/AdminPanel/ManageMangas/${mangaId}`}>
+                                        <h2 className="h1 my-3 text-center">{mangaInfoData?.title}</h2>
+                                    </a>
+                                </div>
+                                :
+                                <div className="w-100 py-3 px-0">
+                                    <div  className="py-2 px-3 border bg-black text-white sectionTitle">
+                                        <h2 className="h1 my-3 text-center">{mangaInfoData?.title}</h2>
+                                    </div>
+                                </div>
+                            }
+                        {/* </div> */}
                         <TitleDataRow title="Guionistas" data={mangaInfoData?.authors}></TitleDataRow>
                         <TitleDataRow title="Artistas" data={mangaInfoData?.artists}></TitleDataRow>
                         <TitleDataRow title="Estado" data={mangaInfoData?.statusId}></TitleDataRow>

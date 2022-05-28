@@ -1,11 +1,13 @@
 {
-    "API_URL": "https://lixiviareaderapi.herokuapp.com",
+    "API_URL": "http://127.0.0.1:4000",
     "ENDPOINTS": {
         "IS_ADMIN": "auth/isAdmin",
         "INFO": "manga/info",
         "CHAPTER_LIST": "manga/chapterList",
         "CHAPTER_IMAGES": "manga/chapterImages",
         "SEARCH_MANGA": "search/manga",
+        "GET_ONE_MANGA": "manga/getOneBrief",
+        "GET_MANGA_MANAGEMENT_DATA": "manga/managementData",
         "GET_ALL_USERS": "users/getAll",
         "GET_ONE_USER": "users/getOne",
         "SEARCH_USERS": "search/userBrief",

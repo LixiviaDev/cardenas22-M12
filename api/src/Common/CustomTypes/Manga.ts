@@ -95,3 +95,46 @@ export class MangaBriefInfoData {
         this.lastChapterDateAdded = args.lastChapterDateAdded;
     }
 }
+
+export type IMangaManagementData = {
+    mangaId: string;
+    title: string;
+    mangaServerId: number;
+    image: string;
+    authors: string[];
+    artists: string[];
+    tags: string[];
+    sinopsis: string;
+    statusId: string;
+    lastChapter: string;
+    lastChapterDateAdded: string;
+
+}
+
+export class MangaManagementData {
+    public mangaId: string;
+    public title: string;
+    public mangaServerId: number;
+    public image: string;
+    public authors: Array<string>;
+    public artists: string[];
+    public tags: string[];
+    public sinopsis: string;
+    public statusId: string;
+    public lastChapter: string;
+    public lastChapterDateAdded: string;
+
+    public constructor(args: IMangaManagementData){
+        this.mangaId = args.mangaId;
+        this.title = args.title;
+        this.mangaServerId = args.mangaServerId;
+        this.image = args.image;
+        this.authors = args.authors;
+        this.artists = args.artists;
+        this.tags = args.tags;
+        this.sinopsis = args.sinopsis;
+        this.statusId = args.statusId;
+        this.lastChapter = args.lastChapter;
+        this.lastChapterDateAdded = args.lastChapterDateAdded;
+    }
+}

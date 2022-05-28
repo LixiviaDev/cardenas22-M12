@@ -1,6 +1,6 @@
 import { HttpException, HttpStatus } from "@nestjs/common";
 import { ChapterImage } from "src/Common/CustomTypes/Chapter";
-import { MangaInfoData, MangaPreviewCardData } from "src/Common/CustomTypes/Manga";
+import { MangaBriefInfoData, MangaInfoData, MangaManagementData, MangaPreviewCardData } from "src/Common/CustomTypes/Manga";
 import { ChapterData } from "src/Common/Tables/ChapterData";
 import MangaInfoDataTable from "src/Common/Tables/MangaInfoData";
 import { User } from "../../Common/CustomTypes/User";
@@ -9,6 +9,46 @@ const Database = require('better-sqlite3');
 const db = new Database('./db.db', { verbose: console.log });
 
 export default class MangaRepository {
+    static async getOneBrief(mangaId: string): Promise<MangaBriefInfoData> {
+        
+        let sql = db.prepare(`
+                                SELECT mangaInfo.mangaId,
+                                mangaInfo.mangaServerId,
+                                (SELECT name from manga
+                                    WHERE manga.mangaId = mangaInfo.mangaId
+                                    LIMIT 1
+                                ) as title,
+                                mangaInfo.image,
+                                mangaInfo.sinopsis,
+                                mangaInfo.statusId,
+                                (SELECT chapterId from chapters
+                                    WHERE chapters.mangaId = mangaInfo.mangaId
+                                    ORDER BY chapterId DESC
+                                    LIMIT 1
+                                ) as lastChapter,
+                                (SELECT dateAdded from chapters
+                                    WHERE chapters.mangaId = mangaInfo.mangaId
+                                    ORDER BY chapterId DESC
+                                    LIMIT 1
+                                ) as lastChapterDateAdded
+                                FROM mangaInfo
+                                INNER JOIN (SELECT mangaId FROM manga WHERE mangaId = $mangaId) as Search
+                                    ON mangaInfo.mangaId = Search.mangaId
+                                GROUP BY mangaInfo.mangaId
+                                LIMIT 1;
+                                `);
+
+        try{
+            let res : MangaBriefInfoData = sql.get({mangaId: mangaId});
+
+            return res;
+        }
+        catch(e) {
+            console.log(e);
+            throw new HttpException(e, HttpStatus.BAD_REQUEST)
+        }
+    }
+    
     static async addManga(mangaInfoData: MangaInfoDataTable, mangaName: string): Promise<void> {
         let args = {...mangaInfoData, mangaName: mangaName, dateAdded: new Date(Date.now()).toISOString()};
         
@@ -188,6 +228,58 @@ export default class MangaRepository {
 
         try{
             let res: MangaInfoData = sql.get({mangaId: mangaId});
+
+            return res;
+        }
+        catch(e) {
+            console.log(e);
+            throw new HttpException(e, HttpStatus.BAD_REQUEST)
+        }
+    }
+    
+    static async managementData(mangaId: string): Promise<MangaManagementData> {
+
+        let sql = db.prepare(`
+                                SELECT mangaInfo.mangaId,
+                                mangaInfo.mangaServerId,
+                                (SELECT name from manga
+                                    WHERE manga.mangaId = mangaInfo.mangaId
+                                    LIMIT 1
+                                ) as title,
+                                mangaInfo.image,
+                                mangaInfo.sinopsis,
+                                (
+                                SELECT GROUP_CONCAT(name, '|') FROM mangaAuthors
+                                    WHERE mangaId = mangaInfo.mangaId
+                                ) authors,
+                                (
+                                SELECT GROUP_CONCAT(name, '|') FROM mangaArtists
+                                    WHERE mangaId = mangaInfo.mangaId
+                                ) artists,
+                                (
+                                SELECT GROUP_CONCAT(tagId, '|') FROM mangaTags
+                                    WHERE mangaId = mangaInfo.mangaId
+                                ) tags,
+                                mangaInfo.statusId,
+                                (SELECT chapterId from chapters
+                                    WHERE chapters.mangaId = mangaInfo.mangaId
+                                    ORDER BY chapterId DESC
+                                    LIMIT 1
+                                ) as lastChapter,
+                                (SELECT dateAdded from chapters
+                                    WHERE chapters.mangaId = mangaInfo.mangaId
+                                    ORDER BY chapterId DESC
+                                    LIMIT 1
+                                ) as lastChapterDateAdded
+                                FROM mangaInfo
+                                INNER JOIN (SELECT mangaId FROM manga WHERE mangaId = $mangaId) as Search
+                                    ON mangaInfo.mangaId = Search.mangaId
+                                GROUP BY mangaInfo.mangaId
+                                LIMIT 1;
+            `);
+
+        try{
+            let res: MangaManagementData = sql.get({mangaId: mangaId});
 
             return res;
         }

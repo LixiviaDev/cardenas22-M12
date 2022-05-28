@@ -23,7 +23,19 @@
     "AdminPanel": {
         "TITLE": "Admin panel",
         "NAV": {
-            "MANAGE_USERS": "Manage users"
+            "MANAGE_USERS": "Manage users",
+            "MANAGE_MANGAS": "Manage mangas"
+        },
+        "MANAGE_MANGA": {
+            "TITLE_INPUT_LABEL": "Title",
+            "SINOPSIS_INPUT_LABEL": "Sinopsis",
+            "ADD_WRITER_INPUT_LABEL": "Writers",
+            "ADD_ARTIST_INPUT_LABEL": "Artists",
+            "STATE_INPUT_LABEL": "State",
+            "ADD_TAG_INPUT_LABEL": "Tags",
+            "ADD_WRITER_INPUT_PLACEHOLDER": "Writer name",
+            "ADD_ARTIST_INPUT_PLACEHOLDER": "Artist name",
+            "ADD_TAG_INPUT_PLACEHOLDER": "Tag"
         }
     },
     "UserCard": {

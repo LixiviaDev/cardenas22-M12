@@ -1,6 +1,6 @@
 import { Body, Query, Controller, Post, Get, HttpException, HttpStatus, Req, Param } from '@nestjs/common';
 import { ChapterImage } from 'src/Common/CustomTypes/Chapter';
-import { MangaInfoData, MangaPreviewCardData } from 'src/Common/CustomTypes/Manga';
+import { MangaBriefInfoData, MangaInfoData, MangaManagementData, MangaPreviewCardData } from 'src/Common/CustomTypes/Manga';
 import { UserJWT } from 'src/Common/CustomTypes/User';
 import { Action } from 'src/Common/Enums/Actions.enum';
 import { ChapterData } from 'src/Common/Tables/ChapterData';
@@ -12,15 +12,27 @@ export class MangaController {
   constructor(private readonly mangaService: MangaService,
               private readonly authService: AuthService) {}
 
-  @Post("/addManga")
-  async addManga(@Body() body: any): Promise<void> {
-    let isAuth : boolean = await this.authService.authAction(body.token, Action.AddManga);
+    @Post("/getOneBrief")
+    async getOneBrief(@Body() body: any): Promise<MangaBriefInfoData> {
+      let isAuth : boolean = await this.authService.authAction(body.token, Action.GetManga);
+  
+      if(!isAuth)
+        throw new HttpException('Invalid user', HttpStatus.FORBIDDEN)
+  
+      let res = await this.mangaService.getOneBrief(body.mangaId);
 
-    if(!isAuth)
-      throw new HttpException('Invalid user', HttpStatus.FORBIDDEN)
+      return res;
+    }
 
-    await this.mangaService.addManga(body.mangaInfoData, body.mangaName);
-  }
+    @Post("/addManga")
+    async addManga(@Body() body: any): Promise<void> {
+      let isAuth : boolean = await this.authService.authAction(body.token, Action.AddManga);
+  
+      if(!isAuth)
+        throw new HttpException('Invalid user', HttpStatus.FORBIDDEN)
+  
+      await this.mangaService.addManga(body.mangaInfoData, body.mangaName);
+    }
 
   @Post("/addChapter")
   async addChapter(@Body() body: any): Promise<void> {
@@ -56,6 +68,20 @@ export class MangaController {
       throw new HttpException('Invalid user', HttpStatus.FORBIDDEN)
 
     let res = await this.mangaService.info(body.mangaId);
+
+    return res;
+  }
+
+  @Post("/managementData")
+  async managementData(@Body() body: any): Promise<MangaManagementData> {
+    console.log("Body: " + JSON.stringify(body));
+
+    let isAuth : boolean = await this.authService.authAction(body.token, Action.GetManga);
+
+    if(!isAuth)
+      throw new HttpException('Invalid user', HttpStatus.FORBIDDEN)
+
+    let res = await this.mangaService.managementData(body.mangaId);
 
     return res;
   }

@@ -13,6 +13,8 @@ import Reader from "./Routes/Reader/Reader";
 import Search from "./Routes/Search/Search";
 import Signup from "./Routes/Signup/Signup";
 import { LanguageManager } from "./TypeScript/Managers/LanguageManager";
+import MangaDataManagement from "./WebComponents/AdminPanel/MangaDataManagement/MangaDataManagement";
+import MangaList from "./WebComponents/AdminPanel/MangaList/MangaList";
 import UserList from "./WebComponents/AdminPanel/UserList/UserList";
 import UserRoleManagement from "./WebComponents/AdminPanel/UserRoleManagement/UserRoleManagement";
 
@@ -39,6 +41,8 @@ function App() {
         <Route path="adminPanel" element={<AdminPanel />} >
           <Route path="manageUsers" element={<UserList />} />
           <Route path="manageUsers/:userId" element={<UserRoleManagement />} />
+          <Route path="manageMangas" element={<MangaList />} />
+          <Route path="manageMangas/:mangaId" element={<MangaDataManagement />} />
         </Route>
       </Routes>
     </BrowserRouter>

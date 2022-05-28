@@ -55,14 +55,15 @@ export default function Search(props: any) {
         for(let searchResultData of searchResultsData)
             newSearchResults.push(<>
                 <div className="col-12 col-lg-6 p-2 d-flex" style={{height: "275px"}}>
-                    <BriefInfoMangaCard mangaId={searchResultData.mangaId}
-                                    mangaServerId={searchResultData.mangaServerId}
-                                    title={searchResultData.title}
-                                    img={searchResultData.image}
-                                    sinopsis={searchResultData.sinopsis}
-                                    statusId={searchResultData.statusId}
-                                    lastChapter={searchResultData.lastChapter}
-                                    lastChapterDateAdded={searchResultData.lastChapterDateAdded} />
+                    <BriefInfoMangaCard href={`/Info/${searchResultData.mangaId}`}
+                                        mangaId={searchResultData.mangaId}
+                                        mangaServerId={searchResultData.mangaServerId}
+                                        title={searchResultData.title}
+                                        img={searchResultData.image}
+                                        sinopsis={searchResultData.sinopsis}
+                                        statusId={searchResultData.statusId}
+                                        lastChapter={searchResultData.lastChapter}
+                                        lastChapterDateAdded={searchResultData.lastChapterDateAdded} />
                 </div>
             </>);
         

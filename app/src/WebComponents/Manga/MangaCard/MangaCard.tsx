@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import './MangaCard.css';
 import { LanguageManager } from "../../../TypeScript/Managers/LanguageManager";
 
@@ -55,22 +55,35 @@ export function SimpleMangaCard(props: any) {
 export function BriefInfoMangaCard(props: any){
     const [mangaId] = useState(props.mangaId);
     const [mangaServerId] = useState(props.mangaServerId);
-    const [title] = useState(props.title);
+    const [title, setTitle] = useState(props.title);
     const [img] = useState(props.img);
-    const [sinopsis] = useState<string>(props.sinopsis);
-    const [statusId] = useState<string>(props.statusId);
+    const [sinopsis, setSinopsis] = useState<string>(props.sinopsis);
+    const [statusId, setStatusId] = useState<string>(props.statusId);
     const [lastChapter] = useState<string>(props.lastChapter);
     const [lastChapterDateAdded] = useState<string>(props.lastChapterDateAdded);
+    const [href] = useState<string>(props.href);
 
     const [languageManager] = useState<LanguageManager>(LanguageManager.getInstance());
 
+    useEffect(() => {
+        setTitle(props.title)
+    }, [props.title])
+
+    useEffect(() => {
+        setSinopsis(props.sinopsis)
+    }, [props.sinopsis])
+
+    useEffect(() => {
+        setStatusId(props.statusId)
+    }, [props.statusId])
+
     return(<>
-        <a href={`/info/${mangaId}`} className="w-100 h-100 bg-white border border-dark briefInfoMangaCard">
+        <a href={href} className="w-100 h-100 bg-white border border-dark briefInfoMangaCard">
             <div className="bg-white h-100">
                 <div hidden>Click aqui para ver la informacion de {title}</div>
                 <div className="d-flex h-100">
                     <img className="d-block d-sm-none m-auto ms-2 border border-dark" style={{width: "120px", height: "160px"}} src={img} alt="a" />
-                    <img className="d-none d-sm-block h-100" src={img} alt="a" style={{aspectRatio:"1/1.5"}}/>
+                    <img className="d-none d-sm-block h-100" src={img} alt="a" style={{aspectRatio:"1/1.5", width: "222px"}}/>
                     <div className="w-100 h-100 p-2 d-flex flex-column text-black">
                         <div className="sectionTitle bg-black text-white p-2">
                             <h2 className="m-0" style={{fontSize: "1.20rem"}}>{title}</h2>

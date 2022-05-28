@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { ChapterImage } from 'src/Common/CustomTypes/Chapter';
-import { MangaInfoData, MangaPreviewCardData } from 'src/Common/CustomTypes/Manga';
+import { MangaBriefInfoData, MangaInfoData, MangaManagementData, MangaPreviewCardData } from 'src/Common/CustomTypes/Manga';
 import { ChapterData} from 'src/Common/Tables/ChapterData';
 import MangaInfoDataTable from 'src/Common/Tables/MangaInfoData';
 import { User, UserJWT } from '../../Common/CustomTypes/User';
@@ -14,6 +14,12 @@ const jwt = require('jsonwebtoken');
 
 @Injectable()
 export default class MangaService {
+    async getOneBrief(mangaId: string): Promise<MangaBriefInfoData> {
+        let res = await MangaRepository.getOneBrief(mangaId);
+
+        return res;
+    }
+
     async addManga(mangaInfoData: MangaInfoDataTable, mangaName: string): Promise<void> {
         await MangaRepository.addManga(mangaInfoData, mangaName);
     }
@@ -34,6 +40,16 @@ export default class MangaService {
         res.artists = res.artists?.toString().split("=");
         res.authors = res.authors?.toString().split("=");
         res.tags = res.tags?.toString().split("=");
+
+        return res;
+    }
+
+    async managementData(mangaId: string): Promise<MangaManagementData> {
+        let res = await MangaRepository.managementData(mangaId);
+
+        res.artists = res.artists?.toString().split("|");
+        res.authors = res.authors?.toString().split("|");
+        res.tags = res.tags?.toString().split("|");
 
         return res;
     }
