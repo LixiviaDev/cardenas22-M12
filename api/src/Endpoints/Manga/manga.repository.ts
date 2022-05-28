@@ -333,4 +333,170 @@ export default class MangaRepository {
             throw new HttpException(e, HttpStatus.BAD_REQUEST)
         }
     }
+    
+    static async addWriter(mangaId: string, name: string): Promise<void> {
+        let sql = db.prepare(`
+                            INSERT INTO mangaAuthors (
+                                mangaId,
+                                name,
+                                dateAdded
+                            )
+                            VALUES (
+                                $mangaId,
+                                $name,
+                                $dateAdded
+                            );
+                            `);
+
+        try{
+            sql.run({mangaId: mangaId, name: name, dateAdded: new Date(Date.now()).toISOString()});
+        }
+        catch(e) {
+            console.log(e);
+            throw new HttpException(e, HttpStatus.BAD_REQUEST)
+        }
+    }
+    
+    static async removeWriter(mangaId: string, name: string): Promise<void> {
+        let sql = db.prepare(`
+                            DELETE FROM mangaAuthors
+                            WHERE mangaId = $mangaId AND 
+                                name = $name;
+                            `);
+
+        try{
+            sql.run({mangaId: mangaId, name: name, dateAdded: new Date(Date.now()).toISOString()});
+        }
+        catch(e) {
+            console.log(e);
+            throw new HttpException(e, HttpStatus.BAD_REQUEST)
+        }
+    }
+    
+    static async addArtist(mangaId: string, name: string): Promise<void> {
+        let sql = db.prepare(`
+                            INSERT INTO mangaArtists (
+                                mangaId,
+                                name,
+                                dateAdded
+                            )
+                            VALUES (
+                                $mangaId,
+                                $name,
+                                $dateAdded
+                            );
+                            `);
+
+        try{
+            sql.run({mangaId: mangaId, name: name, dateAdded: new Date(Date.now()).toISOString()});
+        }
+        catch(e) {
+            console.log(e);
+            throw new HttpException(e, HttpStatus.BAD_REQUEST)
+        }
+    }
+    
+    static async removeArtist(mangaId: string, name: string): Promise<void> {
+        let sql = db.prepare(`
+                            DELETE FROM mangaArtists
+                            WHERE mangaId = $mangaId AND 
+                                name = $name;
+                            `);
+
+        try{
+            sql.run({mangaId: mangaId, name: name, dateAdded: new Date(Date.now()).toISOString()});
+        }
+        catch(e) {
+            console.log(e);
+            throw new HttpException(e, HttpStatus.BAD_REQUEST)
+        }
+    }
+    
+    static async addTag(mangaId: string, tagId: string): Promise<void> {
+        let sql = db.prepare(`
+                            INSERT INTO mangaTags (
+                                mangaId,
+                                tagId
+                            )
+                            VALUES (
+                                $mangaId,
+                                $tagId
+                            );
+                            `);
+
+        try{
+            sql.run({mangaId: mangaId, tagId: tagId});
+        }
+        catch(e) {
+            console.log(e);
+            throw new HttpException(e, HttpStatus.BAD_REQUEST)
+        }
+    }
+    
+    static async removeTag(mangaId: string, tagId: string): Promise<void> {
+        let sql = db.prepare(`
+                            DELETE FROM mangaTags
+                            WHERE mangaId = $mangaId AND 
+                                tagId = $tagId;
+                            `);
+
+        try{
+            sql.run({mangaId: mangaId, tagId: tagId});
+        }
+        catch(e) {
+            console.log(e);
+            throw new HttpException(e, HttpStatus.BAD_REQUEST)
+        }
+    }
+    
+    static async changeTitle(mangaId: string, title: string): Promise<void> {
+        let sql = db.prepare(`
+                            UPDATE manga
+                            SET name = $name
+                            WHERE mangaId = $mangaId;
+                            `);
+
+        try{
+            sql.run({mangaId: mangaId, name: title});
+        }
+        catch(e) {
+            console.log(e);
+            throw new HttpException(e, HttpStatus.BAD_REQUEST)
+        }
+    }
+    
+    static async changeState(mangaId: string, mangaServerId: string, state: string): Promise<void> {
+        let sql = db.prepare(`
+                            UPDATE mangaInfo
+                            SET statusId = $state
+                            WHERE mangaId = $mangaId AND 
+                                mangaServerId = $mangaServerId;
+                            `);
+
+        try{
+            sql.run({mangaId: mangaId, mangaServerId: mangaServerId, state: state});
+        }
+        catch(e) {
+            console.log(e);
+            throw new HttpException(e, HttpStatus.BAD_REQUEST)
+        }
+    }
+    
+    static async changeSinopsis(mangaId: string, mangaServerId: string, sinopsis: string): Promise<void> {
+        let sql = db.prepare(`
+                            UPDATE mangaInfo
+                            SET sinopsis = $sinopsis
+                            WHERE mangaId = $mangaId AND 
+                                mangaServerId = $mangaServerId;
+                            `);
+
+        try{
+            sql.run({mangaId: mangaId, mangaServerId: mangaServerId, sinopsis: sinopsis});
+        }
+        catch(e) {
+            console.log(e);
+            throw new HttpException(e, HttpStatus.BAD_REQUEST)
+        }
+    }
+
   }

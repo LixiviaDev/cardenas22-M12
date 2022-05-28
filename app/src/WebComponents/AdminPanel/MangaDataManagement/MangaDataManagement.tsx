@@ -6,7 +6,7 @@ import { Role } from "../../../TypeScript/Classes/Roles/Role";
 import { MangaManagementData } from "../../../TypeScript/Classes/Manga/MangaInfoData";
 import { BriefInfoMangaCard } from "../../Manga/MangaCard/MangaCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCloudArrowUp, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faCloudArrowUp, faPlus, faXmark } from "@fortawesome/free-solid-svg-icons";
 
 export default function MangaDataManagement() {
     const {mangaId} = useParams(); 
@@ -63,7 +63,10 @@ export default function MangaDataManagement() {
 
         for(let writer of mangaWriters){
             newWritersList.push(<>
-                <button className="btn btn-primary" onClick={() => removeWriter(writer)}>{writer}</button>
+                <button className="btn btn-primary m-1" onClick={() => removeWriter(writer)}>
+                    {writer}
+                    <FontAwesomeIcon className="ms-2" icon={faXmark} />
+                </button>
             </>);
         }
 
@@ -75,7 +78,10 @@ export default function MangaDataManagement() {
 
         for(let artist of mangaArtists){
             newArtistList.push(<>
-                <button className="btn btn-primary" onClick={() => removeArtist(artist)}>{artist}</button>
+                <button className="btn btn-primary m-1" onClick={() => removeArtist(artist)}>
+                    {artist}
+                    <FontAwesomeIcon className="ms-2" icon={faXmark} />
+                </button>
             </>);
         }
 
@@ -87,7 +93,10 @@ export default function MangaDataManagement() {
 
         for(let tag of mangaTags){
             newTagList.push(<>
-                <button className="btn btn-primary" onClick={() => removeTag(tag)}>{tag}</button>
+                <button className="btn btn-primary m-1" onClick={() => removeTag(tag)}>
+                    {tag}
+                    <FontAwesomeIcon className="ms-2" icon={faXmark} />
+                </button>
             </>);
         }
 
@@ -179,7 +188,9 @@ export default function MangaDataManagement() {
                                                 onChange={changeMangaState}
                                                 className="form-select"
                                                 name="mangaState"
+                                                defaultValue={mangaState}
                                                 style={{borderRadius: 0}} >
+                                            <option value="-1" hidden selected>Select a state</option>
                                             <option value="0">Ongoing</option>
                                             <option value="1">Finished</option>
                                         </select>
@@ -296,39 +307,170 @@ export default function MangaDataManagement() {
         </div>
     </>)
 
-    function changeMangaTitle() {
-        setMangaTitle(mangaTitleInput.current?.value ?? "");
+    function changeMangaTitle() { 
+        let newTitle = mangaTitleInput.current?.value ?? "";
+
+        let bodyData = {token: localStorage.getItem("token"),
+                        mangaId: mangaId,
+                        title: newTitle}
+
+        let body = {
+        method: 'POST',
+        mode: "cors" as RequestMode,
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(bodyData)
+        }
+
+        fetch(`${configData.API_URL}/${configData.ENDPOINTS.CHANGE_MANGA_TITLE}`, body);
+
+        setMangaTitle(newTitle);
     }
 
     function changeMangaSinopsis() {
-        setMangaSinopsis(mangaSinopsisInput.current?.value ?? "");
+        let newSinopsis = mangaSinopsisInput.current?.value ?? "";
+
+        let bodyData = {token: localStorage.getItem("token"),
+                        mangaId: mangaId,
+                        mangaServerId: mangaData?.mangaServerId,
+                        sinopsis: newSinopsis}
+
+        let body = {
+        method: 'POST',
+        mode: "cors" as RequestMode,
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(bodyData)
+        }
+
+        fetch(`${configData.API_URL}/${configData.ENDPOINTS.CHANGE_MANGA_SINOPSIS}`, body);
+
+        setMangaSinopsis(newSinopsis);
     }
 
     function changeMangaState() {
-        setMangaState(mangaStateInput.current?.value ?? "0");
+        let newState = mangaStateInput.current?.value ?? "0";
+
+        let bodyData = {token: localStorage.getItem("token"),
+                        mangaId: mangaId,
+                        mangaServerId: mangaData?.mangaServerId,
+                        state: newState}
+
+        let body = {
+        method: 'POST',
+        mode: "cors" as RequestMode,
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(bodyData)
+        }
+
+        fetch(`${configData.API_URL}/${configData.ENDPOINTS.CHANGE_MANGA_STATE}`, body);
+
+        setMangaState(newState);
     }
 
     function addWriter() {
-        setMangaWriters([...mangaWriters, mangaWriterInput.current?.value ?? ""]);
+        let newWriter = mangaWriterInput.current?.value ?? "";
+
+        let bodyData = {token: localStorage.getItem("token"),
+                        mangaId: mangaId,
+                        name: newWriter}
+
+        let body = {
+        method: 'POST',
+        mode: "cors" as RequestMode,
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(bodyData)
+        }
+
+        fetch(`${configData.API_URL}/${configData.ENDPOINTS.ADD_MANGA_WRITER}`, body);
+
+        setMangaWriters([...mangaWriters, newWriter]);
     }
 
     function removeWriter(writer: string) {
+        let bodyData = {token: localStorage.getItem("token"),
+                        mangaId: mangaId,
+                        name: writer}
+
+        let body = {
+        method: 'POST',
+        mode: "cors" as RequestMode,
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(bodyData)
+        }
+
+        fetch(`${configData.API_URL}/${configData.ENDPOINTS.REMOVE_MANGA_WRITER}`, body);
+
         setMangaWriters(mangaWriters.filter(x => x !== writer));
     }
 
     function addArtist() {
-        setMangaArtists([...mangaArtists, mangaArtistInput.current?.value ?? ""]);
+        let newArtist = mangaArtistInput.current?.value ?? "";
+
+        let bodyData = {token: localStorage.getItem("token"),
+                        mangaId: mangaId,
+                        name: newArtist}
+
+        let body = {
+        method: 'POST',
+        mode: "cors" as RequestMode,
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(bodyData)
+        }
+
+        fetch(`${configData.API_URL}/${configData.ENDPOINTS.ADD_MANGA_ARTIST}`, body);
+
+        setMangaArtists([...mangaArtists, newArtist]);
     }
 
     function removeArtist(artist: string) {
+        let bodyData = {token: localStorage.getItem("token"),
+                        mangaId: mangaId,
+                        name: artist}
+
+        let body = {
+        method: 'POST',
+        mode: "cors" as RequestMode,
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(bodyData)
+        }
+
+        fetch(`${configData.API_URL}/${configData.ENDPOINTS.REMOVE_MANGA_ARTIST}`, body);
+
         setMangaArtists(mangaArtists.filter(x => x !== artist));
     }
 
     function addTag() {
-        setMangaTags([...mangaTags, mangaTagInput.current?.value ?? ""]);
+        let newTag = mangaTagInput.current?.value ?? "";
+
+        let bodyData = {token: localStorage.getItem("token"),
+                        mangaId: mangaId,
+                        tagId: newTag}
+
+        let body = {
+        method: 'POST',
+        mode: "cors" as RequestMode,
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(bodyData)
+        }
+
+        fetch(`${configData.API_URL}/${configData.ENDPOINTS.ADD_MANGA_TAG}`, body);
+
+        setMangaTags([...mangaTags, newTag]);
     }
 
     function removeTag(tag: string) {
+        let bodyData = {token: localStorage.getItem("token"),
+                        mangaId: mangaId,
+                        tagId: tag}
+
+        let body = {
+        method: 'POST',
+        mode: "cors" as RequestMode,
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(bodyData)
+        }
+
+        fetch(`${configData.API_URL}/${configData.ENDPOINTS.REMOVE_MANGA_TAG}`, body);
+
         setMangaTags(mangaTags.filter(x => x !== tag));
     }
 }

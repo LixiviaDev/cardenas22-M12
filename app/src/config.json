@@ -1,5 +1,5 @@
 {
-    "API_URL": "http://127.0.0.1:4000",
+    "API_URL": "https://lixiviareaderapi.herokuapp.com",
     "ENDPOINTS": {
         "IS_ADMIN": "auth/isAdmin",
         "INFO": "manga/info",
@@ -13,7 +13,16 @@
         "SEARCH_USERS": "search/userBrief",
         "GET_ALL_ROLES": "auth/getAllRoles",
         "GET_USER_ROLES": "auth/getUserRoles",
+        "CHANGE_MANGA_TITLE": "manga/changeTitle",
+        "CHANGE_MANGA_STATE": "manga/changeState",
+        "CHANGE_MANGA_SINOPSIS": "manga/changeSinopsis",
         "ADD_USER_ROLE": "auth/addUserRole",
-        "REMOVE_USER_ROLE": "auth/removeUserRole"
+        "REMOVE_USER_ROLE": "auth/removeUserRole",
+        "ADD_MANGA_WRITER": "manga/addWriter",
+        "REMOVE_MANGA_WRITER": "manga/removeWriter",
+        "ADD_MANGA_ARTIST": "manga/addArtist",
+        "REMOVE_MANGA_ARTIST": "manga/removeArtist",
+        "ADD_MANGA_TAG": "manga/addTag",
+        "REMOVE_MANGA_TAG": "manga/removeTag"
     }
 }

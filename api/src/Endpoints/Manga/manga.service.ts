@@ -65,4 +65,40 @@ export default class MangaService {
 
         return res;
     }
+
+    async addWriter(mangaId: string, name: string): Promise<void> {
+        await MangaRepository.addWriter(mangaId, name);
+    }
+
+    async removeWriter(mangaId: string, name: string): Promise<void> {
+        await MangaRepository.removeWriter(mangaId, name);
+    }
+
+    async addArtist(mangaId: string, name: string): Promise<void> {
+        await MangaRepository.addArtist(mangaId, name);
+    }
+
+    async removeArtist(mangaId: string, name: string): Promise<void> {
+        await MangaRepository.removeArtist(mangaId, name);
+    }
+
+    async addTag(mangaId: string, tagId: string): Promise<void> {
+        await MangaRepository.addTag(mangaId, tagId);
+    }
+
+    async removeTag(mangaId: string, tagId: string): Promise<void> {
+        await MangaRepository.removeTag(mangaId, tagId);
+    }
+
+    async changeTitle(mangaId: string, title: string): Promise<void> {
+        await MangaRepository.changeTitle(mangaId, title);
+    }
+
+    async changeState(mangaId: string, mangaServerId: string, state: string): Promise<void> {
+        await MangaRepository.changeState(mangaId, mangaServerId, state);
+    }
+
+    async changeSinopsis(mangaId: string, mangaServerId: string, sinopsis: string): Promise<void> {
+        await MangaRepository.changeSinopsis(mangaId, mangaServerId, sinopsis);
+    }
 }
