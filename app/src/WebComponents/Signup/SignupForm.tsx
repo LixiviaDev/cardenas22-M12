@@ -26,9 +26,7 @@ export default function SignupForm(props: any) {
 
     async function submitSignup(e : any) {
         e?.preventDefault();
-
-        console.log(`User: ${user} || Password: ${password}`);
-
+        
         if(isValidPassword){
             try{
                 let response = await fetch(`${configData["API_URL"]}/signup`, {
@@ -81,7 +79,7 @@ export default function SignupForm(props: any) {
                         {Languages.CA}
                 </button>
             </div>
-            <form onSubmit={submitSignup} className="form-container px-5">
+            <form onSubmit={submitSignup} className="form-container px-5" method='post'>
                 <div className="form-element mt-4">
                     <label htmlFor="login-username">
                         <FontAwesomeIcon icon={faUser} />
@@ -111,7 +109,7 @@ export default function SignupForm(props: any) {
                             placeholder={languageManager.get("Login.PASSWORD")}/>
                 </div>
                 <div className="form-element mt-5">
-                    <input  ref={submitButtonReference}
+                    <input  ref={submitButtonReference} title='submit'
                             className="px-3 bg-light" 
                             type="submit" 
                             value={languageManager.get("Shared.SIGN_UP")} />

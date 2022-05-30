@@ -52,7 +52,7 @@ export default function UserRoleManagement() {
                 <tr>
                 <td>{role.name}</td>
                 <td>
-                <input className="form-check-input" type="checkbox" value={role.roleId} defaultChecked={userRoles?.some(x => x.roleId === role.roleId)} onChange={onRoleToggled} />
+                <input className="form-check-input" type="checkbox" title={`Has role ${role.name}`} value={role.roleId} defaultChecked={userRoles?.some(x => x.roleId === role.roleId)} onChange={onRoleToggled} />
                 </td>
                 </tr>
             </>);

@@ -111,7 +111,7 @@ export default function MangaList() {
             </div>
             <div className="d-flex py-3 justify-content-around">
                 <form className="d-flex w-50" action="/" onSubmit={onSubmitForm} method='get'>
-                    <input className="form-control me-2" type="search" placeholder={languageManager.get("Shared.SEARCH")} name='search' aria-label="Search"/>
+                    <input className="form-control me-2" type="search" title='search bar' placeholder={languageManager.get("Shared.SEARCH")} name='search' aria-label="Search"/>
                 </form>
             </div>
             <div className='row'>

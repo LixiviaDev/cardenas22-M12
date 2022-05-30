@@ -20,8 +20,6 @@ export default function LoginForm(props: any) {
     async function submitLogIn(e : any) {
         e?.preventDefault();
 
-        console.log(`User: ${user} || Password: ${password}`);
-
         try{
             let response = await fetch(`${configData["API_URL"]}/login`, {
                 method: 'POST',
@@ -75,7 +73,7 @@ export default function LoginForm(props: any) {
                     <p className='m-0 fw-bold' style={{fontSize:" smaller"}}>{languageManager.get("Shared.SIGN_UP")}</p>
                 </a>
             </div>
-            <form onSubmit={submitLogIn} className="form-container px-5">
+            <form onSubmit={submitLogIn} className="form-container px-5" method='post'>
                 <div className="form-element mt-3">
                     <label htmlFor="login-username">
                         <FontAwesomeIcon icon={faUser} />

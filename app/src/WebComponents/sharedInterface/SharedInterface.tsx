@@ -65,7 +65,7 @@ export default function SharedInterface(props: any) {
                     </div>
                     <div className='d-flex'>
                         <form className="d-flex" action='/search' method='get'>
-                            <input className="form-control me-2" type="search" placeholder={languageManager.get("Shared.SEARCH")} name='search' aria-label="Search"/>
+                            <input className="form-control me-2" type="search" title='search bar' placeholder={languageManager.get("Shared.SEARCH")} name='search' aria-label="Search"/>
                         </form>
                         {localStorage.getItem("token") == null ? 
                         <a className='p-0 px-2 text-center btn btn-light border border-dark d-flex justify-content-center align-items-center' style={{borderRadius: "0", fontSize: "12px"}} href="/login">
@@ -74,9 +74,9 @@ export default function SharedInterface(props: any) {
                         :
                         <>
                         <div className="flex-shrink-0 dropdown">
-                            <a href="#" className="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
+                            <div className="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
                                 <img src="https://i.pinimg.com/originals/d7/38/9b/d7389ba6dadf70ff848a9804be09ac30.jpg" alt="mdo" width="32" height="32" className="rounded-circle" style={{width:"40px", height:"40px"}}/>
-                            </a>
+                            </div>
                             <ul className="dropdown-menu dropdown-menu-end text-small shadow" aria-labelledby="dropdownUser2">
                                 {isAdmin && <li><a className="dropdown-item" href="/adminPanel/manageUsers">{languageManager.get("Shared.ADMIN_PANEL")}</a></li>}
                                 <li><button className="dropdown-item" onClick={logOut}>{languageManager.get("Shared.LOG_OUT")}</button></li>

@@ -98,24 +98,22 @@ export default function Info(props: any) {
                         </div>
                     </div>
                     <div className="row mangaInfo w-100">
-                        {/* <div className="w-100 py-3 px-0"> */}
-                            {
-                                isAdmin
-                                ?
-                                <div className="w-100 py-3 px-0">
-                                    <a  className="d-block py-2 px-3 border bg-black text-white sectionTitle"
-                                        href={`/AdminPanel/ManageMangas/${mangaId}`}>
-                                        <h2 className="h1 my-3 text-center">{mangaInfoData?.title}</h2>
-                                    </a>
+                        {
+                            isAdmin
+                            ?
+                            <div className="w-100 py-3 px-0">
+                                <a  className="d-block py-2 px-3 border bg-black text-white sectionTitle"
+                                    href={`/AdminPanel/ManageMangas/${mangaId}`}>
+                                    <h2 className="h1 my-3 text-center">{mangaInfoData?.title}</h2>
+                                </a>
+                            </div>
+                            :
+                            <div className="w-100 py-3 px-0">
+                                <div  className="py-2 px-3 border bg-black text-white sectionTitle">
+                                    <h2 className="h1 my-3 text-center">{mangaInfoData?.title}</h2>
                                 </div>
-                                :
-                                <div className="w-100 py-3 px-0">
-                                    <div  className="py-2 px-3 border bg-black text-white sectionTitle">
-                                        <h2 className="h1 my-3 text-center">{mangaInfoData?.title}</h2>
-                                    </div>
-                                </div>
-                            }
-                        {/* </div> */}
+                            </div>
+                        }
                         <TitleDataRow title="Guionistas" data={mangaInfoData?.authors}></TitleDataRow>
                         <TitleDataRow title="Artistas" data={mangaInfoData?.artists}></TitleDataRow>
                         <TitleDataRow title="Estado" data={mangaInfoData?.statusId}></TitleDataRow>

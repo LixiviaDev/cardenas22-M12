@@ -58,7 +58,7 @@ export default function ReaderInterface(props: any) {
                         <a className="nav-link" href="/">Home</a>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link h1 disabled" href="#" tabIndex={-1} aria-disabled="true" style={{height: "60px"}}>Menu</a>
+                        <p className="nav-link h1 disabled" tabIndex={-1} aria-disabled="true" style={{height: "60px"}}>Menu</p>
                     </li>
                 </ul>
                 </div>
