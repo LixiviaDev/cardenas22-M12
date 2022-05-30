@@ -94,8 +94,8 @@ export default function SharedInterface(props: any) {
             {props.children}
         </main>
 
-        <footer className="sharedInterface bg-light py-2 d-flex justify-content-center align-items-center">
-            <p className='fw-bold' style={{fontSize: "xxx-large"}}>FOOTER</p>
+        <footer className="sharedInterface px-2 bg-light py-2 d-flex justify-content-center align-items-center">
+            <p className='text-muted'>Esto es un proyecto de fin de grado creado con fines educativos</p>
         </footer>
         </>
     );

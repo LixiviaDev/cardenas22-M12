@@ -158,12 +158,12 @@ export default function MangaDataManagement() {
                 <div className="row w-100 my-2">
                     <div className="col-12">
                         <div className="row">
-                            <div className="col-6">
+                            <div className="col-12 col-lg-6">
                                 <div className="row">
-                                    <div className="col-12 ps-0">
+                                    <div className="col-12 ps-0 pe-0 pe-lg-3">
                                         <label htmlFor="mangaTitle" className="fs-3">{languageManager.get("AdminPanel.MANAGE_MANGA.TITLE_INPUT_LABEL")}</label>
                                     </div>
-                                    <div className="col-12 ps-0 d-flex">
+                                    <div className="col-12 ps-0 pe-0 pe-lg-3 d-flex">
                                         <input  className="form-control" 
                                             type="text" 
                                             name="mangaTitle"
@@ -178,7 +178,7 @@ export default function MangaDataManagement() {
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-6 m-0">
+                            <div className="col-12 col-lg-6 m-0">
                                 <div className="row">
                                     <div className="col-12 pe-0">
                                         <label htmlFor="mangaState" className="fs-3">{languageManager.get("AdminPanel.MANAGE_MANGA.STATE_INPUT_LABEL")}</label>
@@ -224,12 +224,12 @@ export default function MangaDataManagement() {
                 <div className="row w-100 my-2">
                     <div className="col-12">
                         <div className="row">
-                            <div className="col-6">
+                            <div className="col-12 col-lg-6">
                                 <div className="row">
-                                    <div className="col-12 ps-0">
+                                    <div className="col-12 ps-0 pe-0 pe-lg-3">
                                         <label htmlFor="mangaWriter" className="fs-3">{languageManager.get("AdminPanel.MANAGE_MANGA.ADD_WRITER_INPUT_LABEL")}</label>
                                     </div>
-                                    <div className="col-12 ps-0 d-flex">
+                                    <div className="col-12 ps-0 pe-0 pe-lg-3 d-flex">
                                         <input  ref={mangaWriterInput}
                                                 className="form-control" 
                                                 type="text" 
@@ -242,17 +242,17 @@ export default function MangaDataManagement() {
                                             <FontAwesomeIcon icon={faPlus} />
                                         </button>
                                     </div>
-                                    <div className="col-12 ps-0 d-flex flex-wrap">
+                                    <div className="col-12 ps-0 pe-0 pe-lg-3 d-flex flex-wrap">
                                         {writersList}
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-6">
+                            <div className="col-12 col-lg-6">
                                 <div className="row">
-                                    <div className="col-12 pe-0">
+                                    <div className="col-12 ps-0 ps-lg-3 pe-0">
                                         <label htmlFor="mangaArtist" className="fs-3">{languageManager.get("AdminPanel.MANAGE_MANGA.ADD_ARTIST_INPUT_LABEL")}</label>
                                     </div>
-                                    <div className="col-12 pe-0 d-flex">
+                                    <div className="col-12 ps-0 ps-lg-3 pe-0 d-flex">
                                         <input  ref={mangaArtistInput}
                                                 className="form-control" 
                                                 type="text" 
@@ -265,7 +265,7 @@ export default function MangaDataManagement() {
                                             <FontAwesomeIcon icon={faPlus} />
                                         </button>
                                     </div>
-                                    <div className="col-12 pe-0 d-flex flex-wrap">
+                                    <div className="col-12 ps-0 ps-lg-3 pe-0 d-flex flex-wrap">
                                         {artistsList}
                                     </div>
                                 </div>
@@ -277,12 +277,12 @@ export default function MangaDataManagement() {
                 <div className="row w-100 my-2">
                     <div className="col-12">
                         <div className="row">
-                            <div className="col-6">
+                            <div className="col-12 col-lg-6">
                                 <div className="row">
-                                    <div className="col-12 ps-0">
+                                    <div className="col-12 ps-0 pe-0 pe-lg-3">
                                         <label htmlFor="mangaTag" className="fs-3">{languageManager.get("AdminPanel.MANAGE_MANGA.ADD_TAG_INPUT_LABEL")}</label>
                                     </div>
-                                    <div className="col-12 ps-0 d-flex">
+                                    <div className="col-12 ps-0 pe-0 pe-lg-3 d-flex">
                                         <input  ref={mangaTagInput}
                                                 className="form-control" 
                                                 type="text" 
@@ -295,7 +295,7 @@ export default function MangaDataManagement() {
                                             <FontAwesomeIcon icon={faPlus} />
                                         </button>
                                     </div>
-                                    <div className="col-12 ps-0 d-flex flex-wrap">
+                                    <div className="col-12 ps-0 pe-0 pe-lg-3 d-flex flex-wrap">
                                         {tagsList}
                                     </div>
                                 </div>
