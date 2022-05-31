@@ -1,3 +1,4 @@
+import { HttpException, HttpStatus } from "@nestjs/common";
 import { User } from "../../Common/CustomTypes/User";
 
 const Database = require('better-sqlite3');
@@ -48,10 +49,14 @@ export default class LoginRepository {
                                                 `);
 
         let dateAdded = new Date(Date.now());
-
-        let res : any = sql.run({   email: email,
-                                    user: user, 
-                                    password: password, 
-                                    dateaAdded: dateAdded.toISOString()});
+        
+        try{
+            let res : any = sql.run({   email: email,
+                                        user: user, 
+                                        password: password, 
+                                        dateaAdded: dateAdded.toISOString()});
+        } catch(ex) {
+            throw new HttpException(ex, HttpStatus.CONFLICT);
+        }
     }
   }

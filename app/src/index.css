@@ -72,19 +72,19 @@ a.invalidAction, input[type="submit"].invalidAction {
 }
 
 /* width */
-body ::-webkit-scrollbar {
+main *::-webkit-scrollbar {
   width: 10px;
 }
 
-body ::-webkit-scrollbar-track {
+main *::-webkit-scrollbar-track {
   background: #f1f1f1; 
 }
 
-body ::-webkit-scrollbar-thumb {
+main *::-webkit-scrollbar-thumb {
   background: #888; 
 }
 
-body ::-webkit-scrollbar-thumb:hover {
+main *::-webkit-scrollbar-thumb:hover {
   background: #555; 
 }
 

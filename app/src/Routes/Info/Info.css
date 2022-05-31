@@ -1,6 +1,6 @@
-div.infoPage > div.mangaCover {
+/* div.infoPage > div.mangaCover {
     background: linear-gradient(180deg, var(--bs-black) 0%, var(--bs-black) 56%, var(--bs-white) 65%, var(--bs-white) 100%);
-}
+} */
 
 div.chapterList {
     background: #f1f1f1;
@@ -13,19 +13,12 @@ div.chapterList > div {
 
 @media (min-width: 992.02px) {
     div.infoPage {
-        height: 92vh;
+        min-height: 92vh;
     }
 
-    div.infoPage > div.mangaCover {
+    /* div.infoPage > div.mangaCover {
         background: linear-gradient(180deg, var(--bs-black) 0%, var(--bs-black) 65%, var(--bs-white) 75%, var(--bs-white) 100%);
-    }
-    
-    div.mangaInfo {
-        height: 40%;
-        position: absolute;
-        bottom: 0;
-        padding: 0 16px 16px 16px;
-    }
+    } */
     
     div.chapterList {
         position: relative;

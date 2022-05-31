@@ -6,6 +6,7 @@
         "SIGN_UP": "Sign up",
         "SIGNUP": "Signup",
         "SEARCH": "Search",
+        "CHANGE_LANGUAGE": "Language",
         "ADMIN_PANEL": "Admin panel"
     },
     "Home": {
@@ -14,10 +15,13 @@
         "NEW_TITLE": "Latest updates"
     },
     "Login": {
-        "EMAIL": "email",
+        "EMAIL": "Email",
         "USERNAME": "Username",
         "PASSWORD": "Password",
-        "INVALID_USER": "Invalid user or password",
+        "PASSWORD_VALIDATION": "Password validation",
+        "INVALID_EMAIL": "Invalid email",
+        "INVALID_USER": "Invalid username or password",
+        "INVALID_EMAIL_OR_USERNAME": "Email or username already exists",
         "INVALID_PASSWORD": "Invalid password"
     },
     "AdminPanel": {
@@ -40,5 +44,11 @@
     },
     "UserCard": {
         "IMG_ALT": "Profile image of the user "
+    },
+    "Info": {
+        "MANGA_STATES": {
+            "0" : "On-going",
+            "1" : "Finished"
+        }
     }
 }

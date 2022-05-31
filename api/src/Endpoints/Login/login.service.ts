@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import Repository from './login.repository';
 import { User, UserJWT } from '../../Common/CustomTypes/User';
 
@@ -29,6 +29,9 @@ export default class LoginService {
     }
 
     async signup(email : string, user : string, password : string): Promise<any> {
+        if(email.match(`[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$`) == null)
+            throw new HttpException("Invalid email", HttpStatus.BAD_REQUEST);
+        
         password = crypto.createHmac('sha256', password).update(password).digest("base64");
 
         await Repository.signup(email, user, password);

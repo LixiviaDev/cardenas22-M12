@@ -17,9 +17,11 @@ export default function SignupForm(props: any) {
 
     const [languageManager] = useState<LanguageManager>(LanguageManager.getInstance());
 
-    const [submitButtonReference] = useState<React.RefObject<any>>(React.createRef());
-    const [password2IconReference] = useState<React.RefObject<any>>(React.createRef());
+    const [emailIconReference] = useState<React.RefObject<HTMLLabelElement>>(React.createRef());
+    const [password2IconReference] = useState<React.RefObject<HTMLLabelElement>>(React.createRef());
+    const [submitButtonReference] = useState<React.RefObject<HTMLInputElement>>(React.createRef());
 
+    const [isValidEmail, setIsValidEmail] = useState<boolean>(false);
     const [isValidPassword, setIsValidPassword] = useState<boolean>(false);
 
     useEffect(() => checkArePasswordsEqual(), [password, password2]);
@@ -27,7 +29,7 @@ export default function SignupForm(props: any) {
     async function submitSignup(e : any) {
         e?.preventDefault();
         
-        if(isValidPassword){
+        if(isValidPassword && isValidEmail){
             try{
                 let response = await fetch(`${configData["API_URL"]}/signup`, {
                     method: 'POST',
@@ -44,14 +46,18 @@ export default function SignupForm(props: any) {
                     localStorage.setItem("token", data?.token);
         
                     window.location.assign("/");
-                } else if (response.status === 403) {
-                    setSubmitAsInvalid(languageManager.get("Login.INVALID_USER"));
+                } else {
+                    setSubmitAsInvalid(languageManager.get("Login.INVALID_EMAIL_OR_USERNAME"));
                 }
             } catch (ex) {
+                setSubmitAsInvalid(languageManager.get("Login.INVALID_EMAIL_OR_USERNAME"));
                 console.error(ex);
             }
         } else {
-            setSubmitAsInvalid(languageManager.get("Login.INVALID_PASSWORD"));
+            if(!isValidEmail)
+                setSubmitAsInvalid(languageManager.get("Login.INVALID_EMAIL"));
+            else if(!isValidPassword)
+                setSubmitAsInvalid(languageManager.get("Login.INVALID_PASSWORD"));
         }
     }
 
@@ -81,22 +87,23 @@ export default function SignupForm(props: any) {
             </div>
             <form onSubmit={submitSignup} className="form-container px-5" method='post'>
                 <div className="form-element mt-4">
-                    <label htmlFor="login-username">
+                    <label  ref={emailIconReference}
+                            htmlFor="login-username">
                         <FontAwesomeIcon icon={faUser} />
                     </label>
-                    <input type="text" id="login-username" onChange={(e) => setEmail(e.target.value)} placeholder={languageManager.get("Login.EMAIL")}/>
+                    <input type="email" id="login-username" onChange={(e) => setEmail(e.target.value)} placeholder={languageManager.get("Login.EMAIL")} required/>
                 </div>
                 <div className="form-element mt-4">
                     <label htmlFor="login-username">
                         <FontAwesomeIcon icon={faUser} />
                     </label>
-                    <input type="text" id="login-username" onChange={(e) => setUser(e.target.value)} placeholder={languageManager.get("Login.USERNAME")}/>
+                    <input type="text" id="login-username" onChange={(e) => setUser(e.target.value)} placeholder={languageManager.get("Login.USERNAME")} required/>
                 </div>
                 <div className="form-element mt-4">
                     <label htmlFor="login-password">
                         <FontAwesomeIcon icon={faKey} />
                     </label>
-                    <input type="password" id="login-password" onChange={(e) => setPassword(e.target.value)} placeholder={languageManager.get("Login.PASSWORD")}/>
+                    <input type="password" id="login-password" onChange={(e) => setPassword(e.target.value)} placeholder={languageManager.get("Login.PASSWORD")} required/>
                 </div>
                 <div className="form-element mt-4">
                     <label  ref={password2IconReference}
@@ -106,7 +113,7 @@ export default function SignupForm(props: any) {
                     <input  type="password" 
                             id="login-password" 
                             onChange={(e) => setPassword2(e.target.value)} 
-                            placeholder={languageManager.get("Login.PASSWORD")}/>
+                            placeholder={languageManager.get("Login.PASSWORD_VALIDATION")} required/>
                 </div>
                 <div className="form-element mt-5">
                     <input  ref={submitButtonReference} title='submit'
@@ -127,7 +134,28 @@ export default function SignupForm(props: any) {
     function setEmail(value: string) {
         onInputChanged();
 
+        if(emailIconReference.current != null){
+            resetEmailInputStyle();
+            setIsValidEmail(false);
+            
+            if(value.match(`[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$`) != null){
+                emailIconReference.current.classList.add("validPassword");
+                setIsValidEmail(true);
+            }
+            else
+                emailIconReference.current.classList.add("invalidPassword");
+        }
+
         _setEmail(value);
+    }
+
+    function resetEmailInputStyle(){
+        if(emailIconReference.current != null){
+            const emailInput : HTMLLabelElement = emailIconReference.current;
+
+            emailInput.classList.remove("validPassword");
+            emailInput.classList.remove("invalidPassword");
+        }
     }
 
     function setUser(value: string) {
@@ -162,40 +190,50 @@ export default function SignupForm(props: any) {
     }
 
     function resetPassword2InputStyle(){
-        const password2Input : HTMLInputElement = password2IconReference.current;
-
-        password2Input.classList.remove("validPassword");
-        password2Input.classList.remove("invalidPassword");
+        if(password2IconReference.current != null){
+            const password2Input : HTMLLabelElement = password2IconReference.current;
+    
+            password2Input.classList.remove("validPassword");
+            password2Input.classList.remove("invalidPassword");
+        }
     }
 
     function setPassword2InputAsValid(){
-        const password2Input : HTMLInputElement = password2IconReference.current;
+        if(password2IconReference.current != null){
+            const password2Input : HTMLLabelElement = password2IconReference.current;
 
-        resetPassword2InputStyle();
+            resetPassword2InputStyle();
 
-        password2Input.classList.add("validPassword");
+            password2Input.classList.add("validPassword");
+        }
     }
 
     function setPassword2InputAsInvalid(){
-        const password2Input : HTMLInputElement = password2IconReference.current;
+        if(password2IconReference.current != null){
+            const password2Input : HTMLLabelElement = password2IconReference.current;
 
-        resetPassword2InputStyle();
+            resetPassword2InputStyle();
 
-        password2Input.classList.add("invalidPassword");
+            password2Input.classList.add("invalidPassword");
+        }
     }
 
     function resetSubmitStyle(){
-        const submitButton : HTMLInputElement = submitButtonReference.current;
+        if(submitButtonReference.current != null){
+            const submitButton : HTMLInputElement = submitButtonReference.current;
 
-        submitButton.classList.remove("invalidAction");
-        submitButton.value = languageManager.get("Shared.LOG_IN");
+            submitButton.classList.remove("invalidAction");
+            submitButton.value = languageManager.get("Shared.LOG_IN");
+        }
     }
 
     function setSubmitAsInvalid(errorMessage: string){
-        const submitButton : HTMLInputElement = submitButtonReference.current;
+        if(submitButtonReference.current != null){
+            const submitButton : HTMLInputElement = submitButtonReference.current;
 
-        submitButton.classList.add("invalidAction");
-        submitButton.value = errorMessage;
+            submitButton.classList.add("invalidAction");
+            submitButton.value = errorMessage;
+        }
     }
 
     function isEmptyOrSpaces(str: string){

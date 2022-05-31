@@ -91,13 +91,13 @@ export default function Info(props: any) {
         <h1 hidden>Informacion del manga {mangaInfoData?.title}</h1>
         <SharedInterface>
             <div className="row mx-3 mt-2 infoPage p-3">
-                <div className="col-12 col-lg-5 col-xl-4 p-3 mangaCover border border-secondary d-flex flex-column align-items-center position-relative">
-                    <div className="w-100 p-0" style={{height: "60%"}}>
+                <div className="col-12 col-lg-5 col-xl-4 mangaCover border border-secondary d-flex flex-column align-items-center p-0 bg-black">
+                    <div className="w-100 p-3 pb-0" style={{flex: 1}}>
                         <div className="border border-dark h-100 text-center" style={{backgroundColor: "var(--bs-white)"}}>
                             <img className="h-100" src={mangaInfoData?.image} alt={`Portada de ${mangaInfoData?.title}`} style={{aspectRatio: "1/1.5", maxWidth: "100%"}}/>
                         </div>
                     </div>
-                    <div className="row mangaInfo w-100">
+                    <div className="row w-100 p-3 pt-0" style={{background: "linear-gradient(180deg, #fff0 9%, var(--bs-white) 39%, var(--bs-white) 100%)"}}>
                         {
                             isAdmin
                             ?
@@ -116,11 +116,11 @@ export default function Info(props: any) {
                         }
                         <TitleDataRow title="Guionistas" data={mangaInfoData?.authors}></TitleDataRow>
                         <TitleDataRow title="Artistas" data={mangaInfoData?.artists}></TitleDataRow>
-                        <TitleDataRow title="Estado" data={mangaInfoData?.statusId}></TitleDataRow>
+                        <TitleDataRow title="Estado" data={languageManager.get(`Info.MANGA_STATES["${mangaInfoData?.statusId}"]`)}></TitleDataRow>
                         <TitleDataRow title="Tags" data={mangaInfoData?.tags}></TitleDataRow>
                         <TitleDataRow title="Actualizado" data={languageManager.dateToShortLangString(mangaInfoData?.lastUpdateChapterDateAdded)}></TitleDataRow>
                         <TitleDataRow title="Visitas" data={mangaInfoData?.views}></TitleDataRow>
-                        <TitleDataRow title="Puntuacion" data={mangaInfoData?.score}></TitleDataRow>
+                        <TitleDataRow title="Puntuacion" data={mangaInfoData?.score ?? "-"}></TitleDataRow>
                     </div>
                 </div>
                 <div className="col-12 col-lg-7 col-xl-8 p-0 pt-3 pt-lg-0 ps-lg-3">

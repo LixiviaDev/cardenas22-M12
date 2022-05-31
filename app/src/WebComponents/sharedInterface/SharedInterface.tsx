@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome } from '@fortawesome/free-solid-svg-icons';
 import { LanguageManager } from '../../TypeScript/Managers/LanguageManager';
 import configData from '../../config.json';
+import { Languages } from '../../TypeScript/Enums/Language.enum';
 
 export default function SharedInterface(props: any) {
     const [flexflow] = useState(props.flexflow ?? "column");
@@ -11,7 +12,18 @@ export default function SharedInterface(props: any) {
 
     const [isAdmin, setIsAdmin] = useState<boolean>(false);
 
-    useEffect(() => componentDidMount(), [])
+    const [mainReference] = useState<React.RefObject<HTMLElement>>(React.createRef());
+
+    useEffect(() => componentDidMount(), []);
+
+    useEffect(() => {
+        if(mainReference.current != null){
+        if(window.innerWidth < 600)
+            mainReference.current.style.minHeight = window.innerHeight.toString() + "px";
+        else
+            mainReference.current.style.minHeight = "100vh";
+        }
+    }, [mainReference]);
 
     function componentDidMount() {
         isUserAdmin()
@@ -78,6 +90,16 @@ export default function SharedInterface(props: any) {
                                 <img src="https://i.pinimg.com/originals/d7/38/9b/d7389ba6dadf70ff848a9804be09ac30.jpg" alt="mdo" width="32" height="32" className="rounded-circle" style={{width:"40px", height:"40px"}}/>
                             </div>
                             <ul className="dropdown-menu dropdown-menu-end text-small shadow" aria-labelledby="dropdownUser2">
+                                <li>
+                                    <select className='form-select'
+                                            name="selectLanguage" id="selectLanguage"
+                                            onChange={(v) => languageManager.changeAppLanguage(v.target.value as Languages)}>
+                                        <option value="current" disabled hidden selected>{languageManager.get("Shared.CHANGE_LANGUAGE")}</option>
+                                        <option value={Languages.ES}>{Languages.ES}</option>
+                                        <option value={Languages.EN}>{Languages.EN}</option>
+                                        <option value={Languages.CA}>{Languages.CA}</option>
+                                    </select>
+                                </li>
                                 {isAdmin && <li><a className="dropdown-item" href="/adminPanel/manageUsers">{languageManager.get("Shared.ADMIN_PANEL")}</a></li>}
                                 <li><button className="dropdown-item" onClick={logOut}>{languageManager.get("Shared.LOG_OUT")}</button></li>
                             </ul>
@@ -90,7 +112,7 @@ export default function SharedInterface(props: any) {
         </nav>
         </header>
 
-        <main className={`sharedInterface flex-${flexflow}`} style={{minHeight: window.innerHeight}}>
+        <main ref={mainReference} className={`sharedInterface flex-${flexflow}`}>
             {props.children}
         </main>
 

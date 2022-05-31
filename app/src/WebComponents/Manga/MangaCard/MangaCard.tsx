@@ -78,8 +78,8 @@ export function BriefInfoMangaCard(props: any){
     }, [props.statusId])
 
     return(<>
-        <div className="w-100 h-100 bg-white border border-dark position-relative briefInfoMangaCard">
-            <a href={href}>
+        {/* <div className="w-100 h-100 bg-white border border-dark position-relative briefInfoMangaCard"> */}
+            <a href={href} className="w-100 h-100 bg-white border border-dark position-relative briefInfoMangaCard">
                 <div className="bg-white h-100">
                     <div hidden>Click aqui para ver la informacion de {title}</div>
                     <div className="d-flex h-100">
@@ -92,7 +92,7 @@ export function BriefInfoMangaCard(props: any){
                             <div className="w-100 py-2 ps-1 pe-2 text-dark d-flex justify-content-between grayBorderBottom" style={{fontSize: "small"}}>
                                 <p className="m-0">Ch. {lastChapter}</p>
                                 <p className="m-0">{languageManager.dateToShortLangString(lastChapterDateAdded)}</p>
-                                <p className="m-0 d-none d-sm-block">{statusId}</p>
+                                <p className="m-0 d-none d-sm-block">{languageManager.get(`Info.MANGA_STATES["${statusId}"]`)}</p>
                             </div>
                             <div className="h-100 m-0 p-2 ps-0 text-truncate text-wrap" style={{maxHeight: "9em"}}>
                                 <p  className="fw-bold m-0 pb-1" 
@@ -106,7 +106,7 @@ export function BriefInfoMangaCard(props: any){
                     </div>
                 </div>
             </a>
-            <div className="h-100 position-absolute top-0 bottom-0 start-0 end-0">
+            {/* <div className="h-100 position-absolute top-0 bottom-0 start-0 end-0">
                 <div className="d-flex h-100">
                     <img className="d-block d-sm-none m-auto ms-2 border border-dark" style={{width: "120px", height: "160px", opacity: "0"}} src={img} alt="a" />
                     <img className="d-none d-sm-block h-100" src={img} alt="a" style={{aspectRatio:"1/1.5", width: "222px", opacity: "0"}}/>
@@ -121,7 +121,7 @@ export function BriefInfoMangaCard(props: any){
                         </a>
                     </div>
                 </div>
-            </div>
-        </div>
+            </div> */}
+        {/* </div> */}
     </>);
 }

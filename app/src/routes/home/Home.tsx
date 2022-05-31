@@ -22,13 +22,13 @@ export default function Home(props: any) {
 
             <MangaSection   sectionTitlePath="Home.HOT_TITLE"
                             sectionHref="/hot"
-                            cardType={CardType.Simple}
+                            cardType={CardType.Hover}
                             endPoint="manga/testMangaPreviewCard"/>
-                            
-            <SectionTitle title={languageManager.get("Home.NEW_TITLE")} href="/new" />
-            <button onClick={() => languageManager.changeAppLanguage(Languages.ES)}>Español</button>
-            <button onClick={() => languageManager.changeAppLanguage(Languages.EN)}>English</button>
-            <button onClick={() => languageManager.changeAppLanguage(Languages.CA)}>Catala</button>
+
+            <MangaSection   sectionTitlePath="Home.NEW_TITLE"
+                            sectionHref="/new"
+                            cardType={CardType.Hover}
+                            endPoint="manga/testMangaPreviewCard"/>
         </div>
         </SharedInterface>
         </>

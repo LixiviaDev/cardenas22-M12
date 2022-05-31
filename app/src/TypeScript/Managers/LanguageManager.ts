@@ -35,7 +35,7 @@ export class LanguageManager {
     }
 
     public get(path : string) : string {
-        let pathEval = `this.${this.currentLanguage}.${path}`;
+        let pathEval = `this.${this.currentLanguage}.${path} ?? "STRING_NOT_FOUND"`;
 
         return eval(pathEval);
     }
