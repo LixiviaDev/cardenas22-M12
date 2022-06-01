@@ -1,30 +1,54 @@
 {
     "Shared": {
-        "LOG_IN": "Iniciar sessio",
-        "LOGIN": "Iniciar sessio",
-        "LOG_OUT": "Tencar sessio",
+        "LOG_IN": "Iniciar sessió",
+        "LOGIN": "Iniciar sessió",
+        "LOG_OUT": "Tancar sessió",
         "SIGN_UP": "Registrar-se",
         "SIGNUP": "Registrar-se",
         "SEARCH": "Buscar",
+        "CHANGE_LANGUAGE": "Idioma",
         "ADMIN_PANEL": "Panel d'administrador"
     },
     "Home": {
         "READING_TITLE": "Seguir llegint",
-        "HOT_TITLE": "El mes llegit",
-        "NEW_TITLE": "Ultimes actualizacions"
+        "HOT_TITLE": "El més llegit",
+        "NEW_TITLE": "Ultimes actualitzacions"
     },
     "Login": {
-        "EMAIL": "Correo electronic",
+        "EMAIL": "Correu electrònic",
         "USERNAME": "Usuari",
         "PASSWORD": "Contrasenya",
-        "INVALID_USER": "Usuari o contranya incorrectes",
-        "INVALID_PASSWORD": "Contranya incorrecta"
+        "PASSWORD_VALIDATION": "Contrasenya validació",
+        "INVALID_EMAIL": "Email invàlid",
+        "INVALID_USER": "Usuari o contrasenya incorrectes",
+        "INVALID_EMAIL_OR_USERNAME": "L'email o la contrasenya ja existeixen",
+        "INVALID_PASSWORD": "Contrasenya incorrecta"
     },
     "AdminPanel": {
         "TITLE": "Panel d'administrador",
         "NAV": {
-            "MANAGE_USERS": "Administrar usuaris"
+            "MANAGE_USERS": "Administrar usuaris",
+            "MANAGE_MANGAS": "Administrar mangas"
+        },
+        "MANAGE_MANGA": {
+            "TITLE_INPUT_LABEL": "Títol",
+            "SINOPSIS_INPUT_LABEL": "Sinopsis",
+            "ADD_WRITER_INPUT_LABEL": "Escriptors",
+            "ADD_ARTIST_INPUT_LABEL": "Artistes",
+            "STATE_INPUT_LABEL": "Estat",
+            "ADD_TAG_INPUT_LABEL": "Tags",
+            "ADD_WRITER_INPUT_PLACEHOLDER": "Nom autor",
+            "ADD_ARTIST_INPUT_PLACEHOLDER": "Nom artista",
+            "ADD_TAG_INPUT_PLACEHOLDER": "Tag"
+        }
+    },
+    "UserCard": {
+        "IMG_ALT": "Imatge de perfil de l'usuari "
+    },
+    "Info": {
+        "MANGA_STATES": {
+        "0" : "En emissió",
+        "1" : "Terminat"
         }
     }
 }
-

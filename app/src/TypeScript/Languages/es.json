@@ -1,29 +1,54 @@
 {
     "Shared": {
-        "LOG_IN": "Iniciar sesion",
-        "LOGIN": "Iniciar sesion",
-        "LOG_OUT": "Cerrar sesion",
+        "LOG_IN": "Iniciar sesión",
+        "LOGIN": "Iniciar sesión",
+        "LOG_OUT": "Cerrar sesión",
         "SIGN_UP": "Registrarse",
         "SIGNUP": "Registrarse",
         "SEARCH": "Buscar",
+        "CHANGE_LANGUAGE": "Idioma",
         "ADMIN_PANEL": "Panel de administrador"
     },
     "Home": {
         "READING_TITLE": "Seguir leyendo",
-        "HOT_TITLE": "Lo mas leido",
-        "NEW_TITLE": "Ultimas actualizaciones"
+        "HOT_TITLE": "Lo más leído",
+        "NEW_TITLE": "Últimas actualizaciones"
     },
     "Login": {
-        "EMAIL": "Correo electronico",
+        "EMAIL": "Correo electrónico",
         "USERNAME": "Usuario",
         "PASSWORD": "Contraseña",
-        "INVALID_USER": "Usuario o contraña incorrectos",
-        "INVALID_PASSWORD": "Contraña incorrecta"
+        "PASSWORD_VALIDATION": "Contraseña validación",
+        "INVALID_EMAIL": "Email inválido",
+        "INVALID_USER": "Usuario o contraseña incorrectos",
+        "INVALID_EMAIL_OR_USERNAME": "El email o la contraseña ya existen",
+        "INVALID_PASSWORD": "Contraseña incorrecta"
     },
     "AdminPanel": {
         "TITLE": "Panel de administrador",
         "NAV": {
-            "MANAGE_USERS": "Administrar usuarios"
+            "MANAGE_USERS": "Administrar usuarios",
+            "MANAGE_MANGAS": "Administrar mangas"
+        },
+        "MANAGE_MANGA": {
+            "TITLE_INPUT_LABEL": "Título",
+            "SINOPSIS_INPUT_LABEL": "Sinopsis",
+            "ADD_WRITER_INPUT_LABEL": "Escritores",
+            "ADD_ARTIST_INPUT_LABEL": "Artistas",
+            "STATE_INPUT_LABEL": "Estado",
+            "ADD_TAG_INPUT_LABEL": "Tags",
+            "ADD_WRITER_INPUT_PLACEHOLDER": "Nombre autor",
+            "ADD_ARTIST_INPUT_PLACEHOLDER": "Nombre artista",
+            "ADD_TAG_INPUT_PLACEHOLDER": "Tag"
+        }
+    },
+    "UserCard": {
+        "IMG_ALT": "Imagen de perfil del usuario "
+    },
+    "Info": {
+        "MANGA_STATES": {
+            "0" : "En emisión",
+            "1" : "Terminado"
         }
     }
 }

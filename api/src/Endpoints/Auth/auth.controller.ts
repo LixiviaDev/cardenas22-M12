@@ -62,7 +62,7 @@ export class AuthController {
 
   @Post('addUserRole')
   async addUserRole(@Body() body: any): Promise<void> {
-    let isAuth : boolean = await this.authService.authAction(body.token, Action.SearchManga);
+    let isAuth : boolean = await this.authService.authAction(body.token, Action.EditManga);
 
     if(!isAuth)
       throw new HttpException('Invalid user', HttpStatus.FORBIDDEN);
@@ -72,7 +72,7 @@ export class AuthController {
 
   @Post('removeUserRole')
   async removeUserRole(@Body() body: any): Promise<void> {
-    let isAuth : boolean = await this.authService.authAction(body.token, Action.SearchManga);
+    let isAuth : boolean = await this.authService.authAction(body.token, Action.EditManga);
 
     if(!isAuth)
       throw new HttpException('Invalid user', HttpStatus.FORBIDDEN);

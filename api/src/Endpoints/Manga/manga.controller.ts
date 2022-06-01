@@ -118,7 +118,7 @@ export class MangaController {
   async addWriter(@Body() body: any): Promise<void> {
     console.log("Body: " + JSON.stringify(body));
 
-    let isAuth : boolean = await this.authService.authAction(body.token, Action.GetChatperImages);
+    let isAuth : boolean = await this.authService.authAction(body.token, Action.EditManga);
 
     if(!isAuth)
       throw new HttpException('Invalid user', HttpStatus.FORBIDDEN)
@@ -130,7 +130,7 @@ export class MangaController {
   async removeWriter(@Body() body: any): Promise<void> {
     console.log("Body: " + JSON.stringify(body));
 
-    let isAuth : boolean = await this.authService.authAction(body.token, Action.GetChatperImages);
+    let isAuth : boolean = await this.authService.authAction(body.token, Action.EditManga);
 
     if(!isAuth)
       throw new HttpException('Invalid user', HttpStatus.FORBIDDEN)
@@ -142,7 +142,7 @@ export class MangaController {
   async addArtist(@Body() body: any): Promise<void> {
     console.log("Body: " + JSON.stringify(body));
 
-    let isAuth : boolean = await this.authService.authAction(body.token, Action.GetChatperImages);
+    let isAuth : boolean = await this.authService.authAction(body.token, Action.EditManga);
 
     if(!isAuth)
       throw new HttpException('Invalid user', HttpStatus.FORBIDDEN)
@@ -154,7 +154,7 @@ export class MangaController {
   async removeArtist(@Body() body: any): Promise<void> {
     console.log("Body: " + JSON.stringify(body));
 
-    let isAuth : boolean = await this.authService.authAction(body.token, Action.GetChatperImages);
+    let isAuth : boolean = await this.authService.authAction(body.token, Action.EditManga);
 
     if(!isAuth)
       throw new HttpException('Invalid user', HttpStatus.FORBIDDEN)
@@ -166,7 +166,7 @@ export class MangaController {
   async addTag(@Body() body: any): Promise<void> {
     console.log("Body: " + JSON.stringify(body));
 
-    let isAuth : boolean = await this.authService.authAction(body.token, Action.GetChatperImages);
+    let isAuth : boolean = await this.authService.authAction(body.token, Action.EditManga);
 
     if(!isAuth)
       throw new HttpException('Invalid user', HttpStatus.FORBIDDEN)
@@ -178,7 +178,7 @@ export class MangaController {
   async removeTag(@Body() body: any): Promise<void> {
     console.log("Body: " + JSON.stringify(body));
 
-    let isAuth : boolean = await this.authService.authAction(body.token, Action.GetChatperImages);
+    let isAuth : boolean = await this.authService.authAction(body.token, Action.EditManga);
 
     if(!isAuth)
       throw new HttpException('Invalid user', HttpStatus.FORBIDDEN)
@@ -190,7 +190,7 @@ export class MangaController {
   async changeTitle(@Body() body: any): Promise<void> {
     console.log("Body: " + JSON.stringify(body));
 
-    let isAuth : boolean = await this.authService.authAction(body.token, Action.GetChatperImages);
+    let isAuth : boolean = await this.authService.authAction(body.token, Action.EditManga);
 
     if(!isAuth)
       throw new HttpException('Invalid user', HttpStatus.FORBIDDEN)
@@ -202,7 +202,7 @@ export class MangaController {
   async changeSinopsis(@Body() body: any): Promise<void> {
     console.log("Body: " + JSON.stringify(body));
 
-    let isAuth : boolean = await this.authService.authAction(body.token, Action.GetChatperImages);
+    let isAuth : boolean = await this.authService.authAction(body.token, Action.EditManga);
 
     if(!isAuth)
       throw new HttpException('Invalid user', HttpStatus.FORBIDDEN)
@@ -214,7 +214,7 @@ export class MangaController {
   async changeState(@Body() body: any): Promise<void> {
     console.log("Body: " + JSON.stringify(body));
 
-    let isAuth : boolean = await this.authService.authAction(body.token, Action.GetChatperImages);
+    let isAuth : boolean = await this.authService.authAction(body.token, Action.EditManga);
 
     if(!isAuth)
       throw new HttpException('Invalid user', HttpStatus.FORBIDDEN)
