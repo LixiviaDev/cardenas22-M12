@@ -1,5 +1,5 @@
 {
-    "API_URL": "https://lixiviareaderapi.herokuapp.com",
+    "API_URL": "https://lixiviareaderv2api.onrender.com",
     "ENDPOINTS": {
         "IS_ADMIN": "auth/isAdmin",
         "INFO": "manga/info",
